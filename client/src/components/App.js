@@ -3,10 +3,10 @@ import { BrowserRouter, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../actions";
 
-const Header = "Header";
-const Landing = "Landing";
-const Dashboard = "Dashboard";
-const CampaignNew = "CampaignNew";
+const Header = () => <h2>Header</h2>;
+// const Landing = "Landing";
+// const Dashboard = "Dashboard";
+// const CampaignNew = "CampaignNew";
 
 // import Header from "./Header";
 // import Landing from "./Landing";
@@ -15,8 +15,12 @@ const CampaignNew = "CampaignNew";
 
 class App extends Component {
   componentDidMount() {
-    this.props.fetchUser();
+    //this.props.fetchUser();
   }
+
+  // <Route exact path="/" component={Landing} />
+  // <Route exact path="/campaigns" component={Dashboard} />
+  // <Route path="/campaigns/new" component={CampaignNew} />
 
   render() {
     return (
@@ -24,9 +28,6 @@ class App extends Component {
         <BrowserRouter>
           <div className="container">
             <Header />
-            <Route exact path="/" component={Landing} />
-            <Route exact path="/campaigns" component={Dashboard} />
-            <Route path="/campaigns/new" component={CampaignNew} />
           </div>
         </BrowserRouter>
       </div>
