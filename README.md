@@ -5,13 +5,13 @@ A full stack application built using react, redux, node, express and MongoDB tha
 ## Running in Development mode
 
 ```
-> git clone https://github.com/chrishodgson/MountainChallenge.git && cd MountainChallenge
+git clone https://github.com/chrishodgson/MountainChallenge.git && cd MountainChallenge
 ```
 
 ### Server keys
 
 ```
-> cp config/dev.keys.dist config/dev.keys
+cp config/dev.js.dist config/dev.js
 ```
 
 Replace REPLACE_ME with your values:
@@ -33,5 +33,5 @@ Tips:
 The following assumes that npm is installed.
 
 ```
-> npm install && npm install --prefix=client && npm run dev
+npm install && npm install --prefix=client && npm run dev
 ```
