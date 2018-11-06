@@ -3,15 +3,12 @@ import { BrowserRouter, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../actions";
 
-const Header = () => <p>Header</p>;
-const Landing = () => <p>Landing</p>;
-const Dashboard = () => <p>Dashboard</p>;
-const ChallengeNew = () => <p>ChallengeNew</p>;
+import Header from "./Header";
+import Landing from "./Landing";
+import Dashboard from "./Dashboard";
 
-// import Header from "./Header";
-// import Landing from "./Landing";
-// import Dashboard from "./Dashboard";
-// import ChallengenNew from "./campaigns/ChallengeNew";
+const ChallengeNew = () => <p>ChallengeNew</p>;
+// import ChallengeNew from "./ChallengeNew";
 
 class App extends Component {
   componentDidMount() {

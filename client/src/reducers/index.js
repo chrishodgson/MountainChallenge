@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
 import { reducer as reduxForm } from "redux-form";
 import authReducer from "./authReducer";
-import campaignsReducer from "./campaignsReducer";
+import challengesReducer from "./challengesReducer";
 
 export default combineReducers({
   auth: authReducer,
-  campaigns: campaignsReducer,
+  challenges: challengesReducer,
   form: reduxForm
 });
