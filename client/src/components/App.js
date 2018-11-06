@@ -3,24 +3,20 @@ import { BrowserRouter, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../actions";
 
-const Header = () => <h2>Header</h2>;
-// const Landing = "Landing";
-// const Dashboard = "Dashboard";
-// const CampaignNew = "CampaignNew";
+const Header = () => <p>Header</p>;
+const Landing = () => <p>Landing</p>;
+const Dashboard = () => <p>Dashboard</p>;
+const ChallengeNew = () => <p>ChallengeNew</p>;
 
 // import Header from "./Header";
 // import Landing from "./Landing";
 // import Dashboard from "./Dashboard";
-// import CampaignNew from "./campaigns/CampaignNew";
+// import ChallengenNew from "./campaigns/ChallengeNew";
 
 class App extends Component {
   componentDidMount() {
-    //this.props.fetchUser();
+    this.props.fetchUser();
   }
-
-  // <Route exact path="/" component={Landing} />
-  // <Route exact path="/campaigns" component={Dashboard} />
-  // <Route path="/campaigns/new" component={CampaignNew} />
 
   render() {
     return (
@@ -28,6 +24,9 @@ class App extends Component {
         <BrowserRouter>
           <div className="container">
             <Header />
+            <Route exact path="/" component={Landing} />
+            <Route exact path="/challenges" component={Dashboard} />
+            <Route path="/challenges/new" component={ChallengeNew} />
           </div>
         </BrowserRouter>
       </div>
