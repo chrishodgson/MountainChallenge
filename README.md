@@ -24,9 +24,9 @@ Replace REPLACE_ME with your values in `config/dev.js`:
 
 Tips:
 
-- Signup for mLab for the mongoDB database as service `https://mlab.com`
-- Signup for Sendgrid key `https://app.sendgrid.com`
-- Signup for Google clientId and secret `https://console.developers.google.com` by enabling the Google+ Api in the google developers console
+- Signup for mLab for the mongoDB database as service https://mlab.com
+- Signup for Sendgrid key https://app.sendgrid.com
+- Signup for Google clientId and secret https://console.developers.google.com by enabling the Google+ Api in the google developers console
 
 ### Install dependencies and start the server
 
