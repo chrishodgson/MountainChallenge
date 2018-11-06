@@ -14,7 +14,7 @@ git clone https://github.com/chrishodgson/MountainChallenge.git && cd MountainCh
 cp config/dev.js.dist config/dev.js
 ```
 
-Replace REPLACE_ME with your values:
+Replace REPLACE_ME with your values in `config/dev.js`:
 
 - `googleClientID`: Google OAuth Client ID
 - `googleClientSecret`: Google OAuth Client Secret
