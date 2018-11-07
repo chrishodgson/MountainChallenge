@@ -3,13 +3,13 @@ const { Schema } = mongoose;
 // const MemberSchema = require("./Member");
 
 const challengeSchema = new Schema({
-  title: String
+  title: String,
+  created: Date
   // members: [MemberSchema],
   // mountains: [MountainSchema],
   // totalMountains: Number
-  // totalUsers: Number
+  // totalMembers: Number
   // totalActivities: Number
-  // dateCreated: Date
 });
 
 mongoose.model("challenges", challengeSchema);

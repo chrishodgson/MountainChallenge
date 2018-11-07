@@ -1,28 +1,29 @@
-//const _ = require("lodash");
-//const Path = require("path-parser").default;
 const { URL } = require("url");
 const mongoose = require("mongoose");
 const requireLogin = require("../middlewares/requireLogin");
-
-const Survey = mongoose.model("challenges");
+const Challenge = mongoose.model("challenges");
 
 module.exports = app => {
+  //get challenges
   app.get("/api/challenges", requireLogin, async (req, res) => {
-
-//todo
-
-    // const challenges = await Survey.find({ _user: req.user.id }).select({
-    //   recipients: false
-    // });
-    //
-    // res.send(challenges);
-    res.send([]);
+    //todo: how to get a list of challenges that the user is a member of
+    const challenges = await Challenge.find();
+    res.send(challenges);
   });
 
+  //add challenge
   app.post("/api/challenges", requireLogin, async (req, res) => {
+    const { title, subject, body, recipients } = req.body;
+    const challenge = new Challenge({
+      title,
+      created: Date.now()
+    });
 
-//todo
-
-    res.send({});
+    try {
+      await challenge.save();
+      res.send({});
+    } catch (err) {
+      res.status(422).send(err);
+    }
   });
 };
