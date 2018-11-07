@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchChallenges } from "../actions";
+import { fetchChallenges } from "../../actions";
 
 class ChallengeList extends Component {
   componentDidMount(props) {
@@ -8,8 +8,6 @@ class ChallengeList extends Component {
   }
 
   renderChallenges() {
-    console.log(this.props.challenges, "this.props.challenges");
-
     return this.props.challenges.reverse().map(challenge => {
       return (
         <div key={challenge._id} class="card blue-grey darken-1">

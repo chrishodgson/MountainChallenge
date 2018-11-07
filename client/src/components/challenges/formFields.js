@@ -1,1 +1,1 @@
-export default [{ label: "Challenge Title", name: "title" }];
+export default [{ name: "title", label: "Challenge Title" }];
