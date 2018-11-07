@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 class Header extends Component {
   renderContent() {
+    console.log(this.props.auth, 'this.props.auth');
     switch (this.props.auth) {
       case null:
         return;
@@ -16,7 +17,7 @@ class Header extends Component {
       default:
         return [
           <li key="1">
-            <a href="/api/logout">Logout</a>
+            <a href="/api/logout">Logout - {this.props.auth.name}</a>
           </li>
         ];
     }

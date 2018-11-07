@@ -1,7 +1,7 @@
 import _ from "lodash";
 import React, { Component } from "react";
-import { reduxForm, Field } from "redux-form";
-import Field from "./Field";
+import { reduxForm, Field as ReduxField } from "redux-form";
+import Field from "../Field";
 import { Link } from "react-router-dom";
 import formFields from "./formFields";
 
@@ -9,7 +9,7 @@ class ChallengeForm extends Component {
   renderFields() {
     return _.map(formFields, ({ label, name }) => {
       return (
-        <Field
+        <ReduxField
           key={name}
           type="text"
           component={Field}

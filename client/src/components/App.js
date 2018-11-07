@@ -6,9 +6,7 @@ import * as actions from "../actions";
 import Header from "./Header";
 import Landing from "./Landing";
 import Dashboard from "./Dashboard";
-
-const ChallengeNew = () => <p>ChallengeNew</p>;
-// import ChallengeNew from "./ChallengeNew";
+import ChallengeNew from "./challenges/ChallengeNew";
 
 class App extends Component {
   componentDidMount() {

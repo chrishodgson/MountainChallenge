@@ -8,6 +8,9 @@ const Survey = mongoose.model("challenges");
 
 module.exports = app => {
   app.get("/api/challenges", requireLogin, async (req, res) => {
+
+//todo
+
     // const challenges = await Survey.find({ _user: req.user.id }).select({
     //   recipients: false
     // });
@@ -17,6 +20,9 @@ module.exports = app => {
   });
 
   app.post("/api/challenges", requireLogin, async (req, res) => {
+
+//todo
+
     res.send({});
   });
 };

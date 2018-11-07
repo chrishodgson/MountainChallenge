@@ -34,15 +34,15 @@ const ChallengeReview = ({
         onClick={() => submitChallenge(formValues, history)}
         className="green btn-flat right white-text"
       >
-        Send Challenge
-        <i className="material-icons right">email</i>
+        Save Challenge
+        <i className="material-icons right">save</i>
       </button>
     </div>
   );
 };
 
 function mapStateToProps(state) {
-  return { formValues: state.form.ChallengeForm.values };
+  return { formValues: state.form.challengeForm.values };
 }
 
 export default connect(
