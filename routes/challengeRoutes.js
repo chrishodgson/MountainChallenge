@@ -13,6 +13,7 @@ module.exports = app => {
     // });
     //
     // res.send(challenges);
+    res.send([]);
   });
 
   app.post("/api/challenges", requireLogin, async (req, res) => {

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import ChallengeList from "./ChallengeList";
+import ChallengeList from "./challenges/ChallengeList";
 
 const Dashboard = () => {
   return (

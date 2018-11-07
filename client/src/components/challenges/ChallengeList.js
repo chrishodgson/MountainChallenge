@@ -8,6 +8,8 @@ class ChallengeList extends Component {
   }
 
   renderChallenges() {
+    console.log(this.props.challenges, "this.props.challenges");
+
     return this.props.challenges.reverse().map(challenge => {
       return (
         <div key={challenge._id} class="card blue-grey darken-1">
@@ -16,9 +18,7 @@ class ChallengeList extends Component {
             <p class="left">something</p>
             <p class="right">something</p>
           </div>
-          <div class="card-action">
-            <a href="#">Link</a>
-          </div>
+          <div class="card-action" />
         </div>
       );
     });
