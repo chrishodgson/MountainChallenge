@@ -1,15 +1,12 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
-// const MemberSchema = require("./Member");
+const ChallengeMountainSchema = require("./ChallengeMountain");
 
 const challengeSchema = new Schema({
   title: String,
-  created: Date
-  // members: [MemberSchema],
-  // mountains: [MountainSchema],
-  // totalMountains: Number
-  // totalMembers: Number
-  // totalActivities: Number
+  created: Date,
+  mountains: [ChallengeMountainSchema],
+  mountainCount: Number
 });
 
 mongoose.model("challenges", challengeSchema);
