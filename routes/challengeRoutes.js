@@ -15,8 +15,7 @@ module.exports = app => {
   app.post("/api/challenges", requireLogin, async (req, res) => {
     const { title, subject, body, recipients } = req.body;
     const challenge = new Challenge({
-      title,
-      created: Date.now()
+      title
     });
 
     try {
