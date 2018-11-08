@@ -4,7 +4,7 @@ const ChallengeMountainSchema = require("./ChallengeMountain");
 
 const challengeSchema = new Schema({
   title: String,
-  created: Date,
+  description: String,
   mountains: [ChallengeMountainSchema],
   mountainCount: Number
 });

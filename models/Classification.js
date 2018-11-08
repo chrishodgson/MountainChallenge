@@ -4,6 +4,7 @@ const ClassificationMountainSchema = require("./ClassificationMountainSchema");
 
 const classificationSchema = new Schema({
   name: String,
+  countryCode: String,
   mountains: [ClassificationMountainSchema],
   mountainCount: Number
 });

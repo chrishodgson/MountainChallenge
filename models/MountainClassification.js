@@ -2,7 +2,9 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const mountainClassificationSchema = new Schema({
-  _mountain: { type: Schema.Types.ObjectId, ref: "Mountain" }
+  name: String,
+  countryCode: String,
+  _classification: { type: Schema.Types.ObjectId, ref: "Classification" }
 });
 
 module.exports = mountainClassificationSchema;
