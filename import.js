@@ -13,7 +13,7 @@ mongoose.connect(
 const Mountain = mongoose.model("mountains");
 const csvFilePath = args["filename"] || null;
 const reportItems = args["report"] || false;
-const columns = /(Number|Name|Metres|Feet|Section|Area|Grid ref 10|Classification)/;
+const columns = /(Number|Name|Metres|Feet|Area|Grid ref 10|Classification|Parent (Ma)|Map 1:25k|Country|County)/;
 
 let existingCount = 0,
   createdCount = 0;
@@ -69,8 +69,7 @@ const hydrateMountain = item => {
     lng: item["Longitude"],
     metres: item["Metres"],
     feet: item["Feet"],
-    section: item["Section"], //34A
-    area: item["Area"], //Lake District - Northern Fells
+    area: item["Area"], //ie Lake District - Northern Fells
     gridRef: item["Grid ref 10"]
   });
 };
