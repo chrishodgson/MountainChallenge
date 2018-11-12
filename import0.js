@@ -3,60 +3,47 @@ const keys = require("./config/keys");
 const mongoose = require("mongoose");
 const args = require("minimist")(process.argv.slice(2));
 const csv = require("csvtojson");
+
 require("./models/Mountain");
+
+const Mountain = mongoose.model("mountains");
 
 mongoose.connect(
   keys.mongoURI,
   { useNewUrlParser: true }
 );
 
-const Mountain = mongoose.model("mountains");
 const csvFilePath = args["filename"] || null;
-const reportItems = args["report"] || false;
+
+let count = 0; // todo how to output a count of the mountains imported
+
 const columns = /(Number|Name|Metres|Feet|Section|Area|Grid ref 10|Classification)/;
 
-let existingCount = 0,
-  createdCount = 0;
-
-const parseFile = async () => {
-  const jsonArray = await csv({ includeColumns: columns }).fromFile(
-    csvFilePath
-  );
-  for (const item of jsonArray) {
+const getJson = async () => {
+  const jsonArray = await csv({'includeColumns':columns}).fromFile(csvFilePath);
+  _.each(jsonArray, item => {
     const classifications = item["Classification"].split(",");
     if (classifications.includes("W")) {
-      await handleItem(item);
+      handleItem(item);
     }
-  }
-  console.log(
-    "Created " +
-      createdCount +
-      " mountains, " +
-      existingCount +
-      " already exist."
-  );
+    //todo pass array into another async function which outputs the count 
+  });
 };
 
 const handleItem = async item => {
-  const countDocuments = await Mountain.countDocuments({
-    dobihId: item.Number
-  });
+  //todo a quicker find ??
+  const existingMountain = await Mountain.find({ dobihId: item.Number });
 
-  if (countDocuments > 0) {
-    existingCount++;
-    if (reportItems) {
-      console.log("Exists " + item.Number + " // " + item.Name);
-    }
+  if (existingMountain.length) {
+    console.log('Exists ' + item.Number + " // " + item.Name);
   } else {
-    try {
+    try{
       mountain = hydrateMountain(item);
       await mountain.save();
-      createdCount++;
-      if (reportItems) {
-        console.log("Imported " + item.Number + " // " + item.Name);
-      }
-    } catch (e) {
-      console.log(e, "on save error");
+      console.log('Imported ' + item.Number + " // " + item.Name);
+      //count++;
+    } catch(e) {
+      console.log(e, 'on save error');
     }
   }
 };
@@ -75,4 +62,4 @@ const hydrateMountain = item => {
   });
 };
 
-parseFile();
+getJson();
