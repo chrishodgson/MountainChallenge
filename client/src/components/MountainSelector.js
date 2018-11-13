@@ -1,13 +1,12 @@
 import _ from "lodash";
 import React, { Component } from "react";
 import { reduxForm, Field as ReduxField } from "redux-form";
-import Field from "../Field";
+import Field from "./Field";
 import { Link } from "react-router-dom";
-import formFields from "./formFields";
 
 class MountainSelector extends Component {
   renderFields() {
-    return null;
+    return <div>mountain selector fields</div>;
   }
 
   render() {
@@ -15,9 +14,12 @@ class MountainSelector extends Component {
       <div>
         <form onSubmit={this.props.handleSubmit(this.props.onSubmit)}>
           {this.renderFields()}
-          <Link to="/challenges" className="red btn-flat white-text">
-            Cancel
-          </Link>
+          <button
+            onClick={this.props.onCancel}
+            className="yellow btn-flat darken-3 white-text"
+          >
+            Back
+          </button>
           <button type="submit" className="teal btn-flat white-text right">
             Next
             <i className="material-icons right">done</i>
@@ -29,6 +31,6 @@ class MountainSelector extends Component {
 }
 
 export default reduxForm({
-  form: "MountainSelector",
+  form: "mountainSelector",
   destroyOnUnmount: false
 })(MountainSelector);

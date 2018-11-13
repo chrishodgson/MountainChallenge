@@ -40,6 +40,7 @@ class ChallengeForm extends Component {
 
 function validate(values) {
   const errors = {};
+
   _.each(formFields, ({ name }) => {
     if (!values[name]) {
       errors[name] = "You must provide a value";
@@ -51,6 +52,6 @@ function validate(values) {
 
 export default reduxForm({
   validate,
-  form: "ChallengeForm",
+  form: "challengeForm",
   destroyOnUnmount: false
 })(ChallengeForm);

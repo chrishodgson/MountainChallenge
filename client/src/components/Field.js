@@ -5,6 +5,7 @@ export default ({ input, label, type, meta: { error, touched } }) => {
     <div>
       {type === "textarea" ? (
         <textarea
+          {...input}
           className="materialize-textarea"
           style={{ marginBottom: "5px" }}
         />
