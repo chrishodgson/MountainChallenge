@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ChallengeForm from "./ChallengeForm";
 import ChallengeReview from "./ChallengeReview";
-import MountainSelector from "../MountainSelector";
+import MountainSelector from "../mountains/MountainSelector";
 import { reduxForm } from "redux-form";
 
 class ChallengeNew extends Component {

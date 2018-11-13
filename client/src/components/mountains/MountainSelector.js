@@ -1,12 +1,13 @@
 import _ from "lodash";
 import React, { Component } from "react";
 import { reduxForm, Field as ReduxField } from "redux-form";
-import Field from "./Field";
+import Field from "../Field";
 import { Link } from "react-router-dom";
+import MountainList from "../mountains/MountainList";
 
 class MountainSelector extends Component {
   renderFields() {
-    return <div>mountain selector fields</div>;
+    return <div>mountain selector</div>;
   }
 
   render() {
@@ -14,6 +15,9 @@ class MountainSelector extends Component {
       <div>
         <form onSubmit={this.props.handleSubmit(this.props.onSubmit)}>
           {this.renderFields()}
+
+          <MountainList />
+
           <button
             onClick={this.props.onCancel}
             className="yellow btn-flat darken-3 white-text"

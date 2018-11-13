@@ -7,6 +7,7 @@ const keys = require("./config/keys");
 
 require("./models/User");
 require("./models/Challenge");
+require("./models/Mountain");
 require("./services/passport");
 
 mongoose.connect(
@@ -30,6 +31,7 @@ app.use(passport.session());
 // routes
 require("./routes/authRoutes")(app);
 require("./routes/challengeRoutes")(app);
+require("./routes/mountainRoutes")(app);
 
 if (process.env.NODE_ENV === "production") {
   //attempt to load js and css asset

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { FETCH_USER, FETCH_CHALLENGES } from "./types";
+import { FETCH_USER, FETCH_CHALLENGES, FETCH_MOUNTAINS } from "./types";
 
 export const fetchUser = () => async dispatch => {
   const res = await axios.get("/api/current_user");
@@ -18,4 +18,10 @@ export const fetchChallenges = () => async dispatch => {
   const res = await axios.get("/api/challenges");
 
   dispatch({ type: FETCH_CHALLENGES, payload: res.data });
+};
+
+export const fetchMountains = () => async dispatch => {
+  const res = await axios.get("/api/mountains");
+
+  dispatch({ type: FETCH_MOUNTAINS, payload: res.data });
 };
