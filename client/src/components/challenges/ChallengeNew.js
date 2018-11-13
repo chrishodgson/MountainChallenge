@@ -4,21 +4,17 @@ import ChallengeReview from "./ChallengeReview";
 import { reduxForm } from "redux-form";
 
 class ChallengeNew extends Component {
-  state = { showFormReview: false };
+  state = { step: 0 };
 
   renderContent() {
-    if (this.state.showFormReview) {
-      return (
-        <ChallengeReview
-          onCancel={() => this.setState({ showFormReview: false })}
-        />
-      );
+    switch (this.state.step) {
+      case 0:
+        return <ChallengeForm onSubmit={() => this.setState({ step: 1 })} />;
+      case 1:
+        return <MountainSelector onSubmit={() => this.setState({ step: 2 })} />;
+      case 2:
+        return <ChallengeReview onCancel={() => this.setState({ step: 1 })} />;
     }
-    return (
-      <ChallengeForm
-        onChallengeSubmit={() => this.setState({ showFormReview: true })}
-      />
-    );
   }
   render() {
     return <div>{this.renderContent()}</div>;

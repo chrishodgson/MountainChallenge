@@ -5,19 +5,9 @@ import Field from "../Field";
 import { Link } from "react-router-dom";
 import formFields from "./formFields";
 
-class ChallengeForm extends Component {
+class MountainSelector extends Component {
   renderFields() {
-    return _.map(formFields, ({ label, name, type }) => {
-      return (
-        <ReduxField
-          key={name}
-          type={type}
-          component={Field}
-          label={label}
-          name={name}
-        />
-      );
-    });
+    return null;
   }
 
   render() {
@@ -38,19 +28,7 @@ class ChallengeForm extends Component {
   }
 }
 
-function validate(values) {
-  const errors = {};
-  _.each(formFields, ({ name }) => {
-    if (!values[name]) {
-      errors[name] = "You must provide a value";
-    }
-  });
-
-  return errors;
-}
-
 export default reduxForm({
-  validate,
-  form: "ChallengeForm",
+  form: "MountainSelector",
   destroyOnUnmount: false
-})(ChallengeForm);
+})(MountainSelector);
