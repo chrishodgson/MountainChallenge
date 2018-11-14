@@ -9,22 +9,10 @@ class ChallengeList extends Component {
 
   renderChallenges() {
     return this.props.challenges.reverse().map(challenge => {
-      return (
-        <div key={challenge._id} className="card blue-grey darken-1">
-          <div className="card-content white-text">
-            <span className="card-title">{challenge.title}</span>
-            <p className="left">something</p>
-            <p className="right">something</p>
-          </div>
-          <div className="card-action" />
-        </div>
-      );
+      return <div key={challenge._id}>{challenge.title}</div>;
     });
   }
   render() {
-    if (!this.props.challenges) {
-      return "Loading...";
-    }
     return <div>{this.renderChallenges()}</div>;
   }
 }

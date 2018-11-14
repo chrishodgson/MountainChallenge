@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ChallengeForm from "./ChallengeForm";
 import ChallengeReview from "./ChallengeReview";
-import MountainSelector from "../mountains/MountainSelector";
+import ChallengeMountains from "./ChallengeMountains";
 import { reduxForm } from "redux-form";
 
 class ChallengeNew extends Component {
@@ -12,7 +12,12 @@ class ChallengeNew extends Component {
       case 0:
         return <ChallengeForm onSubmit={() => this.setState({ step: 1 })} />;
       case 1:
-        return <MountainSelector onCancel={() => this.setState({ step: 0 })} onSubmit={() => this.setState({ step: 2 })} />;
+        return (
+          <ChallengeMountains
+            onCancel={() => this.setState({ step: 0 })}
+            onSubmit={() => this.setState({ step: 2 })}
+          />
+        );
       case 2:
         return <ChallengeReview onCancel={() => this.setState({ step: 1 })} />;
     }
