@@ -19,6 +19,7 @@ class ChallengeNew extends Component {
           />
         );
       case 2:
+      default:
         return <ChallengeReview onCancel={() => this.setState({ step: 1 })} />;
     }
   }

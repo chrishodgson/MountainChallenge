@@ -7,7 +7,7 @@ import MountainSearchResults from "./MountainSearchResults";
 
 class MountainSearch extends Component {
   render() {
-    const searchTermChange = _.debounce(term => this.props.fetchMountains(term), 1000);
+    const searchTermChange = _.debounce(term => this.props.fetchMountains(term), 750);
 
     return (
       <div>
