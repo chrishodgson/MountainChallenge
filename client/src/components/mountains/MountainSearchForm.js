@@ -1,13 +1,15 @@
-import React, { Component } from "react";
+import React from "react";
 
-class MountainSearchForm extends Component {
-  render() {
-    return (
-      <div>
-        <p>Mountain search form</p>
-      </div>
-    );
-  }
-}
+const MountainSearchForm = props => {
+  return (
+    <p>
+      <input
+        className=""
+        placeholder="Search on Mountain Name"
+        onChange={event => props.onSearchTermChange(event.target.value)}
+      />
+    </p>
+  );
+};
 
 export default MountainSearchForm;

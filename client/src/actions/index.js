@@ -20,8 +20,10 @@ export const fetchChallenges = () => async dispatch => {
   dispatch({ type: FETCH_CHALLENGES, payload: res.data });
 };
 
-export const fetchMountains = () => async dispatch => {
-  const res = await axios.get("/api/mountains");
+export const fetchMountains = (term, area = null) => async dispatch => {
+  const res = await axios.get("/api/mountains", { term: term, area: area });
+
+  console.log({ term: term, area: area }, 'fetchMountains');
 
   dispatch({ type: FETCH_MOUNTAINS, payload: res.data });
 };

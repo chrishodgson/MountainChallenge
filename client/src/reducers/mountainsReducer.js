@@ -1,6 +1,9 @@
 import { FETCH_MOUNTAINS } from "../actions/types";
 
 export default function(state = [], action) {
+
+  console.log(action, 'reducer');
+
   switch (action.type) {
     case FETCH_MOUNTAINS:
       return action.payload;
