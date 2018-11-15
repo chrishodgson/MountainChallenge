@@ -3,9 +3,9 @@ import React, { Component } from "react";
 import { reduxForm, Field as ReduxField } from "redux-form";
 import Field from "../Field";
 import { Link } from "react-router-dom";
-import formFields from "./formFields";
+import formFields from "./challengeFormFields";
 
-class ChallengeForm extends Component {
+class ChallengeDetails extends Component {
   renderFields() {
     return _.map(formFields, ({ label, name, type }) => {
       return (
@@ -52,6 +52,6 @@ function validate(values) {
 
 export default reduxForm({
   validate,
-  form: "challengeForm",
+  form: "challengeDetails",
   destroyOnUnmount: false
-})(ChallengeForm);
+})(ChallengeDetails);

@@ -1,26 +1,38 @@
 import React, { Component } from "react";
-import ChallengeForm from "./ChallengeForm";
-import ChallengeReview from "./ChallengeReview";
-import ChallengeMountains from "./ChallengeMountains";
+import ChallengeDetails from "./steps/ChallengeDetails";
+import ChallengeMountainSearch from "./steps/ChallengeMountainSearch";
+import ChallengeMountainList from "./steps/ChallengeMountainList";
+import ChallengeReview from "./steps/ChallengeReview";
 import { reduxForm } from "redux-form";
 
 class ChallengeNew extends Component {
-  state = { step: 0 };
+  state = { step: "" };
 
   renderContent() {
     switch (this.state.step) {
-      case 0:
-        return <ChallengeForm onSubmit={() => this.setState({ step: 1 })} />;
-      case 1:
+      case "3-review":
         return (
-          <ChallengeMountains
-            onCancel={() => this.setState({ step: 0 })}
-            onSubmit={() => this.setState({ step: 2 })}
+          <ChallengeReview
+            onCancel={() => this.setState({ step: "1-start" })}
           />
         );
-      case 2:
+      case "2-mountainSearch":
+        return (
+          <div>
+            <ChallengeMountainSearch
+              onSubmit={() => this.setState({ step: "3-review" })}
+              onCancel={() => this.setState({ step: "1-start" })}
+            />
+            <ChallengeMountainList />
+          </div>
+        );
+      case "1-start":
       default:
-        return <ChallengeReview onCancel={() => this.setState({ step: 1 })} />;
+        return (
+          <ChallengeForm
+            onSubmit={() => this.setState({ step: "2-mountainSearch" })}
+          />
+        );
     }
   }
   render() {

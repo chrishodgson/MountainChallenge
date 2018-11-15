@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-class MountainSearchResults extends Component {
+class ChallengeMountainList extends Component {
   renderMountains() {
     return this.props.mountains.map(mountain => {
       return (
@@ -12,12 +12,7 @@ class MountainSearchResults extends Component {
     });
   }
   render() {
-    return (
-      <div>
-        <p>Search results:</p>
-        {this.renderMountains()}
-      </div>
-    );
+    return <div>{this.renderMountains()}</div>;
   }
 }
 
@@ -25,4 +20,4 @@ function mapStateToProps({ mountains }) {
   return { mountains };
 }
 
-export default connect(mapStateToProps)(MountainSearchResults);
+export default connect(mapStateToProps)(ChallengeMountainList);
