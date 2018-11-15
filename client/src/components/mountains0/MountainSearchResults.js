@@ -14,7 +14,7 @@ class MountainSearchResults extends Component {
   render() {
     return (
       <div>
-        <p>Search results:</p>
+        <p>Mountain search results:</p>
         {this.renderMountains()}
       </div>
     );

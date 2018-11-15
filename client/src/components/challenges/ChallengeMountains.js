@@ -1,19 +1,15 @@
 import React, { Component } from "react";
 import { reduxForm } from "redux-form";
-import MountainSearch from "../mountains/MountainSearch";
+import MountainSearch from "../mountains/MountainSearchForm";
+import MountainSearch from "../mountains/MountainSearchList";
 
 class ChallengeMountains extends Component {
-  renderFields() {
-    return <div>challenge mountains</div>;
-  }
-
   render() {
     return (
       <div>
         <form onSubmit={this.props.handleSubmit(this.props.onSubmit)}>
-          {this.renderFields()}
-
-          <MountainSearch />
+          <MountainSearchForm />
+          <MountainSearchResults />
 
           <button
             onClick={this.props.onCancel}

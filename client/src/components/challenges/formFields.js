@@ -7,6 +7,6 @@ export default [
   {
     name: "description",
     label: "Challenge Description",
-    type: "textarea"
+    type: "text"
   }
 ];
