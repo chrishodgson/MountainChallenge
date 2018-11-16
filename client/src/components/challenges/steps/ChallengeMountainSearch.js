@@ -3,8 +3,8 @@ import React, { Component } from "react";
 import { reduxForm, Field as ReduxField } from "redux-form";
 import { connect } from "react-redux";
 import Field from "../../Field";
-import formFields from "./mountainformFields";
-import { fetchMountains } from "../../actions";
+import formFields from "./mountainFormFields";
+import { fetchMountains } from "../../../actions";
 
 class ChallengeMountainSearch extends Component {
   renderFields() {

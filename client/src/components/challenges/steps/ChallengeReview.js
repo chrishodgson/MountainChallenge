@@ -1,7 +1,7 @@
 import _ from "lodash";
 import React from "react";
 import { connect } from "react-redux";
-import formFields from "./formFields";
+import formFields from "./challengeFormFields";
 import { withRouter } from "react-router-dom";
 import * as actions from "../../../actions";
 
@@ -42,7 +42,7 @@ const ChallengeReview = ({
 };
 
 function mapStateToProps(state) {
-  return { formValues: state.form.challengeForm.values };
+  return { formValues: state.form.challengeDetails.values };
 }
 
 export default connect(

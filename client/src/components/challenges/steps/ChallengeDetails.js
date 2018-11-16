@@ -1,7 +1,7 @@
 import _ from "lodash";
 import React, { Component } from "react";
 import { reduxForm, Field as ReduxField } from "redux-form";
-import Field from "../Field";
+import Field from "../../Field";
 import { Link } from "react-router-dom";
 import formFields from "./challengeFormFields";
 

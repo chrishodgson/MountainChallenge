@@ -13,7 +13,7 @@ class ChallengeNew extends Component {
       case "3-review":
         return (
           <ChallengeReview
-            onCancel={() => this.setState({ step: "1-start" })}
+            onCancel={() => this.setState({ step: "2-mountainSearch" })}
           />
         );
       case "2-mountainSearch":
@@ -29,7 +29,7 @@ class ChallengeNew extends Component {
       case "1-start":
       default:
         return (
-          <ChallengeForm
+          <ChallengeDetails
             onSubmit={() => this.setState({ step: "2-mountainSearch" })}
           />
         );
