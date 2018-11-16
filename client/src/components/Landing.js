@@ -3,7 +3,7 @@ import React from "react";
 const Landing = () => {
   return (
     <div style={{ textAlign: "center" }}>
-      <p>Mountain Challenge App description ...</p>
+      <p>landing page description ...</p>
       ...
     </div>
   );

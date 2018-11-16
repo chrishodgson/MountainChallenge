@@ -8,8 +8,8 @@ const Dashboard = () => {
       <p>Dashboard</p>
       <ChallengeList />
       <div className="fixed-action-btn">
-        <Link to="/challenges/new" className="btn-floating btn-large red">
-          <i className="large material-icons">add</i>
+        <Link to="/challenges/new" className="btn-flat grey white-text">
+        New challenge
         </Link>
       </div>
     </div>
