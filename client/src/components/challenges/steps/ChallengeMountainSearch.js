@@ -28,6 +28,15 @@ class ChallengeMountainSearch extends Component {
           {this.renderFields()}
 
           <button
+            onClick={e => {
+              e.preventDefault();
+              console.log(this.props, "this.props");
+            }}
+          >
+            Search
+          </button>
+
+          <button
             onClick={this.props.onCancel}
             className="yellow btn-flat darken-3 white-text"
           >
@@ -41,6 +50,10 @@ class ChallengeMountainSearch extends Component {
       </div>
     );
   }
+}
+
+function mapStateToProps(state) {
+  return { formValues: state.form.challengeMountainSearch.values };
 }
 
 function validate(values) {
@@ -59,7 +72,7 @@ export default reduxForm({
   destroyOnUnmount: false
 })(
   connect(
-    null,
+    mapStateToProps,
     { fetchMountains }
   )(ChallengeMountainSearch)
 );
