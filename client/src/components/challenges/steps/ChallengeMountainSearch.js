@@ -28,9 +28,10 @@ class ChallengeMountainSearch extends Component {
           {this.renderFields()}
 
           <button
+            className="grey btn-flat white-text"
             onClick={e => {
               e.preventDefault();
-              console.log(this.props, "this.props");
+              this.props.fetchMountains(this.props.formValues.mountain);
             }}
           >
             Search
@@ -38,13 +39,12 @@ class ChallengeMountainSearch extends Component {
 
           <button
             onClick={this.props.onCancel}
-            className="yellow btn-flat darken-3 white-text"
+            className="grey btn-flat white-text"
           >
             Back
           </button>
-          <button type="submit" className="teal btn-flat white-text right">
+          <button type="submit" className="grey btn-flat white-text right">
             Next
-            <i className="material-icons right">done</i>
           </button>
         </form>
       </div>

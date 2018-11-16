@@ -24,18 +24,14 @@ const ChallengeReview = ({
     <div>
       <h5>Please confirm your entries</h5>
       {reviewFields}
-      <button
-        onClick={onCancel}
-        className="yellow btn-flat darken-3 white-text"
-      >
+      <button className="grey btn-flat white-text" onClick={onCancel}>
         Back
       </button>
       <button
+        className="grey btn-flat white-text right"
         onClick={() => submitChallenge(formValues, history)}
-        className="green btn-flat right white-text"
       >
         Save Challenge
-        <i className="material-icons right">save</i>
       </button>
     </div>
   );

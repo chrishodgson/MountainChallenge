@@ -10,13 +10,17 @@ class Header extends Component {
       case false:
         return (
           <li>
-            <a href="/auth/google">Login with Google</a>
+            <a className="grey-text" href="/auth/google">
+              Login with Google
+            </a>
           </li>
         );
       default:
         return [
           <li key="1">
-            <a href="/api/logout">Logout - {this.props.auth.name}</a>
+            <a className="grey-text" href="/api/logout">
+              Logout - {this.props.auth.name}
+            </a>
           </li>
         ];
     }
@@ -24,13 +28,13 @@ class Header extends Component {
 
   render() {
     return (
-      <nav style={{ backgroundColor: "#1e88e5" }}>
+      <nav style={{ backgroundColor: "#ffffff" }}>
         <div className="nav-wrapper">
           <Link
             to={this.props.auth ? "/challenges" : "/"}
-            className="left brand-logo"
+            className="left brand-logo grey-text"
           >
-            Mountain Challenge
+            MC
           </Link>
           <ul className="right">{this.renderContent()}</ul>
         </div>

@@ -25,12 +25,11 @@ class ChallengeDetails extends Component {
       <div>
         <form onSubmit={this.props.handleSubmit(this.props.onSubmit)}>
           {this.renderFields()}
-          <Link to="/challenges" className="red btn-flat white-text">
+          <Link to="/challenges" className="grey btn-flat white-text">
             Cancel
           </Link>
-          <button type="submit" className="teal btn-flat white-text right">
+          <button type="submit" className="grey btn-flat white-text right">
             Next
-            <i className="material-icons right">done</i>
           </button>
         </form>
       </div>
