@@ -31,7 +31,7 @@ const ChallengeReview = ({
         className="grey btn-flat white-text right"
         onClick={() => submitChallenge(formValues, history)}
       >
-        Save Challenge
+        Save
       </button>
     </div>
   );

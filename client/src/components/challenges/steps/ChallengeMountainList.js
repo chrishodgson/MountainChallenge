@@ -5,14 +5,18 @@ class ChallengeMountainList extends Component {
   renderMountains() {
     return this.props.mountains.map(mountain => {
       return (
-        <div key={mountain._id}>
+        <li style={{'paddingTop': '10px'}} key={mountain._id}>
           {mountain.name} - {mountain.metres}m
-        </div>
+        </li>
       );
     });
   }
   render() {
-    return <div>{this.renderMountains()}</div>;
+    if (!this.props.mountains) {
+      return null;
+    }
+
+    return <ul>{this.renderMountains()}</ul>;
   }
 }
 

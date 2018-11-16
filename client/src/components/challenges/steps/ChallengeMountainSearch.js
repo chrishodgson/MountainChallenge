@@ -46,6 +46,7 @@ class ChallengeMountainSearch extends Component {
           <button type="submit" className="grey btn-flat white-text right">
             Next
           </button>
+          
         </form>
       </div>
     );
