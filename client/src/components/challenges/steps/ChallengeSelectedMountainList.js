@@ -1,16 +1,19 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import {getSelectedMountains} from "../../../selectors";
 
 class ChallengeSelectedMountainList extends Component {
   renderSelectedMountains() {
-    return this.props.mountains.map(mountain => {
-      return <span style={{paddingRight: '10px'}} key={mountain._id}>{mountain.name}</span>;
+    return this.props.mountainSelection.map(mountain => {
+      return (
+        <span style={{ paddingRight: "10px" }} key={mountain._id}>
+          ^ {mountain.name}
+        </span>
+      );
     });
   }
 
   render() {
-    if (this.props.mountains.length === 0) {
+    if (this.props.mountainSelection.length === 0) {
       return null;
     }
     return (
@@ -21,8 +24,8 @@ class ChallengeSelectedMountainList extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return { mountains: getSelectedMountains(state) };
-};
+function mapStateToProps({ mountainSelection }) {
+  return { mountainSelection };
+}
 
 export default connect(mapStateToProps)(ChallengeSelectedMountainList);

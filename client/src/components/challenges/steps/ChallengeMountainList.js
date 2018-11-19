@@ -1,11 +1,11 @@
 import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { selectMountain } from "../../../actions";
+import { selectMountains } from "../../../actions";
 
 class ChallengeMountainList extends Component {
   renderMountains() {
-    return this.props.mountains.map(mountain => {
+    return this.props.mountainSearch.map(mountain => {
       return (
         <li key={mountain._id}>
           <button
@@ -22,13 +22,29 @@ class ChallengeMountainList extends Component {
 
   handleClick = e => {
     e.preventDefault();
-    if(_.indexOf(this.props.selectedMountainIds, e.target.name) === -1) {
-      this.props.selectMountain(e.target.name);
+    const mountainId = e.target.name;
+    const mountain = this.getMountain(mountainId);
+
+    if (mountain && !this.isAlreadySelected(mountainId)) {
+      this.props.selectMountains(mountain);
     }
   };
 
+  getMountain(mountainId) {
+    return _.find(this.props.mountainSearch, mountain => {
+      return mountain._id === mountainId;
+    });
+  }
+
+  isAlreadySelected(mountainId) {
+    const found = _.find(this.props.mountainSelection, mountain => {
+      return mountain._id === mountainId;
+    });
+    return found || false;
+  }
+
   render() {
-    if (!this.props.mountains) {
+    if (!this.props.mountainSearch) {
       return null;
     }
 
@@ -36,11 +52,11 @@ class ChallengeMountainList extends Component {
   }
 }
 
-function mapStateToProps({ mountains, selectedMountainIds }) {
-  return { mountains, selectedMountainIds };
+function mapStateToProps({ mountainSearch, mountainSelection }) {
+  return { mountainSearch, mountainSelection };
 }
 
 export default connect(
   mapStateToProps,
-  { selectMountain }
+  { selectMountains }
 )(ChallengeMountainList);

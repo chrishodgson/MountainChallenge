@@ -4,7 +4,7 @@ import { reduxForm, Field as ReduxField } from "redux-form";
 import { connect } from "react-redux";
 import Field from "../../Field";
 import formFields from "./mountainFormFields";
-import { fetchMountains } from "../../../actions";
+import { searchMountains } from "../../../actions";
 
 class ChallengeMountainSearch extends Component {
   renderFields() {
@@ -31,7 +31,7 @@ class ChallengeMountainSearch extends Component {
             className="grey btn-flat white-text"
             onClick={e => {
               e.preventDefault();
-              this.props.fetchMountains(this.props.formValues.mountain);
+              this.props.searchMountains(this.props.formValues.mountain);
             }}
           >
             Search
@@ -73,6 +73,6 @@ export default reduxForm({
 })(
   connect(
     mapStateToProps,
-    { fetchMountains }
+    { searchMountains }
   )(ChallengeMountainSearch)
 );

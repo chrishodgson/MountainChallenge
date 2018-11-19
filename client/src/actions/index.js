@@ -2,8 +2,8 @@ import axios from "axios";
 import {
   FETCH_USER,
   FETCH_CHALLENGES,
-  FETCH_MOUNTAINS,
-  SELECTED_MOUNTAIN_IDS
+  SEARCH_MOUNTAINS,
+  SELECT_MOUNTAINS
 } from "./types";
 
 export const fetchUser = () => async dispatch => {
@@ -25,18 +25,14 @@ export const fetchChallenges = () => async dispatch => {
   dispatch({ type: FETCH_CHALLENGES, payload: res.data });
 };
 
-export const fetchMountains = (term, area = null) => async dispatch => {
+export const searchMountains = (term, area = null) => async dispatch => {
   const res = await axios.get("/api/mountains", {
     params: { term: term, area: area }
   });
 
-  dispatch({ type: FETCH_MOUNTAINS, payload: res.data });
+  dispatch({ type: SEARCH_MOUNTAINS, payload: res.data });
 };
 
-export const selectMountain = mountainId => {
-  return { type: SELECTED_MOUNTAIN_IDS, payload: mountainId };
+export const selectMountains = mountainId => {
+  return { type: SELECT_MOUNTAINS, payload: mountainId };
 };
-
-// export const selectMountain = mountainId => {
-//   return { type: SELECTED_MOUNTAINS, payload: mountainId };
-// };
