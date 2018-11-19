@@ -3,7 +3,7 @@ import {
   FETCH_USER,
   FETCH_CHALLENGES,
   FETCH_MOUNTAINS,
-  SELECTED_MOUNTAINS
+  SELECTED_MOUNTAIN_IDS
 } from "./types";
 
 export const fetchUser = () => async dispatch => {
@@ -34,5 +34,9 @@ export const fetchMountains = (term, area = null) => async dispatch => {
 };
 
 export const selectMountain = mountainId => {
-  return { type: SELECTED_MOUNTAINS, payload: mountainId };
+  return { type: SELECTED_MOUNTAIN_IDS, payload: mountainId };
 };
+
+// export const selectMountain = mountainId => {
+//   return { type: SELECTED_MOUNTAINS, payload: mountainId };
+// };

@@ -20,11 +20,11 @@ class ChallengeNew extends Component {
       case "2-mountainSearch":
         return (
           <div>
+            <ChallengeSelectedMountainList />
             <ChallengeMountainSearch
               onSubmit={() => this.setState({ step: "3-review" })}
               onCancel={() => this.setState({ step: "1-start" })}
             />
-            <ChallengeSelectedMountainList />
             <ChallengeMountainList />
           </div>
         );

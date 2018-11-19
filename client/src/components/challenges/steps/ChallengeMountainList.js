@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { selectMountain } from "../../../actions";
@@ -21,8 +22,9 @@ class ChallengeMountainList extends Component {
 
   handleClick = e => {
     e.preventDefault();
-    this.props.selectMountain(e.target.name);
-    console.log(e.target.name, "handleClick");
+    if(_.indexOf(this.props.selectedMountainIds, e.target.name) === -1) {
+      this.props.selectMountain(e.target.name);
+    }
   };
 
   render() {
@@ -34,8 +36,8 @@ class ChallengeMountainList extends Component {
   }
 }
 
-function mapStateToProps({ mountains }) {
-  return { mountains };
+function mapStateToProps({ mountains, selectedMountainIds }) {
+  return { mountains, selectedMountainIds };
 }
 
 export default connect(
