@@ -9,7 +9,7 @@ const Dashboard = () => {
       <ChallengeList />
       <div className="fixed-action-btn">
         <Link to="/challenges/new" className="btn-flat grey white-text">
-        New challenge
+          New challenge
         </Link>
       </div>
     </div>

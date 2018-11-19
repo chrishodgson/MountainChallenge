@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ChallengeDetails from "./steps/ChallengeDetails";
 import ChallengeMountainSearch from "./steps/ChallengeMountainSearch";
 import ChallengeMountainList from "./steps/ChallengeMountainList";
+import ChallengeSelectedMountainList from "./steps/ChallengeSelectedMountainList";
 import ChallengeReview from "./steps/ChallengeReview";
 import { reduxForm } from "redux-form";
 
@@ -23,6 +24,7 @@ class ChallengeNew extends Component {
               onSubmit={() => this.setState({ step: "3-review" })}
               onCancel={() => this.setState({ step: "1-start" })}
             />
+            <ChallengeSelectedMountainList />
             <ChallengeMountainList />
           </div>
         );

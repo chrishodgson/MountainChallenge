@@ -46,7 +46,6 @@ class ChallengeMountainSearch extends Component {
           <button type="submit" className="grey btn-flat white-text right">
             Next
           </button>
-          
         </form>
       </div>
     );
@@ -54,7 +53,7 @@ class ChallengeMountainSearch extends Component {
 }
 
 function mapStateToProps(state) {
-  return { formValues: state.form.challengeMountainSearch.values };
+  return { formValues: state.form.challengeMountainSearch.values || [] };
 }
 
 function validate(values) {

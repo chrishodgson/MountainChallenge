@@ -1,16 +1,30 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { selectMountain } from "../../../actions";
 
 class ChallengeMountainList extends Component {
   renderMountains() {
     return this.props.mountains.map(mountain => {
       return (
-        <li style={{'paddingTop': '10px'}} key={mountain._id}>
-          {mountain.name} - {mountain.metres}m
+        <li key={mountain._id}>
+          <button
+            className="btn-flat"
+            name={mountain._id}
+            onClick={this.handleClick}
+          >
+            {mountain.name} - {mountain.metres}m
+          </button>
         </li>
       );
     });
   }
+
+  handleClick = e => {
+    e.preventDefault();
+    this.props.selectMountain(e.target.name);
+    console.log(e.target.name, "handleClick");
+  };
+
   render() {
     if (!this.props.mountains) {
       return null;
@@ -24,4 +38,7 @@ function mapStateToProps({ mountains }) {
   return { mountains };
 }
 
-export default connect(mapStateToProps)(ChallengeMountainList);
+export default connect(
+  mapStateToProps,
+  { selectMountain }
+)(ChallengeMountainList);
