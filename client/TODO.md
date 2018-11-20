@@ -1,12 +1,12 @@
-### MVP ###
-remove selected mountain
-add mountains to campaign
+### MVP
+
+add textarea and select types to Field component
+filter mountain search by area
 
 import all mountains in GB and find all the areas
-filter mountain search by area  
 
-option to select an existing list of mountains for a campaign
-add mountains to campaign from a list
+option to add an existing list of mountains for a campaign
+add mountains to campaign individually or from a list
 
 add activity for a campaign with mountain selector
 
