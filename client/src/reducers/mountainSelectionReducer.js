@@ -7,8 +7,8 @@ export default function(state = [], action) {
       const mountainId = action.payload["mountainId"] || null;
 
       if (mountainId) {
-        const newState = _.remove(state, item => {
-          return item._id === mountainId;
+        const newState = _.filter(state, item => {
+          return item._id !== mountainId;
         });
         return newState;
       }
