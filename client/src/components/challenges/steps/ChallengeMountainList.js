@@ -1,7 +1,7 @@
 import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { selectMountains } from "../../../actions";
+import { selectMountain } from "../../../actions";
 
 class ChallengeMountainList extends Component {
   renderMountains() {
@@ -26,7 +26,7 @@ class ChallengeMountainList extends Component {
     const mountain = this.getMountain(mountainId);
 
     if (mountain && !this.isAlreadySelected(mountainId)) {
-      this.props.selectMountains(mountain);
+      this.props.selectMountain(mountain);
     }
   };
 
@@ -58,5 +58,5 @@ function mapStateToProps({ mountainSearch, mountainSelection }) {
 
 export default connect(
   mapStateToProps,
-  { selectMountains }
+  { selectMountain }
 )(ChallengeMountainList);

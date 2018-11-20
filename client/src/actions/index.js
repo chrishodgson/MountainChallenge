@@ -33,6 +33,10 @@ export const searchMountains = (term, area = null) => async dispatch => {
   dispatch({ type: SEARCH_MOUNTAINS, payload: res.data });
 };
 
-export const selectMountains = mountainId => {
-  return { type: SELECT_MOUNTAINS, payload: mountainId };
+export const selectMountain = mountain => {
+  return { type: SELECT_MOUNTAINS, payload: mountain };
+};
+
+export const deSelectMountain = mountainId => {
+  return { type: SELECT_MOUNTAINS, payload: { mountainId } };
 };

@@ -1,8 +1,18 @@
+import _ from "lodash";
 import { SELECT_MOUNTAINS } from "../actions/types";
 
 export default function(state = [], action) {
   switch (action.type) {
     case SELECT_MOUNTAINS:
+      const mountainId = action.payload["mountainId"] || null;
+
+      if (mountainId) {
+        const newState = _.remove(state, item => {
+          return item._id === mountainId;
+        });
+        return newState;
+      }
+
       return [...state, action.payload];
     default:
       return state;
