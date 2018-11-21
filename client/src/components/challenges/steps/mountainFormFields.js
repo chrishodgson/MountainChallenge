@@ -9,11 +9,11 @@ export default [
     label: "Mountain area",
     type: "select",
     options: [
-      "Northern Fells",
-      "Southern Fells",
-      "Western Fells",
-      "Eastern Fells",
-      "Far Eastern Fells"
+      "Lake District - Northern Fells",
+      "Lake District - Southern Fells",
+      "Lake District - Western Fells",
+      "Lake District - Eastern Fells",
+      "Lake District - Far Eastern Fells"
     ]
   }
 ];

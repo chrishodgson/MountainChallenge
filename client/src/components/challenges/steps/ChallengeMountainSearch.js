@@ -32,7 +32,10 @@ class ChallengeMountainSearch extends Component {
             className="grey btn-flat white-text"
             onClick={e => {
               e.preventDefault();
-              this.props.searchMountains(this.props.formValues.mountain);
+              this.props.searchMountains(
+                this.props.formValues.mountain,
+                this.props.formValues.area
+              );
             }}
           >
             Search
@@ -54,7 +57,9 @@ class ChallengeMountainSearch extends Component {
 }
 
 function mapStateToProps(state) {
-  return { formValues: state.form.challengeMountainSearch.values || [] };
+  return {
+    formValues: state.form.challengeMountainSearch.values || []
+  };
 }
 
 function validate(values) {

@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { deSelectMountain } from "../../../actions";
@@ -7,9 +8,9 @@ class ChallengeSelectedMountainList extends Component {
     return this.props.mountainSelection.map(mountain => {
       return (
         <span style={{ paddingRight: "10px" }} key={mountain._id}>
-          ^ {mountain.name}
+          {mountain.name}
           <button
-            className="btn-flat"
+            style={{ marginLeft: "5px", marginRight: "5px" }}
             name={mountain._id}
             onClick={this.handleClick}
           >

@@ -7,7 +7,6 @@ import Header from "./Header";
 import Landing from "./Landing";
 import Dashboard from "./Dashboard";
 import ChallengeNew from "./challenges/ChallengeNew";
-import Test from "./Test";
 
 class App extends Component {
   componentDidMount() {
@@ -23,7 +22,6 @@ class App extends Component {
             <Route exact path="/" component={Landing} />
             <Route exact path="/challenges" component={Dashboard} />
             <Route path="/challenges/new" component={ChallengeNew} />
-            <Route path="/test" component={Test} />
           </div>
         </BrowserRouter>
       </div>
