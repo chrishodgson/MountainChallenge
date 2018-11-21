@@ -1,5 +1,7 @@
 ### MVP
 
+disable mountains in search results if selected
+
 add textarea and select types to Field component
 filter mountain search by area
 
@@ -11,3 +13,6 @@ add mountains to campaign individually or from a list
 add activity for a campaign with mountain selector
 
 improve campaign listing with link to view campaign
+
+// case "select":
+// return <select {...input} style={{ marginBottom: "5px" }} />

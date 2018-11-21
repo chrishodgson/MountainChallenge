@@ -7,15 +7,20 @@ class ChallengeMountainList extends Component {
   renderMountains() {
     return this.props.mountainSearch.map(mountain => {
       return (
-        <li key={mountain._id}>
-          <button
-            className="btn-flat"
-            name={mountain._id}
-            onClick={this.handleClick}
-          >
-            {mountain.name} - {mountain.metres}m
-          </button>
-        </li>
+        <tr key={mountain._id}>
+          <td>
+            <button
+              className="btn-flat grey white-text"
+              name={mountain._id}
+              onClick={this.handleClick}
+            >
+              Add
+            </button>
+          </td>
+          <td>{mountain.name}</td>
+          <td>{mountain.metres}m</td>
+          <td>{mountain.area}</td>
+        </tr>
       );
     });
   }
@@ -44,11 +49,24 @@ class ChallengeMountainList extends Component {
   }
 
   render() {
-    if (!this.props.mountainSearch) {
+    if (this.props.mountainSearch.length === 0) {
       return null;
     }
 
-    return <ul>{this.renderMountains()}</ul>;
+    return (
+      <table style={{ paddingTop: "20px" }}>
+        <caption>Search Results:</caption>
+        <thead>
+          <tr>
+            <th>&nbsp;</th>
+            <th>Name</th>
+            <th>Height</th>
+            <th>Area</th>
+          </tr>
+        </thead>
+        <tbody>{this.renderMountains()}</tbody>
+      </table>
+    );
   }
 }
 
