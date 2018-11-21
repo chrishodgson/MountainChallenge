@@ -1,8 +1,9 @@
 ### MVP
 
-disable mountains in search results if selected
 add textarea and select types to Field component
 filter mountain search by area
+
+disable mountains in search results if selected
 
 import all mountains in GB and find all the areas
 
