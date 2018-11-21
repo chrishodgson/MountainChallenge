@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class Field extends Component {
+class Field2 extends Component {
   renderField(type, input) {
     switch (type) {
       case "textarea":
@@ -12,7 +12,7 @@ class Field extends Component {
           />
         );
       case "select":
-        return <select {...input} style={{ marginBottom: "5px" }} />;
+        return <select {...input} style={{ marginBottom: "5px" }}>;
       case "text":
       default:
         return <input {...input} style={{ marginBottom: "5px" }} />;
@@ -24,10 +24,12 @@ class Field extends Component {
       input,
       type,
       label,
+      options,
       meta: { error, touched }
-    } = this.props.return(
+    } = this.props;
+    return (
       <div>
-        {this.renderField(type, input)}
+        {this.renderField(type, input, options)}
         <label>{label}</label>
         <div className="red-text" style={{ marginBottom: "20px" }}>
           {touched && error}
@@ -37,4 +39,4 @@ class Field extends Component {
   }
 }
 
-export default Field;
+export default Field2;

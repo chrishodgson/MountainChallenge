@@ -4,7 +4,8 @@ export default [
     label: "Mountain search",
     type: "text"
   }
-  // ,{
+  // ,
+  // {
   //   name: "area",
   //   label: "Mountain area",
   //   type: "select",
