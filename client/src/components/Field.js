@@ -1,12 +1,6 @@
 import React from "react";
 
-export default ({
-  input,
-  type,
-  label,
-  options,
-  meta: { error, touched }
-}) => {
+export default ({ input, type, label, options, meta: { error, touched } }) => {
   // if (type === "select") {
   //   console.log(options);
   //   console.log(rest);
@@ -32,13 +26,17 @@ export default ({
             style={{ marginBottom: "5px" }}
           />
         );
-      // case "select":
-      //   return (
-      //     <select {...input} style={{ marginBottom: "5px" }}>
-      //       <option />
-      //       {options}
-      //     </select>
-      //   );
+      case "select":
+        return (
+          <select
+            {...input}
+            className="browser-default"
+            style={{ marginBottom: "5px" }}
+          >
+            <option />
+            {options}
+          </select>
+        );
       case "text":
       default:
         return <input {...input} style={{ marginBottom: "5px" }} />;
@@ -48,7 +46,7 @@ export default ({
   return (
     <div>
       <label>{label}</label>
-      {field()}
+      <div className="input-field">{field()}</div>
       <div className="red-text" style={{ marginBottom: "20px" }}>
         {touched && error}
       </div>

@@ -8,7 +8,7 @@ import { searchMountains } from "../../../actions";
 
 class ChallengeMountainSearch extends Component {
   renderFields() {
-    return _.map(formFields, ({ label, name, type }) => {
+    return _.map(formFields, ({ label, name, type, options }) => {
       return (
         <ReduxField
           key={name}
@@ -16,6 +16,7 @@ class ChallengeMountainSearch extends Component {
           component={Field}
           label={label}
           name={name}
+          options={options}
         />
       );
     });
