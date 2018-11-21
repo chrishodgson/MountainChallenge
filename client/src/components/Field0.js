@@ -11,6 +11,8 @@ class Field extends Component {
             style={{ marginBottom: "5px" }}
           />
         );
+      case "select":
+        return <select {...input} style={{ marginBottom: "5px" }} />;
       case "text":
       default:
         return <input {...input} style={{ marginBottom: "5px" }} />;
