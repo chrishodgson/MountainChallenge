@@ -23,6 +23,7 @@ export default ({ input, type, label, options, meta: { error, touched } }) => {
             {renderOptions()}
           </select>
         );
+      case "radio":
       case "text":
       default:
         return <input {...input} />;

@@ -2,7 +2,6 @@ import _ from "lodash";
 import React, { Component } from "react";
 import { reduxForm, Field as ReduxField } from "redux-form";
 import Field from "../../Field";
-import { Link } from "react-router-dom";
 import formFields from "./challengeFormFields";
 
 class ChallengeDetails extends Component {
@@ -25,9 +24,12 @@ class ChallengeDetails extends Component {
       <div>
         <form onSubmit={this.props.handleSubmit(this.props.onSubmit)}>
           {this.renderFields()}
-          <Link to="/challenges" className="grey btn-flat white-text">
-            Cancel
-          </Link>
+          <button
+            onClick={this.props.onCancel}
+            className="grey btn-flat white-text"
+          >
+            Back
+          </button>
           <button type="submit" className="grey btn-flat white-text right">
             Next
           </button>

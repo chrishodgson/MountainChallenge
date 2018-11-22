@@ -5,42 +5,46 @@ import ChallengeMountainList from "./steps/ChallengeMountainList";
 import ChallengeSelectedMountainList from "./steps/ChallengeSelectedMountainList";
 import ChallengeReview from "./steps/ChallengeReview";
 import ChallengeType from "./steps/ChallengeType";
-import { reduxForm } from "redux-form";
+import { connect } from "react-redux";
 
 class ChallengeNew extends Component {
   state = { step: "" };
 
   renderContent() {
     switch (this.state.step) {
-      case "3-review":
+      case "review":
         return (
           <ChallengeReview
-            onCancel={() => this.setState({ step: "2-mountainSearch" })}
+            onCancel={() => this.setState({ step: "mountains" })}
           />
         );
-      case "2-mountainSearch":
-        return (
-          <div>
-            <ChallengeSelectedMountainList />
-            <ChallengeMountainSearch
-              onSubmit={() => this.setState({ step: "3-review" })}
-              onCancel={() => this.setState({ step: "1-start" })}
-            />
-            <ChallengeMountainList />
-          </div>
-        );
-      case "1-challengeDetails":
+      case "mountains":
+        const type = this.props.challengeType.type || "custom";
+        if (type === "custom") {
+          return (
+            <div>
+              <ChallengeSelectedMountainList />
+              <ChallengeMountainSearch
+                onSubmit={() => this.setState({ step: "review" })}
+                onCancel={() => this.setState({ step: "details" })}
+              />
+              <ChallengeMountainList />
+            </div>
+          );
+        } else {
+          return <div>Select a Mountain List</div>;
+        }
+      case "details":
         return (
           <ChallengeDetails
-            onSubmit={() => this.setState({ step: "2-mountainSearch" })}
-            onCancel={() => this.setState({ step: "" })}
+            onSubmit={() => this.setState({ step: "mountains" })}
+            onCancel={() => this.setState({ step: "type" })}
           />
         );
+      case "type":
       default:
         return (
-          <ChallengeType
-            onSubmit={() => this.setState({ step: "1-challengeDetails" })}
-          />
+          <ChallengeType onSubmit={() => this.setState({ step: "details" })} />
         );
     }
   }
@@ -49,5 +53,8 @@ class ChallengeNew extends Component {
   }
 }
 
-//export default reduxForm({ form: "challengeForm" })(ChallengeNew);
-export default ChallengeNew;
+function mapStateToProps({ form }) {
+  return { challengeType: form && form.challengeType ? form.challengeType.values : [] };
+}
+
+export default connect(mapStateToProps)(ChallengeNew);
