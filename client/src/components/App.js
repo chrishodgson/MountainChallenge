@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../actions";
 
-import Header from "./Header";
+//import Header from "./Header";
 import Landing from "./Landing";
 import Dashboard from "./Dashboard";
+import PageNotFound from "./PageNotFound";
 import ChallengeNew from "./challenges/ChallengeNew";
 
 class App extends Component {
@@ -18,10 +19,16 @@ class App extends Component {
       <div>
         <BrowserRouter>
           <div className="container">
-            <Header />
-            <Route exact path="/" component={Landing} />
-            <Route exact path="/challenges" component={Dashboard} />
-            <Route path="/challenges/new" component={ChallengeNew} />
+            <Switch>
+              <Route exact path="/" component={Landing} />
+              <Route exact path="/challenges" component={Dashboard} />
+              <Route
+                exact
+                path="/challenges/:type(custom|existing)"
+                component={ChallengeNew}
+              />
+              <Route component={PageNotFound} />
+            </Switch>
           </div>
         </BrowserRouter>
       </div>

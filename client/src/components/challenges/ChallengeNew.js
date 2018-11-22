@@ -4,8 +4,6 @@ import ChallengeMountainSearch from "./steps/ChallengeMountainSearch";
 import ChallengeMountainList from "./steps/ChallengeMountainList";
 import ChallengeSelectedMountainList from "./steps/ChallengeSelectedMountainList";
 import ChallengeReview from "./steps/ChallengeReview";
-import ChallengeType from "./steps/ChallengeType";
-import { connect } from "react-redux";
 
 class ChallengeNew extends Component {
   state = { step: "" };
@@ -19,7 +17,7 @@ class ChallengeNew extends Component {
           />
         );
       case "mountains":
-        const type = this.props.challengeType.type || "custom";
+        const type = this.props.match.params.type || "";
         if (type === "custom") {
           return (
             <div>
@@ -35,26 +33,19 @@ class ChallengeNew extends Component {
           return <div>Select a Mountain List</div>;
         }
       case "details":
+      default:
         return (
           <ChallengeDetails
             onSubmit={() => this.setState({ step: "mountains" })}
             onCancel={() => this.setState({ step: "type" })}
           />
         );
-      case "type":
-      default:
-        return (
-          <ChallengeType onSubmit={() => this.setState({ step: "details" })} />
-        );
     }
   }
+
   render() {
     return <div>{this.renderContent()}</div>;
   }
 }
 
-function mapStateToProps({ form }) {
-  return { challengeType: form && form.challengeType ? form.challengeType.values : [] };
-}
-
-export default connect(mapStateToProps)(ChallengeNew);
+export default ChallengeNew;

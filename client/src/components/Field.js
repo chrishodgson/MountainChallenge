@@ -18,29 +18,21 @@ export default ({ input, type, label, options, meta: { error, touched } }) => {
         return <textarea {...input} className="materialize-textarea" />;
       case "select":
         return (
-          <label>{label}</label>
           <select {...input} className="browser-default">
             <option />
             {renderOptions()}
           </select>
         );
-      case "radio":
-        return <input type="radio" {...input} />;
       case "text":
       default:
-        return
-          <label>{label}</label>
-          <div className="input-field"><input type="text" {...input} /></div>;
+        return <input {...input} />;
     }
   };
 
-
   return (
     <div>
-      <label>
-        {renderField()}
-        <span>{label}</span>
-      </label>
+      <label>{label}</label>
+      <div className="input-field">{renderField()}</div>
       <div className="red-text" style={{ marginBottom: "20px" }}>
         {touched && error}
       </div>

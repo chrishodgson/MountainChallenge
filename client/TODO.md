@@ -1,11 +1,12 @@
 ### MVP
 
-option to select a mountain list on a campaign instead of building individually
+route layouts
+
+existing mountain lists
 
 add mountains to campaign individually or from a list
 
-- collection for areas
-- collection for lists
+collections for areas and mountain lists
 
 add activity for a campaign with mountain selector
 
