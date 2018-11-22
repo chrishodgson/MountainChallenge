@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../actions";
 
-//import Header from "./Header";
+import DefaultLayout from "./DefaultLayout";
 import Landing from "./Landing";
 import Dashboard from "./Dashboard";
 import PageNotFound from "./PageNotFound";
@@ -20,14 +20,14 @@ class App extends Component {
         <BrowserRouter>
           <div className="container">
             <Switch>
-              <Route exact path="/" component={Landing} />
-              <Route exact path="/challenges" component={Dashboard} />
-              <Route
+              <DefaultLayout exact path="/" component={Landing} />
+              <DefaultLayout exact path="/challenges" component={Dashboard} />
+              <DefaultLayout
                 exact
                 path="/challenges/:type(custom|existing)"
                 component={ChallengeNew}
               />
-              <Route component={PageNotFound} />
+              <DefaultLayout component={PageNotFound} />
             </Switch>
           </div>
         </BrowserRouter>

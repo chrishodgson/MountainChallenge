@@ -1,8 +1,8 @@
 ### MVP
 
-route layouts
+existing mountain lists component
 
-existing mountain lists
+no validation on cancel
 
 add mountains to campaign individually or from a list
 

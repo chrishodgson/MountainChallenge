@@ -4,13 +4,6 @@ import { connect } from "react-redux";
 import { selectMountain } from "../../../actions";
 
 class ChallengeMountainList extends Component {
-  // isAlreadySelected(mountainId) {
-  //   const found = _.find(this.props.mountainSelection, mountain => {
-  //     return mountain._id === mountainId;
-  //   });
-  //   return found || false;
-  // }
-
   renderMountains() {
     return this.props.mountainSearch.map(mountain => {
       return (
