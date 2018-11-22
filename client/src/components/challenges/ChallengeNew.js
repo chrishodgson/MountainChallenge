@@ -4,6 +4,7 @@ import ChallengeMountainSearch from "./steps/ChallengeMountainSearch";
 import ChallengeMountainList from "./steps/ChallengeMountainList";
 import ChallengeSelectedMountainList from "./steps/ChallengeSelectedMountainList";
 import ChallengeReview from "./steps/ChallengeReview";
+import ChallengeType from "./steps/ChallengeType";
 import { reduxForm } from "redux-form";
 
 class ChallengeNew extends Component {
@@ -28,11 +29,17 @@ class ChallengeNew extends Component {
             <ChallengeMountainList />
           </div>
         );
-      case "1-start":
-      default:
+      case "1-challengeDetails":
         return (
           <ChallengeDetails
             onSubmit={() => this.setState({ step: "2-mountainSearch" })}
+            onCancel={() => this.setState({ step: "" })}
+          />
+        );
+      default:
+        return (
+          <ChallengeType
+            onSubmit={() => this.setState({ step: "1-challengeDetails" })}
           />
         );
     }
@@ -42,4 +49,5 @@ class ChallengeNew extends Component {
   }
 }
 
-export default reduxForm({ form: "challengeForm" })(ChallengeNew);
+//export default reduxForm({ form: "challengeForm" })(ChallengeNew);
+export default ChallengeNew;
