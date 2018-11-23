@@ -1,7 +1,15 @@
 import _ from "lodash";
 import React from "react";
 
-export default ({ input, name, type, label, options, meta: { error, touched } }) => {
+export default props => {
+  const {
+    input,
+    type,
+    label,
+    options,
+    meta: { error, touched }
+  } = props;
+
   const renderOptions = () => {
     return _.map(options, option => {
       return (
@@ -12,18 +20,16 @@ export default ({ input, name, type, label, options, meta: { error, touched } })
     });
   };
 
-  const defaultLayout = (children) => {
+  const defaultLayout = children => {
     return (
       <div>
         <label>{label}</label>
-        <div className="input-field">
-          {children}
-        </div>
+        <div className="input-field">{children}</div>
       </div>
     );
   };
 
-  const radioLayout = (children) => {
+  const radioLayout = children => {
     return (
       <label>
         {children}
@@ -35,7 +41,9 @@ export default ({ input, name, type, label, options, meta: { error, touched } })
   const renderField = () => {
     switch (type) {
       case "textarea":
-        return defaultLayout(<textarea {...input} className="materialize-textarea" />);
+        return defaultLayout(
+          <textarea {...input} className="materialize-textarea" />
+        );
       case "select":
         return defaultLayout(
           <select {...input} className="browser-default">
@@ -44,11 +52,10 @@ export default ({ input, name, type, label, options, meta: { error, touched } })
           </select>
         );
       case "radio":
-console.log(input)      ;
-        return radioLayout(<input type="radio" {...input} value={name} />);
+        return radioLayout(<input {...input} type="radio" />);
       case "text":
       default:
-          return defaultLayout(<input {...input} />);
+        return defaultLayout(<input {...input} type="text" />);
     }
   };
 

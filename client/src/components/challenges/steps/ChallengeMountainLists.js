@@ -8,14 +8,18 @@ import formFields from "./fields/challengeMountainListsFields";
 class ChallengeMountainLists extends Component {
   renderFields() {
     return _.map(formFields, ({ label, name, type, options, ...rest }) => {
+
+      //console.log(rest);
+
       return (
         <ReduxField
-          key={rest.value || name}
+          key={rest.key || name}
           name={name}
           type={type}
           label={label}
           options={options}
           component={Field}
+          value={rest.value || null}
         />
       );
     });
@@ -42,7 +46,7 @@ class ChallengeMountainLists extends Component {
 function validate(values) {
   const errors = {};
 
-  // console.log(values, 'validate values  ChallengeMountainLists');
+  console.log(values, 'validate values  ChallengeMountainLists');
 
   if (!values["list"]) {
     // errors["list"] = "You must select a list";

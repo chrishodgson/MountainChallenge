@@ -1,14 +1,16 @@
 export default [
   {
-    value: "northern",
     name: "list",
     label: "Northern Fells",
-    type: "radio"
+    type: "radio",
+    key: "northern",
+    value: "northern"
   },
   {
-    value: "southern",
     name: "list",
     label: "Southern Fells",
-    type: "radio"
+    type: "radio",
+    key: "southern",
+    value: "southern"
   }
 ];

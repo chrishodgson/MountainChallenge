@@ -22,8 +22,8 @@ class ChallengeNew extends Component {
       case "details":
         return (
           <ChallengeDetails
-            onSubmit={() => this.setState({ step: "mountains" })}
-            //onCancel={() => this.setState({ step: "type" })}
+            onSubmit={() => this.setState({ step: "review" })}
+            onCancel={() => this.setState({ step: "mountains" })}
           />
         );
       //step 1
@@ -35,7 +35,6 @@ class ChallengeNew extends Component {
               <ChallengeSelectedMountains />
               <ChallengeMountainSearch
                 onSubmit={() => this.setState({ step: "details" })}
-                //onCancel={() => this.setState({ step: "details" })}
               />
               <ChallengeMountainSearchResults />;
             </div>
@@ -44,7 +43,6 @@ class ChallengeNew extends Component {
           return (
             <ChallengeMountainLists
               onSubmit={() => this.setState({ step: "details" })}
-              // onCancel={() => this.setState({ step: "mountains" })}
             />
           );
         }
