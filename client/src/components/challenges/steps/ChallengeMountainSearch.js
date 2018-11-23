@@ -2,6 +2,7 @@ import _ from "lodash";
 import React, { Component } from "react";
 import { reduxForm, Field as ReduxField } from "redux-form";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import Field from "../../Field";
 import formFields from "./fields/challengeMountainSearchFields";
 import { searchMountains } from "../../../actions";
@@ -41,12 +42,9 @@ class ChallengeMountainSearch extends Component {
             Search
           </button>
 
-          <button
-            onClick={this.props.onCancel}
-            className="grey btn-flat white-text"
-          >
+          <Link to="/challenges" className="grey btn-flat white-text">
             Back
-          </button>
+          </Link>
           <button type="submit" className="grey btn-flat white-text right">
             Next
           </button>
