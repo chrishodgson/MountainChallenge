@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { deSelectMountain } from "../../../actions";
 
-class ChallengeSelectedMountainList extends Component {
+class ChallengeSelectedMountains extends Component {
   renderSelectedMountains() {
     return this.props.mountainSelection.map(mountain => {
       return (
@@ -44,4 +44,4 @@ function mapStateToProps({ mountainSelection }) {
 export default connect(
   mapStateToProps,
   { deSelectMountain }
-)(ChallengeSelectedMountainList);
+)(ChallengeSelectedMountains);

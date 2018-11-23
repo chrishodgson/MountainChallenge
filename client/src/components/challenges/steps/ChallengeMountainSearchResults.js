@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { selectMountain } from "../../../actions";
 
-class ChallengeMountainList extends Component {
+class ChallengeMountainSearchResults extends Component {
   renderMountains() {
     return this.props.mountainSearch.map(mountain => {
       return (
@@ -81,4 +81,4 @@ function mapStateToProps({ mountainSearch, mountainSelection }) {
 export default connect(
   mapStateToProps,
   { selectMountain }
-)(ChallengeMountainList);
+)(ChallengeMountainSearchResults);

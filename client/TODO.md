@@ -2,6 +2,8 @@
 
 existing mountain lists component
 
+add mountains to review component
+
 no validation on cancel
 
 add mountains to campaign individually or from a list

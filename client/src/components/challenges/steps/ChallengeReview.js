@@ -1,9 +1,9 @@
 import _ from "lodash";
 import React from "react";
 import { connect } from "react-redux";
-import formFields from "./challengeFormFields";
 import { withRouter } from "react-router-dom";
 import * as actions from "../../../actions";
+import formFields from "./fields/challengeDetailsFields";
 
 const ChallengeReview = ({
   onCancel,

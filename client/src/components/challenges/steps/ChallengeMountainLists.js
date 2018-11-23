@@ -1,12 +1,10 @@
 import _ from "lodash";
 import React, { Component } from "react";
 import { reduxForm, Field as ReduxField } from "redux-form";
-import { connect } from "react-redux";
 import Field from "../../Field";
-import formFields from "./fields/challengeMountainSearchFields";
-import { searchMountains } from "../../../actions";
+import formFields from "./fields/challengeMountainListsFields";
 
-class ChallengeMountainSearch extends Component {
+class ChallengeMountainLists extends Component {
   renderFields() {
     return _.map(formFields, ({ label, name, type, options }) => {
       return (
@@ -29,19 +27,6 @@ class ChallengeMountainSearch extends Component {
           {this.renderFields()}
 
           <button
-            className="grey btn-flat white-text"
-            onClick={e => {
-              e.preventDefault();
-              this.props.searchMountains(
-                this.props.formValues.mountain,
-                this.props.formValues.area
-              );
-            }}
-          >
-            Search
-          </button>
-
-          <button
             onClick={this.props.onCancel}
             className="grey btn-flat white-text"
           >
@@ -56,17 +41,11 @@ class ChallengeMountainSearch extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    formValues: state.form.challengeMountainSearch.values || []
-  };
-}
-
 function validate(values) {
   const errors = {};
 
-  if (!values["mountain"]) {
-    errors["name"] = "You must provide a value for the search";
+  if (!values["list"]) {
+    errors["list"] = "You must select a list";
   }
 
   return errors;
@@ -74,11 +53,6 @@ function validate(values) {
 
 export default reduxForm({
   validate,
-  form: "challengeMountainSearch",
+  form: "ChallengeMountainLists",
   destroyOnUnmount: false
-})(
-  connect(
-    mapStateToProps,
-    { searchMountains }
-  )(ChallengeMountainSearch)
-);
+})(ChallengeMountainLists);
