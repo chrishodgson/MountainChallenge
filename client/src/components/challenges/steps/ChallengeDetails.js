@@ -10,10 +10,10 @@ class ChallengeDetails extends Component {
       return (
         <ReduxField
           key={name}
-          type={type}
-          component={Field}
-          label={label}
           name={name}
+          type={type}
+          label={label}
+          component={Field}
         />
       );
     });
@@ -48,11 +48,20 @@ function validate(values) {
     }
   });
 
+  // console.log(errors, 'validate errors challengeDetails');
+
   return errors;
+}
+
+//todo
+function shouldValidate(params) {
+  console.log(params, 'shouldValidate challengeDetails');
+  return true;
 }
 
 export default reduxForm({
   validate,
+  shouldValidate,
   form: "challengeDetails",
   destroyOnUnmount: false
 })(ChallengeDetails);

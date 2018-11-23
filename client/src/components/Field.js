@@ -1,7 +1,7 @@
 import _ from "lodash";
 import React from "react";
 
-export default ({ input, type, label, options, meta: { error, touched } }) => {
+export default ({ input, name, type, label, options, meta: { error, touched } }) => {
   const renderOptions = () => {
     return _.map(options, option => {
       return (
@@ -44,7 +44,8 @@ export default ({ input, type, label, options, meta: { error, touched } }) => {
           </select>
         );
       case "radio":
-        return radioLayout(<input type="radio" {...input} />);
+console.log(input)      ;
+        return radioLayout(<input type="radio" {...input} value={name} />);
       case "text":
       default:
           return defaultLayout(<input {...input} />);
