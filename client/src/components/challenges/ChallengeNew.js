@@ -36,7 +36,7 @@ class ChallengeNew extends Component {
               <ChallengeMountainSearch
                 onSubmit={() => this.setState({ step: "details" })}
               />
-              <ChallengeMountainSearchResults />;
+              <ChallengeMountainSearchResults />
             </div>
           );
         } else {

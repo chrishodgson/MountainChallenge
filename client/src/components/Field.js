@@ -24,17 +24,35 @@ export default props => {
     return (
       <div>
         <label>{label}</label>
-        <div className="input-field">{children}</div>
+        <div
+          style={{ marginBottom: "0px", marginTop: "0px" }}
+          className="input-field"
+        >
+          {children}
+        </div>
+        {renderError()}
       </div>
     );
   };
 
+  //dont show errors
   const radioLayout = children => {
     return (
-      <label>
-        {children}
-        <span>{label}</span>
-      </label>
+      <div>
+        <label>
+          {children}
+          <span>{label}</span>
+        </label>
+        {renderError()}
+      </div>
+    );
+  };
+
+  const renderError = () => {
+    return (
+      <div className="red-text" style={{ marginBottom: "10px" }}>
+        {touched && error}
+      </div>
     );
   };
 
@@ -42,7 +60,11 @@ export default props => {
     switch (type) {
       case "textarea":
         return defaultLayout(
-          <textarea {...input} className="materialize-textarea" />
+          <textarea
+            {...input}
+            className="materialize-textarea"
+            style={{ margin: "0px" }}
+          />
         );
       case "select":
         return defaultLayout(
@@ -55,16 +77,11 @@ export default props => {
         return radioLayout(<input {...input} type="radio" />);
       case "text":
       default:
-        return defaultLayout(<input {...input} type="text" />);
+        return defaultLayout(
+          <input {...input} type="text" style={{ margin: "0px" }} />
+        );
     }
   };
 
-  return (
-    <div>
-      {renderField()}
-      <div className="red-text" style={{ marginBottom: "20px" }}>
-        {touched && error}
-      </div>
-    </div>
-  );
+  return <div>{renderField()}</div>;
 };

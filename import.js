@@ -1,3 +1,10 @@
+/**
+ * import mountains from CSV
+ * node import.js --filename=absoluteFilePath.csv
+ * switches: --save to save rows that don't already exist
+ *           --report to report which rows exist and which do not
+ */
+
 const _ = require("lodash");
 const keys = require("./config/keys");
 const mongoose = require("mongoose");
@@ -13,7 +20,10 @@ mongoose.connect(
 const Mountain = mongoose.model("mountains");
 const csvFilePath = args["filename"] || null;
 const reportItems = args["report"] || false;
+const saveItems = args["save"] || false;
 const columns = /(Number|Name|Metres|Feet|Area|Grid ref 10|Classification|Parent (Ma)|Map 1:25k|Country|County)/;
+
+const list = [];
 
 let existingCount = 0,
   createdCount = 0;
@@ -27,14 +37,19 @@ const parseFile = async () => {
     if (classifications.includes("W")) {
       await handleItem(item);
     }
+
+    // countries
+    if (list.indexOf(item["Country"]) == -1) {
+      list.push(item["Country"]);
+    }
   }
   console.log(
-    "Created " +
-      createdCount +
-      " mountains, " +
-      existingCount +
-      " already exist."
+    saveItems
+      ? createdCount + " mountains created."
+      : createdCount + " mountains did not exist (not created)."
   );
+  console.log(existingCount + " mountains already exist.");
+  console.log(list, "countries");
 };
 
 const handleItem = async item => {
@@ -49,11 +64,13 @@ const handleItem = async item => {
     }
   } else {
     try {
-      mountain = hydrateMountain(item);
-      await mountain.save();
       createdCount++;
+      if (saveItems) {
+        mountain = hydrateMountain(item);
+        await mountain.save();
+      }
       if (reportItems) {
-        console.log("Imported " + item.Number + " // " + item.Name);
+        console.log("Not exists " + item.Number + " // " + item.Name);
       }
     } catch (e) {
       console.log(e, "on save error");

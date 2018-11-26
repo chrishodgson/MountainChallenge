@@ -1,17 +1,15 @@
 ### MVP
 
-existing mountain lists component
-
-add mountains to review component
-
-no validation on cancel
-
-add mountains to campaign individually or from a list
+mountain import - all mountains in GB, list of areas
 
 collections for areas and mountain lists
 
-add activity for a campaign with mountain selector
+mountain lists component - field group validation
 
-improve campaign listing with link to view campaign
+review component - add mountains / mountain list
 
-import all mountains in GB and make a list of areas
+/api/mountains - add mountains individually or from a list
+
+add activity
+
+campaign listing with link to view campaign
