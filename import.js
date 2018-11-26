@@ -1,8 +1,14 @@
 /**
  * import mountains from CSV
- * node import.js --filename=absoluteFilePath.csv
+ * node import.js --filename=absoluteFilePath.csv --report --save
  * switches: --save to save rows that don't already exist
  *           --report to report which rows exist and which do not
+ *
+ * countries
+ * [ 'S', 'ES', 'M', 'W', 'E', 'C', 'I' ]
+ *
+ * classifications
+ * http://www.hills-database.co.uk/database_notes.html#classification
  */
 
 const _ = require("lodash");
@@ -33,16 +39,22 @@ const parseFile = async () => {
     csvFilePath
   );
   for (const item of jsonArray) {
+    //restrict by classification
     const classifications = item["Classification"].split(",");
-    if (classifications.includes("W")) {
+    if (classifications.includes("WO")) {
       await handleItem(item);
     }
 
-    // countries
-    //[ 'S', 'ES', 'M', 'W', 'E', 'C', 'I' ] 'countries'
-    if (list.indexOf(item["Country"]) == -1) {
-      list.push(item["Country"]);
+    //restrict by country
+    if(['C'].indexOf(item["Country"]) !== -1) {
+      //await handleItem(item);
     }
+
+    //get a list of areas
+    // const string = item["Area"];
+    // if (string && list.indexOf(string) == -1) {
+    //   list.push(string);
+    // }
   }
   console.log(
     saveItems
@@ -50,7 +62,7 @@ const parseFile = async () => {
       : createdCount + " mountains did not exist (not created)."
   );
   console.log(existingCount + " mountains already exist.");
-  console.log(list, "countries");
+  // console.log(list, "areas");
 };
 
 const handleItem = async item => {
@@ -61,7 +73,7 @@ const handleItem = async item => {
   if (countDocuments > 0) {
     existingCount++;
     if (reportItems) {
-      console.log("Exists " + item.Number + " // " + item.Name);
+      console.log("Exists " + item.Country + " // " + item.Number + " // " + item.Name);
     }
   } else {
     try {
@@ -71,7 +83,7 @@ const handleItem = async item => {
         await mountain.save();
       }
       if (reportItems) {
-        console.log("Not exists " + item.Number + " // " + item.Name);
+        console.log("Not Exists " + item.Country + " // " + item.Number + " // " + item.Name);
       }
     } catch (e) {
       console.log(e, "on save error");
