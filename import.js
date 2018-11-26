@@ -39,6 +39,7 @@ const parseFile = async () => {
     }
 
     // countries
+    //[ 'S', 'ES', 'M', 'W', 'E', 'C', 'I' ] 'countries'
     if (list.indexOf(item["Country"]) == -1) {
       list.push(item["Country"]);
     }
