@@ -4,7 +4,9 @@
  * switches: --save to save rows that don't already exist
  *           --report to report which rows exist and which do not
  *           --classification classification to import
+ *           --area area to import
  *           --country country to import
+ *           --mountain mountain to import
  *
  * countries
  * [ 'S', 'ES', 'M', 'W', 'E', 'C', 'I' ]
@@ -26,38 +28,55 @@ mongoose.connect(
 );
 
 const Mountain = mongoose.model("mountains");
+const columns = /(Number|Name|Metres|Feet|Area|Grid ref 10|Classification|Parent (Ma)|Map 1:25k|Country|County)/;
+
 const csvFilePath = args["filename"] || null;
 const reportItems = args["report"] || false;
 const country = args["country"] || false;
+const area = args["area"] || false;
+const mountain = args["mountain"] || false;
+const mountainPattern = new RegExp(mountain, "i");
 const classification = args["classification"] || false;
 const saveItems = args["save"] || false;
-const columns = /(Number|Name|Metres|Feet|Area|Grid ref 10|Classification|Parent (Ma)|Map 1:25k|Country|County)/;
 
 let existingCount = 0,
   createdCount = 0,
-  areas = [];
+  areaList = [];
 
 const parseFile = async () => {
   const jsonArray = await csv({ includeColumns: columns }).fromFile(
     csvFilePath
   );
+
   for (const item of jsonArray) {
     //import  by classification
     const classificationList = item["Classification"].split(",");
     if (classification && classificationList.includes(classification)) {
       await handleItem(item);
+      continue;
+    }
+
+    //import by area
+    if (area && area === item["Area"]) {
+      await handleItem(item);
+      continue;
     }
 
     //import by country
     if (country && country === item["Country"]) {
       await handleItem(item);
+      continue;
+    }
+
+    //import by mountain name
+    if (mountain && mountainPattern.test(item["Name"])) {
+      console.log(item);
+      await handleItem(item);
+      continue;
     }
   }
 
-  if (areas.length > 0) {
-    //todo save areas to db
-    console.log(areas, "areas");
-  }
+  console.log(areaList, "areaList");
 
   console.log(
     saveItems
@@ -75,7 +94,7 @@ const handleItem = async item => {
   if (countDocuments > 0) {
     existingCount++;
     if (reportItems) {
-      console.log("Exists " + item.Number + " // " + item.Name);
+      console.log("Existing " + item.Number + " // " + item.Name);
     }
   } else {
     try {
@@ -83,8 +102,8 @@ const handleItem = async item => {
 
       // add to list of areas
       const string = item["Country"] + "//" + item["Area"];
-      if (item["Area"] && areas.indexOf(string) == -1) {
-        areas.push(string);
+      if (item["Area"] && areaList.indexOf(string) == -1) {
+        areaList.push(string);
       }
 
       if (saveItems) {
@@ -92,7 +111,7 @@ const handleItem = async item => {
         await mountain.save();
       }
       if (reportItems) {
-        console.log("Not Exists " + item.Number + " // " + item.Name);
+        console.log("Not Existing " + item.Number + " // " + item.Name);
       }
     } catch (e) {
       console.log(e, "on save error");
