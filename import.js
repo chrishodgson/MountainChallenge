@@ -32,6 +32,10 @@ mongoose.connect(
 );
 
 const Mountain = mongoose.model("mountains");
+const MountainList = mongoose.model("mountainLists");
+const Area = mongoose.model("areas");
+const County = mongoose.model("counties");
+
 const columns = /(Number|Name|Metres|Feet|Area|Grid ref 10|Classification|Parent (Ma)|Map 1:25k|Country|County)/;
 
 const csvFilePath = args["filename"] || null;
@@ -112,8 +116,6 @@ const handleItem = async item => {
 
       if (saveItems) {
         await saveItem(item);
-        // mountain = hydrateMountain(item);
-        // await mountain.save();
       }
       if (reportItems) {
         console.log("Not Existing " + item.Number + " // " + item.Name);
@@ -150,23 +152,23 @@ const hydrateCounty = item => {
 };
 
 const saveItem = async item => {
-  mountain = hydrateMountain(item);
+  const mountain = hydrateMountain(item);
   await mountain.save();
 
   //area - to do get all then check list
   if(item.Area) {
-    const countDocuments = await Area.countDocuments({title: item.Area});
+    const countDocuments = await Area.countDocuments({name: item.Area});
     if(countDocuments == 0) {
-      area = hydrateArea(item);
+      const area = hydrateArea(item);
       await area.save();
     }
   }
 
   //county - to do get all then check list
   if(item.County) {
-    const countDocuments = await County.countDocuments({title: item.County});
+    const countDocuments = await County.countDocuments({name: item.County});
     if(countDocuments == 0) {
-      county = hydrateCounty(item);
+      const county = hydrateCounty(item);
       await county.save();
     }
   }
