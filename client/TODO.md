@@ -2,17 +2,22 @@
 
 schema structure
 
-how to handle area with multiple countries and counties (ie cheviots or ) ??
-
-- country: title
-- county _country, title
-- area: _country, _county, title
-- mountain List: _country, _county, _area, title
+- mountain: dobihId, title, lat, lng, metres, feet, gridref, countryCode, classificationCodes[], _county, _area, _users[]
+- classification: title, _mountains[]
+- mountainList: title, description, countryCode, _area, _mountains[]
+- county: title, countryCode
+- area: title, countryCode
 
 mountain import
 
-- import all mountains and areas from E, W, S, SE;
-- add new collections for Area and add areaId and countryCode to mountain collection
+*** make classifications be a type of mountainList ??? ***
+
+- import all mountains from countries E, W, S, SE;
+- import all mountains from classificationCodes W, WO, Fel, ...;
+- add add _area, _country, classificationCodes, countryCode to mountains
+- import mountainLists
+- import counties
+- import areas
 
 mountain search component
 
