@@ -1,5 +1,12 @@
 ### MVP
 
+schema
+
+- country: title
+- region: countryCode, title
+- area: countryCode, regionCode, title
+- mountain List: countryCode, title
+
 mountain import
 
 - import all mountains and areas from E, W, S, SE;

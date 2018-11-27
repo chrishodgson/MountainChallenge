@@ -10,7 +10,8 @@ const mountainSchema = new Schema({
   metres: Number,
   feet: Number,
   area: String,
-  gridRef: String
+  gridRef: String,
+  _area: { type: Schema.Types.ObjectId, ref: "Area" }
 });
 
 mongoose.model("mountains", mountainSchema);

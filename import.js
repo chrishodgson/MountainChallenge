@@ -54,7 +54,7 @@ const parseFile = async () => {
     }
   }
 
-  if (saveItems && areas.length > 0) {
+  if (areas.length > 0) {
     //todo save areas to db
     console.log(areas, "areas");
   }
@@ -82,8 +82,9 @@ const handleItem = async item => {
       createdCount++;
 
       // add to list of areas
-      if (item["Area"] && areas.indexOf(item["Area"]) == -1) {
-        areas.push(item["Area"]);
+      const string = item["Country"] + "//" + item["Area"];
+      if (item["Area"] && areas.indexOf(string) == -1) {
+        areas.push(string);
       }
 
       if (saveItems) {
