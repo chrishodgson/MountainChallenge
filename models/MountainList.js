@@ -4,7 +4,7 @@ const MountainListMountain = require("./MountainListMountain");
 
 const mountainListSchema = new Schema({
   countryCode: String,
-  title: String,
+  name: String,
   description: String,
   highestMountain: Number,
   mountainCount: Number,

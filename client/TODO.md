@@ -2,10 +2,10 @@
 
 schema structure
 
-- mountain: dobihId, title, lat, lng, metres, feet, gridref, countryCode, mountainLists[], _county, _area, _users[]
-- mountainList: title, description, countryCode, type, _area, _mountains[]
-- county: title, countryCode
-- area: title, countryCode
+- mountain: dobihId, name, lat, lng, metres, feet, gridref, countryCode, mountainLists[], _county, _area
+- mountainList: name, description, countryCode, type, _area, _mountains[]
+- county: name, countryCode
+- area: name, countryCode
 
 mountain import
 
