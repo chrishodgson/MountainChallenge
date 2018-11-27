@@ -1,13 +1,13 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
-const ChallengeMountainSchema = require("./ChallengeMountain");
-const ChallengeUserSchema = require("./ChallengeUser");
+const ChallengeMountain = require("./ChallengeMountain");
+const ChallengeUser = require("./ChallengeUser");
 
 const challengeSchema = new Schema({
   title: String,
   description: String,
-  users: [ChallengeUserSchema],
-  mountains: [ChallengeMountainSchema],
+  users: [ChallengeUser],
+  mountains: [ChallengeMountain],
   mountainCount: Number
 });
 

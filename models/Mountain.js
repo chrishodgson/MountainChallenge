@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
-// const MountainClassificationSchema = require("./MountainClassificationSchema");
+const MountainMountainList = require("./MountainMountainList");
 
 const mountainSchema = new Schema({
   dobihId: Number,
@@ -9,9 +9,11 @@ const mountainSchema = new Schema({
   lng: Number,
   metres: Number,
   feet: Number,
-  area: String,
   gridRef: String,
-  _area: { type: Schema.Types.ObjectId, ref: "Area" }
+  countryCode: String,
+  _county: { type: Schema.Types.ObjectId, ref: "County" },
+  _area: { type: Schema.Types.ObjectId, ref: "Area" },
+  mountainLists: [MountainMountainList],
 });
 
 mongoose.model("mountains", mountainSchema);

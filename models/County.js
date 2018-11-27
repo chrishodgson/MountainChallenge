@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-const areaSchema = new Schema({
+const countySchema = new Schema({
   countryCode: String,
   name: String
 });
 
-mongoose.model("areaSchema", areaSchema);
+mongoose.model("countySchema", countySchema);

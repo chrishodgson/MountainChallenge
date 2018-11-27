@@ -2,20 +2,17 @@
 
 schema structure
 
-- mountain: dobihId, title, lat, lng, metres, feet, gridref, countryCode, classificationCodes[], _county, _area, _users[]
-- classification: title, _mountains[]
-- mountainList: title, description, countryCode, _area, _mountains[]
+- mountain: dobihId, title, lat, lng, metres, feet, gridref, countryCode, mountainLists[], _county, _area, _users[]
+- mountainList: title, description, countryCode, type, _area, _mountains[]
 - county: title, countryCode
 - area: title, countryCode
 
 mountain import
 
-*** make classifications be a type of mountainList ??? ***
-
 - import all mountains from countries E, W, S, SE;
 - import all mountains from classificationCodes W, WO, Fel, ...;
-- add add _area, _country, classificationCodes, countryCode to mountains
-- import mountainLists
+- add to mountains _area, _country, classificationCodes, countryCode
+- import selected classifications as mountainLists
 - import counties
 - import areas
 

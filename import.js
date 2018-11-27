@@ -20,7 +20,11 @@ const keys = require("./config/keys");
 const mongoose = require("mongoose");
 const args = require("minimist")(process.argv.slice(2));
 const csv = require("csvtojson");
+
 require("./models/Mountain");
+require("./models/MountainList");
+require("./models/County");
+require("./models/Area");
 
 mongoose.connect(
   keys.mongoURI,
@@ -41,7 +45,8 @@ const saveItems = args["save"] || false;
 
 let existingCount = 0,
   createdCount = 0,
-  areaList = [];
+  areaList = [],
+  countyList = [];
 
 const parseFile = async () => {
   const jsonArray = await csv({ includeColumns: columns }).fromFile(
@@ -99,7 +104,6 @@ const handleItem = async item => {
   } else {
     try {
       createdCount++;
-
       // add to list of areas
       const string = item["Country"] + "//" + item["Area"];
       if (item["Area"] && areaList.indexOf(string) == -1) {
@@ -107,8 +111,9 @@ const handleItem = async item => {
       }
 
       if (saveItems) {
-        mountain = hydrateMountain(item);
-        await mountain.save();
+        await saveItem(item);
+        // mountain = hydrateMountain(item);
+        // await mountain.save();
       }
       if (reportItems) {
         console.log("Not Existing " + item.Number + " // " + item.Name);
@@ -131,5 +136,41 @@ const hydrateMountain = item => {
     gridRef: item["Grid ref 10"]
   });
 };
+
+const hydrateArea = item => {
+  return new Area({
+    name: item["Area"]
+  });
+};
+
+const hydrateCounty = item => {
+  return new County({
+    name: item["County"]
+  });
+};
+
+const saveItem = async item => {
+  mountain = hydrateMountain(item);
+  await mountain.save();
+
+  //area - to do get all then check list
+  if(item.Area) {
+    const countDocuments = await Area.countDocuments({title: item.Area});
+    if(countDocuments == 0) {
+      area = hydrateArea(item);
+      await area.save();
+    }
+  }
+
+  //county - to do get all then check list
+  if(item.County) {
+    const countDocuments = await County.countDocuments({title: item.County});
+    if(countDocuments == 0) {
+      county = hydrateCounty(item);
+      await county.save();
+    }
+  }
+};
+
 
 parseFile();
