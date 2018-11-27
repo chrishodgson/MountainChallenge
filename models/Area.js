@@ -6,4 +6,4 @@ const areaSchema = new Schema({
   name: String
 });
 
-mongoose.model("areaSchema", areaSchema);
+mongoose.model("areas", areaSchema);

@@ -8,7 +8,7 @@ const mountainListSchema = new Schema({
   description: String,
   highestMountain: Number,
   mountainCount: Number,
-  mountains: [MountainListMountain],
+  _mountains: [MountainListMountain],
 });
 
-mongoose.model("mountainListSchema", mountainListSchema);
+mongoose.model("mountainLists", mountainListSchema);

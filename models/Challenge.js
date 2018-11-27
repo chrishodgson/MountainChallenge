@@ -6,8 +6,8 @@ const ChallengeUser = require("./ChallengeUser");
 const challengeSchema = new Schema({
   title: String,
   description: String,
-  users: [ChallengeUser],
-  mountains: [ChallengeMountain],
+  _users: [ChallengeUser],
+  _mountains: [ChallengeMountain],
   mountainCount: Number
 });
 

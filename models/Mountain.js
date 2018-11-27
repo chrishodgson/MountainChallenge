@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
-const MountainMountainList = require("./MountainMountainList");
 
 const mountainSchema = new Schema({
   dobihId: Number,
@@ -13,7 +12,7 @@ const mountainSchema = new Schema({
   countryCode: String,
   _county: { type: Schema.Types.ObjectId, ref: "County" },
   _area: { type: Schema.Types.ObjectId, ref: "Area" },
-  mountainLists: [MountainMountainList],
+  _mountainLists: [{ type: Schema.Types.ObjectId, ref: "MountainList" }],
 });
 
 mongoose.model("mountains", mountainSchema);

@@ -6,4 +6,4 @@ const countySchema = new Schema({
   name: String
 });
 
-mongoose.model("countySchema", countySchema);
+mongoose.model("counties", countySchema);
