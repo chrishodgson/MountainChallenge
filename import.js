@@ -48,84 +48,70 @@ const classification = args["classification"] || false;
 const saveItems = args["save"] || false;
 
 let existingCount = 0,
-  createdCount = 0,
+  notExistingCount = 0,
   areaList = [],
-  countyList = [];
+  countyList = [],
+  mountainList = [];
 
+/** Run Import
+ */
+const doImport = async () => {
+  await parseFile();
+
+  if (saveItems) {
+    await saveAreas();
+    await saveCounties();
+    await saveItems();
+  }
+
+  console.log(
+    saveItems
+      ? notExistingCount + " mountains created."
+      : notExistingCount + " mountains not found in database (not created)."
+  );
+  console.log(existingCount + " mountains already exist in database.");
+};
+
+/** Parse file
+ */
 const parseFile = async () => {
   const jsonArray = await csv({ includeColumns: columns }).fromFile(
     csvFilePath
   );
 
   for (const item of jsonArray) {
-    //import  by classification
-    const classificationList = item["Classification"].split(",");
-    if (classification && classificationList.includes(classification)) {
-      await handleItem(item);
-      continue;
-    }
-
-    //import by area
-    if (area && area === item["Area"]) {
-      await handleItem(item);
-      continue;
-    }
-
-    //import by country
-    if (country && country === item["Country"]) {
-      await handleItem(item);
-      continue;
-    }
-
-    //import by mountain name
-    if (mountain && mountainPattern.test(item["Name"])) {
-      console.log(item);
-      await handleItem(item);
-      continue;
-    }
-  }
-
-  console.log(areaList, "areaList");
-
-  console.log(
-    saveItems
-      ? createdCount + " mountains created."
-      : createdCount + " mountains not found in database (not created)."
-  );
-  console.log(existingCount + " mountains already exist in database.");
-};
-
-const handleItem = async item => {
-  const countDocuments = await Mountain.countDocuments({
-    dobihId: item.Number
-  });
-
-  if (countDocuments > 0) {
-    existingCount++;
-    if (reportItems) {
-      console.log("Existing " + item.Number + " // " + item.Name);
-    }
-  } else {
-    try {
-      createdCount++;
-      // add to list of areas
-      const string = item["Country"] + "//" + item["Area"];
-      if (item["Area"] && areaList.indexOf(string) == -1) {
-        areaList.push(string);
+    if (shouldImportItem(item)) {
+      mountainList.push(item);
+      if (item["Area"] && areaList.indexOf(item["Area"]) == -1) {
+        areaList.push(item["Area"]);
       }
-
-      if (saveItems) {
-        await saveItem(item);
+      if (item["County"] && countyList.indexOf(item["County"]) == -1) {
+        countyList.push(item["County"]);
       }
-      if (reportItems) {
-        console.log("Not Existing " + item.Number + " // " + item.Name);
-      }
-    } catch (e) {
-      console.log(e, "on save error");
     }
   }
 };
 
+/** Should Import Item
+ */
+const shouldImportItem = item => {
+  const classificationList = item["Classification"].split(",");
+  if (classification && classificationList.includes(classification)) {
+    return true;
+  }
+  if (area && area === item["Area"]) {
+    return true;
+  }
+  if (country && country === item["Country"]) {
+    return true;
+  }
+  if (mountain && mountainPattern.test(item["Name"])) {
+    return true;
+  }
+};
+
+/** Hydrate Mountain
+ */
 const hydrateMountain = item => {
   return new Mountain({
     dobihId: item["Number"],
@@ -139,40 +125,71 @@ const hydrateMountain = item => {
   });
 };
 
+/** Hydrate Area
+ */
 const hydrateArea = item => {
   return new Area({
     name: item["Area"]
   });
 };
 
+/** Hydrate County
+ */
 const hydrateCounty = item => {
   return new County({
     name: item["County"]
   });
 };
 
-const saveItem = async item => {
-  const mountain = hydrateMountain(item);
-  await mountain.save();
-
-  //area - to do get all then check list
-  if(item.Area) {
-    const countDocuments = await Area.countDocuments({name: item.Area});
-    if(countDocuments == 0) {
+/** Save Areas
+ */
+const saveAreas = async () => {
+  for (const item of countyList) {
+    const countDocuments = await Area.countDocuments({ name: item });
+    if (countDocuments == 0) {
       const area = hydrateArea(item);
       await area.save();
     }
   }
+};
 
-  //county - to do get all then check list
-  if(item.County) {
-    const countDocuments = await County.countDocuments({name: item.County});
-    if(countDocuments == 0) {
+/** Save Countries
+ */
+const saveCounties = async () => {
+  for (const item of countyList) {
+    const countDocuments = await County.countDocuments({ name: item });
+    if (countDocuments == 0) {
       const county = hydrateCounty(item);
       await county.save();
     }
   }
 };
 
+/** Save Items
+ */
+const saveItems = async () => {
+  for (const item of itemList) {
+    const countDocuments = await Mountain.countDocuments({
+      dobihId: item.Number
+    });
+    if (countDocuments == 0) {
+      const mountain = hydrateMountain(item);
+      await mountain.save();
+      notExistingCount++;
+      logitem("Not exists", item);
+    } else {
+      existingCount++;
+      logitem("Exists", item);
+    }
+  }
+};
 
-parseFile();
+/** Log Item
+ */
+const logItem = (msg, item) => {
+  if (reportItems) {
+    console.log(msg + " " + item.Number + " // " + item.Name);
+  }
+};
+
+doImport();
