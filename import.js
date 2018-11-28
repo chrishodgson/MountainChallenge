@@ -119,7 +119,11 @@ const shouldImportItem = item => {
 /** Save Areas
  */
 const saveAreas = async () => {
+  console.log(areaKeys, 'areaKeys in saveAreas');
   for (const property in areaKeys) {
+
+    console.log(property, 'areaKeys');
+
     let document = await Area.findOne({ name: property }).select('_id');
     if (!document) {
       document = new Area({name: property});
@@ -134,6 +138,9 @@ const saveAreas = async () => {
  */
 const saveCounties = async () => {
   for (const property in countyKeys) {
+
+    console.log(property, 'countyKeys');
+
     let document = await County.findOne({ name: property }).select('_id');
     if (!document) {
       document = new County({name: property});
