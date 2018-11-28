@@ -9,12 +9,9 @@ schema structure
 
 mountain import
 
-- import all mountains from countries E, W, S, SE;
-- import all mountains from classificationCodes W, WO, Fel, ...;
-- add to mountains _area, _country, classificationCodes, countryCode
-- import selected classifications as mountainLists
-- import counties
-- import areas
+- add countryCode when importing county and area
+- restrict classificationCodes to: W, WO, Fel, ...;
+- add classifications as mountainLists
 
 mountain search component
 

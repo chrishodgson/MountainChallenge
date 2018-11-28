@@ -49,8 +49,8 @@ const saveItems = args["save"] || false;
 
 let existingCount = 0,
   notExistingCount = 0,
-  areaList = [],
-  countyList = [],
+  areaKeys = {},
+  countyKeys = {},
   mountainList = [];
 
 /** Run Import
@@ -61,15 +61,18 @@ const doImport = async () => {
   if (saveItems) {
     await saveAreas();
     await saveCounties();
-    await saveItems();
+    await saveMountains();
   }
 
   console.log(
     saveItems
       ? notExistingCount + " mountains created."
-      : notExistingCount + " mountains not found in database (not created)."
+      : notExistingCount + " mountains do not exist in database."
   );
   console.log(existingCount + " mountains already exist in database.");
+
+  console.log(areaKeys, 'areaKeys');
+  console.log(countyKeys, 'countyKeys');
 };
 
 /** Parse file
@@ -82,11 +85,11 @@ const parseFile = async () => {
   for (const item of jsonArray) {
     if (shouldImportItem(item)) {
       mountainList.push(item);
-      if (item["Area"] && areaList.indexOf(item["Area"]) == -1) {
-        areaList.push(item["Area"]);
+      if (item["Area"] && !areaKeys.hasOwnProperty(item["Area"])) {
+        areaKeys[item["Area"]] = null;
       }
-      if (item["County"] && countyList.indexOf(item["County"]) == -1) {
-        countyList.push(item["County"]);
+      if (item["County"] && !areaKeys.hasOwnProperty(item["County"])) {
+        countyKeys[item["County"]] = null;
       }
     }
   }
@@ -95,6 +98,7 @@ const parseFile = async () => {
 /** Should Import Item
  */
 const shouldImportItem = item => {
+  //TODO use fixed list of classifications
   const classificationList = item["Classification"].split(",");
   if (classification && classificationList.includes(classification)) {
     return true;
@@ -106,7 +110,56 @@ const shouldImportItem = item => {
     return true;
   }
   if (mountain && mountainPattern.test(item["Name"])) {
+    console.log(item, mountain);
     return true;
+  }
+};
+
+
+/** Save Areas
+ */
+const saveAreas = async () => {
+  for (const property in areaKeys) {
+    let document = await Area.findOne({ name: property }).select('_id');
+    if (!document) {
+      document = new Area({name: property});
+      await document.save();
+    }
+    areaKeys[property] = document._id;
+    console.log(document._id, 'area _id');
+  }
+};
+
+/** Save Countries
+ */
+const saveCounties = async () => {
+  for (const property in countyKeys) {
+    let document = await County.findOne({ name: property }).select('_id');
+    if (!document) {
+      document = new County({name: property});
+      await document.save();
+    }
+    countyKeys[property] = document._id;
+    console.log(document._id, 'county _id');
+  }
+};
+
+/** Save Mountains
+ */
+const saveMountains = async () => {
+  for (const item of mountainList) {
+    const countDocuments = await Mountain.countDocuments({
+      dobihId: item.Number
+    });
+    if (countDocuments == 0) {
+      const mountain = hydrateMountain(item);
+      await mountain.save();
+      notExistingCount++;
+      reportMountain("Not exists", item);
+    } else {
+      existingCount++;
+      reportMountain("Exists", item);
+    }
   }
 };
 
@@ -120,73 +173,17 @@ const hydrateMountain = item => {
     lng: item["Longitude"],
     metres: item["Metres"],
     feet: item["Feet"],
-    area: item["Area"], //ie Lake District - Northern Fells
-    gridRef: item["Grid ref 10"]
+    gridRef: item["Grid ref 10"],
+    countryCode: item["Country"],
+    _area: areaKeys[item["Area"]],
+    _county: countyKeys[item["County"]]
+    //_mountainLists
   });
 };
 
-/** Hydrate Area
+/** Log Mountain
  */
-const hydrateArea = item => {
-  return new Area({
-    name: item["Area"]
-  });
-};
-
-/** Hydrate County
- */
-const hydrateCounty = item => {
-  return new County({
-    name: item["County"]
-  });
-};
-
-/** Save Areas
- */
-const saveAreas = async () => {
-  for (const item of countyList) {
-    const countDocuments = await Area.countDocuments({ name: item });
-    if (countDocuments == 0) {
-      const area = hydrateArea(item);
-      await area.save();
-    }
-  }
-};
-
-/** Save Countries
- */
-const saveCounties = async () => {
-  for (const item of countyList) {
-    const countDocuments = await County.countDocuments({ name: item });
-    if (countDocuments == 0) {
-      const county = hydrateCounty(item);
-      await county.save();
-    }
-  }
-};
-
-/** Save Items
- */
-const saveItems = async () => {
-  for (const item of itemList) {
-    const countDocuments = await Mountain.countDocuments({
-      dobihId: item.Number
-    });
-    if (countDocuments == 0) {
-      const mountain = hydrateMountain(item);
-      await mountain.save();
-      notExistingCount++;
-      logitem("Not exists", item);
-    } else {
-      existingCount++;
-      logitem("Exists", item);
-    }
-  }
-};
-
-/** Log Item
- */
-const logItem = (msg, item) => {
+const reportMountain = (msg, item) => {
   if (reportItems) {
     console.log(msg + " " + item.Number + " // " + item.Name);
   }
