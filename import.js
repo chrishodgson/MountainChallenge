@@ -211,12 +211,12 @@ const processMountains = async () => {
       }
       notExistingCount++;
       reportMountain("Not exists", item);
-      if (mountainInput && doesMountainMatch(item)) {
-        console.log(item, "mountain");
-      }
     } else {
       existingCount++;
       reportMountain("Exists", item);
+    }
+    if (mountainInput && doesMountainMatch(item)) {
+      console.log(item, "mountain");
     }
   }
 };
