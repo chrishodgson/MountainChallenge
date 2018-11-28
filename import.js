@@ -12,7 +12,7 @@
  *
  * countries: [ 'S', 'ES', 'M', 'W', 'E', 'C', 'I' ]
  *
- * classifications
+ * classifications: []
  * http://www.hills-database.co.uk/database_notes.html#classification
  */
 
@@ -45,12 +45,10 @@ const countryInput = args["country"] || false;
 const areaInput = args["area"] || false;
 const mountainInput = args["mountain"] || false;
 const mountainPattern = new RegExp(mountainInput, "i");
-const saveItems = args["save"] || false;
-const reportItems = args["report"] || false;
+const saveItemsInput = args["save"] || false;
+const reportItemsInput = args["report"] || false;
 
-let existingCount = 0,
-  notExistingCount = 0,
-  areaKeys = {},
+let areaKeys = {},
   countyKeys = {},
   classificationKeys = {},
   mountains = [];
@@ -63,20 +61,12 @@ const doImport = async () => {
   }
   await parseFile();
 
-  if (saveItems) {
+  if (saveItemsInput) {
     await saveAreas();
     await saveCounties();
-    await saveClassifications();
+    await saveMountainLists();
   }
-
   await processMountains();
-
-  console.log(
-    saveItems
-      ? notExistingCount + " mountains created."
-      : notExistingCount + " mountains do not exist in database."
-  );
-  console.log(existingCount + " mountains already exist in database.");
 };
 
 /** Validate Inputs
@@ -137,8 +127,8 @@ const doesMountainMatch = item => {
 /** get filtered classifications
  */
 const getFilteredClassifications = item => {
-  const mountainClassifications = item["Classification"].split(",");
   let list = [];
+  const mountainClassifications = item["Classification"].split(",");
   for (const classification of mountainClassifications) {
     if (classificationList.includes(classification)) {
       list.push(classification);
@@ -147,78 +137,103 @@ const getFilteredClassifications = item => {
   return list;
 };
 
-/** Save Classifications
+/** Save MountainLists
  */
-const saveClassifications = async () => {
+const saveMountainLists = async () => {
+  let created = 0;
   for (const property in classificationKeys) {
-    console.log(property, "classificationKeys property");
-
     let document = await MountainList.findOne({
       classificationCode: property
-    }).select("_id");
+    }).select("_id, countryCodes");
     if (!document) {
-      document = new MountainList({ classificationCode: property });
+      document = new MountainList({
+        classificationCode: property,
+        countryCodes: [countryInput]
+      });
+      await document.save();
+      created++;
+    } else if (
+      !document["countryCodes"] ||
+      !document["countryCodes"].includes(countryInput)
+    ) {
+      document["countryCodes"].push(countryInput);
       await document.save();
     }
     classificationKeys[property] = document._id;
-    console.log(document._id, "MountainList _id");
+  }
+  if (created > 0) {
+    console.log(created + " MountainLists created.");
   }
 };
 
 /** Save Areas
  */
 const saveAreas = async () => {
+  let created = 0;
   for (const property in areaKeys) {
-    console.log(property, "areaKeys property");
-
-    let document = await Area.findOne({ name: property }).select("_id");
+    let document = await Area.findOne({ name: property });
     if (!document) {
-      document = new Area({ name: property });
+      document = new Area({ name: property, countryCodes: [countryInput] });
+      await document.save();
+      created++;
+    } else if (
+      !document["countryCodes"] ||
+      !document["countryCodes"].includes(countryInput)
+    ) {
+      document["countryCodes"].push(countryInput);
       await document.save();
     }
     areaKeys[property] = document._id;
-    console.log(document._id, "area _id");
+  }
+  if (created > 0) {
+    console.log(created + " Areas created.");
   }
 };
 
 /** Save Countries
  */
 const saveCounties = async () => {
+  let created = 0;
   for (const property in countyKeys) {
-    console.log(property, "countyKeys property");
-
     let document = await County.findOne({ name: property }).select("_id");
     if (!document) {
       document = new County({ name: property });
       await document.save();
+      created++;
     }
     countyKeys[property] = document._id;
-    console.log(document._id, "county _id");
+  }
+  if (created > 0) {
+    console.log(created + " Counties created.");
   }
 };
 
 /** Process Mountains
  */
 const processMountains = async () => {
+  existing = notExisting = 0;
   for (const item of mountains) {
     const countDocuments = await Mountain.countDocuments({
       dobihId: item.Number
     });
     if (countDocuments == 0) {
-      if (saveItems) {
+      if (saveItemsInput) {
         const mountain = hydrateMountain(item);
         await mountain.save();
       }
-      notExistingCount++;
-      reportMountain("Not exists", item);
+      notExisting++;
+      logMountain("Not exists", item);
     } else {
-      existingCount++;
-      reportMountain("Exists", item);
-    }
-    if (mountainInput && doesMountainMatch(item)) {
-      console.log(item, "mountain");
+      existing++;
+      logMountain("Exists", item);
     }
   }
+  console.log(
+    saveItemsInput
+      ? notExisting + " mountains created."
+      : notExisting + " mountains not found in database."
+  );
+  console.log(existing + " mountains already exist in database.");
 };
 
 /** Hydrate Mountain
@@ -246,9 +261,12 @@ const hydrateMountain = item => {
 
 /** Log Mountain
  */
-const reportMountain = (msg, item) => {
-  if (reportItems) {
+const logMountain = (msg, item) => {
+  if (reportItemsInput) {
     console.log(msg + " " + item.Number + " // " + item.Name);
+  }
+  if (mountainInput && doesMountainMatch(item)) {
+    console.log(item, "mountain");
   }
 };
 

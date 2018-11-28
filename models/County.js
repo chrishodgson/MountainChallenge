@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const countySchema = new Schema({
-  countryCode: String,
-  name: String
+  name: String,
+  countryCode: String
 });
 
 mongoose.model("counties", countySchema);
