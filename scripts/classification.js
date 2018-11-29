@@ -1,10 +1,6 @@
 /**
  * get information from CSV about mountains in a classification
- * node scripts/classification.js --filename=absoluteFilePath.csv --classification=W
- *
- * classifications: ['D', 'Sy', 'Fel', 'B', 'W', 'WO', 'M', 'F', 'C', 'G', '5']
- * http://www.hills-database.co.uk/database_notes.html#list_of_lists
- * http://www.hills-database.co.uk/database_notes.html#classification
+ * node scripts/classification.js --filename=absoluteFilePath.csv
  */
 
 const _ = require("lodash");
@@ -15,43 +11,30 @@ const columns = /(Name|Metres|Classification|Country)/;
 const filenameInput = args["filename"] || null;
 const classificationInput = args["classification"] || false;
 
-let smallest = 0,
-  tallest = 0,
-  total = 0,
-  totalUnder300m = 0,
-  mountains = [],
-  countries = [];
+let results = [];
+const classificationList = [
+  "D",
+  "Sy",
+  "Fel",
+  "B",
+  "W",
+  "WO",
+  "M",
+  "F",
+  "C",
+  "G",
+  "5"
+];
 
 /** Run Import
  */
 const doImport = async () => {
-  if (!validateInputs()) {
+  if (!filenameInput) {
+    console.log("Error: no --filename parameter passed");
     return;
   }
   await parseFile();
-
-  console.log(total, "Total ");
-  console.log(totalUnder300m, "Total < 300m");
-  console.log(tallest, "Tallest ");
-  console.log(smallest, "Smallest ");
-  console.log(countries, "Countries ");
-  for (const mountain of mountains) {
-    console.log(mountain);
-  }
-};
-
-/** Validate Inputs
- */
-const validateInputs = () => {
-  if (!filenameInput) {
-    console.log("Error: no --filename parameter passed");
-    return false;
-  }
-  if (!classificationInput) {
-    console.log("Error: no --classification parameter passed");
-    return false;
-  }
-  return true;
+  console.log(results);
 };
 
 /** Parse file
@@ -63,23 +46,51 @@ const parseFile = async () => {
 
   for (const item of jsonArray) {
     const mountainClassifications = item["Classification"].split(",");
-    if (mountainClassifications.includes(classificationInput)) {
-      total++;
-      const metres = Number(item["Metres"]);
-      if (metres >= 300) {
-        totalUnder300m++;
+    for (const classification of mountainClassifications) {
+      if (classificationList.includes(classification)) {
+        processItem(item, getResultsIndex(item));
       }
-      if (smallest == 0 || metres < smallest) {
-        smallest = metres;
-      }
-      if (tallest == 0 || metres > tallest) {
-        tallest = metres;
-      }
-      if (item["Country"] && !countries.includes(item["Country"])) {
-        countries.push(item["Country"]);
-      }
-      mountains.push(item["Country"] + ' - ' + item["Name"] + ' (' + metres +')');
     }
+  }
+};
+
+/** get Index
+ */
+const getResultsIndex = item => {
+  for (i = 0; i < results.length; i++) {
+    if (
+      results[i].country == item["Country"] &&
+      results[i].classification == item["Classification"]
+    ) {
+      return i;
+    }
+  }
+  return addEmptyResult();
+};
+
+const addEmptyResult = () => {
+  results.push({
+    classification: item["Classification"],
+    county: item["Country"],
+    total: 0,
+    totalUnder300: 0
+  });
+  return results.length;
+};
+
+const processItem = (item, index) => {
+  const metres = Number(item["Metres"]);
+  result.total++;
+  if (metres < 300) {
+    results[index].totalUnder300++;
+  }
+  if (metres < result.smallest) {
+    results[index].smallestName = item["Name"];
+    results[index].smallest = metres;
+  }
+  if (metres > result.tallest) {
+    results[index].tallestName = item["Name"];
+    results[index].tallest = metres;
   }
 };
 
