@@ -1,6 +1,7 @@
 /**
  * import mountains by country from CSV
- * node import.js --filename=absoluteFilePath.csv --country=E --report --save
+ * node scripts/import.js --filename=absoluteFilePath.csv --country=E --report --save
+ *
  * mandatory switches:
  * --country country code to import see list below
  * --filename absolute path of filename to import
@@ -12,20 +13,32 @@
  *
  * countries: [ 'S', 'ES', 'M', 'W', 'E', 'C', 'I' ]
  *
- * classifications: []
+ * classifications: ['D', 'Sy', 'Fel', 'B', 'W', 'WO', 'M', 'F', 'C', 'G', '5']
+ * Donald D
+ * Synge Sy
+ * Fellranger Fel
+ * Birkett B
+ * Wainwright W
+ * Wainwright Outlying Fell WO
+ * Munro M
+ * Furth F
+ * Corbett C
+ * Graham G
+ * Dodd 5
+ * http://www.hills-database.co.uk/database_notes.html#list_of_lists
  * http://www.hills-database.co.uk/database_notes.html#classification
  */
 
 const _ = require("lodash");
-const keys = require("./config/keys");
+const keys = require("../config/keys");
 const mongoose = require("mongoose");
 const args = require("minimist")(process.argv.slice(2));
 const csv = require("csvtojson");
 
-require("./models/Mountain");
-require("./models/MountainList");
-require("./models/County");
-require("./models/Area");
+require("../models/Mountain");
+require("../models/MountainList");
+require("../models/County");
+require("../models/Area");
 
 mongoose.connect(
   keys.mongoURI,
@@ -38,7 +51,19 @@ const Area = mongoose.model("areas");
 const County = mongoose.model("counties");
 
 const columns = /(Number|Name|Metres|Feet|Area|Grid ref 10|Classification|Parent (Ma)|Map 1:25k|Country|County)/;
-const classificationList = ["W", "WO"];
+const classificationList = [
+  "D",
+  "Sy",
+  "Fel",
+  "B",
+  "W",
+  "WO",
+  "M",
+  "F",
+  "C",
+  "G",
+  "5"
+];
 
 const filenameInput = args["filename"] || null;
 const countryInput = args["country"] || false;

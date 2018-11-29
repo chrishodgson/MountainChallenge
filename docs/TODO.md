@@ -1,9 +1,10 @@
 ### MVP
 
-mountain import
+database query for each mountainlist
 
-- add countryCode as array for area/mountainList
-- select which classificationCodes to create as mountainLists
+- count number < 300m,
+- total count
+- smallest and tallest mountains
 
 mountain search component
 
