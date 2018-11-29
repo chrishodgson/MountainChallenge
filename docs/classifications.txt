@@ -1,0 +1,118 @@
+* Donald D
+* Synge Sy
+* Fellranger Fel
+* Birkett B
+* Wainwright W
+* Wainwright Outlying Fell WO
+* Munro M
+* Furth F
+* Corbett C
+* Graham G
+* Dodd 5 ??
+* Hewitt Hew
+* Simm Sim
+* Nuttall N
+* Dewey D
+
+
+W
+14 'Total '
+213 'Total < 300m'
+978.07 Tallest
+290 Smallest
+[ 'E' ] 'Countries '
+
+WO
+116 'Total '
+74 'Total < 300m'
+621 Tallest
+152 Smallest
+[ 'E' ] 'Countries '
+
+Sy
+647 'Total '
+646 'Total < 300m'
+978.07 Tallest
+290 Smallest
+[ 'E' ] 'Countries '
+
+Fel
+l227 'Total '
+224 'Total < 300m'
+978.07 Tallest
+231.4 Smallest
+[ 'E' ] 'Countries '
+
+B
+541 'Total '
+541 'Total < 300m'
+978.07 Tallest
+305 Smallest
+[ 'E' ] 'Countries '
+
+-----------
+
+D
+89 'Total '
+89 'Total < 300m'
+843 Tallest
+610 Smallest
+[ 'S', 'ES' ] 'Countries '
+
+M
+282 'Total '
+282 'Total < 300m'
+999.7 Tallest
+1001 Smallest
+[ 'S' ] 'Countries '
+
+C
+222 'Total '
+222 'Total < 300m'
+913.96 Tallest
+762.4 Smallest
+[ 'S' ] 'Countries '
+
+G
+219 'Total '
+219 'Total < 300m'
+761.6 Tallest
+611 Smallest
+[ 'S' ] 'Countries '
+
+----------
+
+F
+34 'Total '
+34 'Total < 300m'
+994.3 Tallest
+1000 Smallest
+[ 'W', 'E', 'I' ] 'Countries '
+
+Hew
+524 'Total '
+524 'Total < 300m'
+994.3 Tallest
+1000 Smallest
+[ 'W', 'E', 'ES', 'I' ] 'Countries '
+
+Sim
+2754 'Total '
+2754 'Total < 300m'
+999.7 Tallest
+1000 Smallest
+[ 'S', 'M', 'W', 'E', 'ES', 'I' ] 'Countries '
+
+N
+445 'Total '
+445 'Total < 300m'
+994.3 Tallest
+1000.9 Smallest
+[ 'W', 'E', 'ES' ] 'Countries '
+
+Dew
+426 'Total '
+426 'Total < 300m'
+609.3 Tallest
+500 Smallest
+[ 'M', 'W', 'E', 'ES' ] 'Countries '
