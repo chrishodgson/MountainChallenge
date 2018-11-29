@@ -11,7 +11,7 @@ const _ = require("lodash");
 const args = require("minimist")(process.argv.slice(2));
 const csv = require("csvtojson");
 
-const columns = /(Metres|Classification|Country)/;
+const columns = /(Name|Metres|Classification|Country)/;
 const filenameInput = args["filename"] || null;
 const classificationInput = args["classification"] || false;
 
@@ -19,6 +19,7 @@ let smallest = 0,
   tallest = 0,
   total = 0,
   totalUnder300m = 0,
+  mountains = [],
   countries = [];
 
 /** Run Import
@@ -34,6 +35,9 @@ const doImport = async () => {
   console.log(tallest, "Tallest ");
   console.log(smallest, "Smallest ");
   console.log(countries, "Countries ");
+  for (const mountain of mountains) {
+    console.log(mountain);
+  }
 };
 
 /** Validate Inputs
@@ -61,19 +65,20 @@ const parseFile = async () => {
     const mountainClassifications = item["Classification"].split(",");
     if (mountainClassifications.includes(classificationInput)) {
       total++;
-      if (item["Metres"] >= 300) {
+      const metres = Number(item["Metres"]);
+      if (metres >= 300) {
         totalUnder300m++;
       }
-      if (smallest == 0 || item["Metres"] < smallest) {
-        smallest = item["Metres"];
+      if (smallest == 0 || metres < smallest) {
+        smallest = metres;
       }
-      if (tallest == 0 || item["Metres"] > tallest) {
-        tallest = item["Metres"];
+      if (tallest == 0 || metres > tallest) {
+        tallest = metres;
       }
       if (item["Country"] && !countries.includes(item["Country"])) {
         countries.push(item["Country"]);
       }
-      // console.log(item);
+      mountains.push(item["Country"] + ' - ' + item["Name"] + ' (' + metres +')');
     }
   }
 };

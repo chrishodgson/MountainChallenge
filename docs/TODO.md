@@ -1,10 +1,11 @@
 ### MVP
 
-database query for each mountainlist
+table of mountainClassifications data to compare:
+- country, total, <300, Name / height of smallest, Name / height of tallest
 
-- count number < 300m,
-- total count
-- smallest and tallest mountains
+database import
+- import numeric values as numbers
+- add mountain lists per country
 
 mountain search component
 
