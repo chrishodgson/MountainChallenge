@@ -84,7 +84,7 @@ const parseFile = async () => {
       if (item["Country"] && !countries.includes(item["Country"])) {
         countries.push(item["Country"]);
       }
-      console.log(item);
+      // console.log(item);
     }
   }
 };
