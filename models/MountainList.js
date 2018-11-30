@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 const mountainListSchema = new Schema({
   name: String,
   description: String,
-  countryCodes: [String],
+  countryCode: String,
   classificationCode: String,
   highestMountain: Number,
   mountainCount: Number

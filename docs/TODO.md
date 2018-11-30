@@ -1,8 +1,6 @@
 ### MVP
 
-database import
-- import numeric values as numbers
-- add mountain lists per country
+database import - add mountain lists per country
 
 mountain search component
 

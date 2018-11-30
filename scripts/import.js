@@ -51,19 +51,8 @@ const Area = mongoose.model("areas");
 const County = mongoose.model("counties");
 
 const columns = /(Number|Name|Metres|Feet|Area|Grid ref 10|Classification|Parent (Ma)|Map 1:25k|Country|County)/;
-const classificationList = [
-  "D",
-  "Sy",
-  "Fel",
-  "B",
-  "W",
-  "WO",
-  "M",
-  "F",
-  "C",
-  "G",
-  "5"
-];
+const allowedClassifications = "D,Sy,Fel,B,W,WO,M,F,C,G,5";
+const classificationList = allowedClassifications.split(",");
 
 const filenameInput = args["filename"] || null;
 const countryInput = args["country"] || false;
@@ -270,12 +259,12 @@ const hydrateMountain = item => {
   }
 
   return new Mountain({
-    dobihId: item["Number"],
+    dobihId: Number(item["Number"]),
     name: item["Name"],
     lat: item["Latitude"],
     lng: item["Longitude"],
-    metres: item["Metres"],
-    feet: item["Feet"],
+    metres: Number(item["Metres"]),
+    feet: Number(item["Feet"]),
     gridRef: item["Grid ref 10"],
     countryCode: item["Country"],
     _area: areaKeys[item["Area"]],

@@ -12,8 +12,7 @@ const filenameInput = args["filename"] || null;
 const classificationInput = args["classification"] || false;
 
 let results = [];
-// const allowedClassifications = "D,Sy,Fel,B,W,WO,M,F,C,G,5";
-const allowedClassifications = "WO";
+const allowedClassifications = "D,Sy,Fel,B,W,WO,M,F,C,G,5";
 
 /** Run Import
  */
