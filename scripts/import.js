@@ -51,9 +51,7 @@ const Area = mongoose.model("areas");
 const County = mongoose.model("counties");
 
 const columns = /(Number|Name|Metres|Feet|Area|Grid ref 10|Classification|Parent (Ma)|Map 1:25k|Country|County)/;
-//const allowedClassifications = "D,Sy,Fel,B,W,WO,M,F,C,G,5";
-const allowedClassifications = "F";
-
+const allowedClassifications = "D,Sy,Fel,B,W,WO,M,F,C,G,5";
 const classificationList = allowedClassifications.split(",");
 
 const filenameInput = args["filename"] || null;
@@ -82,7 +80,6 @@ const doImport = async () => {
     await saveCounties();
     await saveMountainLists();
   }
-  console.log(classificationKeys, "classificationKeys");
   await processMountains();
 };
 
