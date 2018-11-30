@@ -28,8 +28,18 @@ const doImport = async () => {
 convertToCSV = () => {
   let list = [];
   for (const item of results) {
-    //list.push();
+    list.push(
+      [
+        item.total,
+        item.totalUnder300,
+        item.smallest,
+        item.smallestName,
+        item.tallest,
+        item.tallestName
+      ].join()
+    );
   }
+  return list;
 };
 
 /** Parse file
