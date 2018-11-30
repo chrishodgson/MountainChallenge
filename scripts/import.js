@@ -115,7 +115,8 @@ const parseFile = async () => {
       if (item["County"] && !areaKeys.hasOwnProperty(item["County"])) {
         countyKeys[item["County"]] = null;
       }
-      for (const combinedKey of getFilteredClassifications(item)) {
+      for (const classification of getFilteredClassifications(item)) {
+        const combinedKey = countryInput + ',' + classification;
         if (!classificationKeys.hasOwnProperty(combinedKey)) {
           classificationKeys[combinedKey] = null;
         }
@@ -146,9 +147,8 @@ const getFilteredClassifications = item => {
   let list = [];
   const mountainClassifications = item["Classification"].split(",");
   for (const classification of mountainClassifications) {
-    const combinedKey = countryInput + ',' + classification;
-    if (classificationList.includes(combinedKey)) {
-      list.push(combinedKey);
+    if (classificationList.includes(classification)) {
+      list.push(classification);
     }
   }
   return list;
@@ -252,9 +252,9 @@ const processMountains = async () => {
  */
 const hydrateMountain = item => {
   const mountainLists = [];
-  for (const combinedKey of getFilteredClassifications(item)) {
-    const combinedKeyList = combinedKey.split();
-    mountainLists.push(classificationKeys[combinedKeyList[1]]);
+  for (const classification of getFilteredClassifications(item)) {
+    const combinedKey = countryInput + ',' + classification;
+    mountainLists.push(classificationKeys[combinedKey]);
   }
 
   return new Mountain({
