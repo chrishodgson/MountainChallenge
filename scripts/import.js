@@ -51,7 +51,9 @@ const Area = mongoose.model("areas");
 const County = mongoose.model("counties");
 
 const columns = /(Number|Name|Metres|Feet|Area|Grid ref 10|Classification|Parent (Ma)|Map 1:25k|Country|County)/;
-const allowedClassifications = "D,Sy,Fel,B,W,WO,M,F,C,G,5";
+//const allowedClassifications = "D,Sy,Fel,B,W,WO,M,F,C,G,5";
+const allowedClassifications = "F";
+
 const classificationList = allowedClassifications.split(",");
 
 const filenameInput = args["filename"] || null;
@@ -62,7 +64,6 @@ const mountainPattern = new RegExp(mountainInput, "i");
 const saveItemsInput = args["save"] || false;
 const reportItemsInput = args["report"] || false;
 
-//note: classificationKeys has a combined key of 'countryInput,classification'
 let areaKeys = {},
   countyKeys = {},
   classificationKeys = {},
@@ -116,9 +117,8 @@ const parseFile = async () => {
         countyKeys[item["County"]] = null;
       }
       for (const classification of getFilteredClassifications(item)) {
-        const combinedKey = countryInput + ',' + classification;
-        if (!classificationKeys.hasOwnProperty(combinedKey)) {
-          classificationKeys[combinedKey] = null;
+        if (!classificationKeys.hasOwnProperty(classification)) {
+          classificationKeys[classification] = null;
         }
       }
     }
@@ -253,8 +253,7 @@ const processMountains = async () => {
 const hydrateMountain = item => {
   const mountainLists = [];
   for (const classification of getFilteredClassifications(item)) {
-    const combinedKey = countryInput + ',' + classification;
-    mountainLists.push(classificationKeys[combinedKey]);
+    mountainLists.push(classificationKeys[classification]);
   }
 
   return new Mountain({
