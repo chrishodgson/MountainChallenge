@@ -12,19 +12,7 @@ const filenameInput = args["filename"] || null;
 const classificationInput = args["classification"] || false;
 
 let results = [];
-const classificationList = [
-  "D",
-  "Sy",
-  "Fel",
-  "B",
-  "W",
-  "WO",
-  "M",
-  "F",
-  "C",
-  "G",
-  "5"
-];
+const allowedClassifications = "D,Sy,Fel,B,W,WO,M,F,C,G,5";
 
 /** Run Import
  */
@@ -34,7 +22,14 @@ const doImport = async () => {
     return;
   }
   await parseFile();
-  console.log(results);
+  console.log(convertToCSV(results));
+};
+
+convertToCSV = () => {
+  let list = [];
+  for (const item of results) {
+    //list.push();
+  }
 };
 
 /** Parse file
@@ -43,12 +38,13 @@ const parseFile = async () => {
   const jsonArray = await csv({ includeColumns: columns }).fromFile(
     filenameInput
   );
-
+  const classificationList = allowedClassifications.split(",");
   for (const item of jsonArray) {
     const mountainClassifications = item["Classification"].split(",");
     for (const classification of mountainClassifications) {
       if (classificationList.includes(classification)) {
-        processItem(item, getResultsIndex(item));
+        const country = item["Country"];
+        processItem(item, getResultsIndex(classification, item["Country"]));
       }
     }
   }
@@ -56,39 +52,41 @@ const parseFile = async () => {
 
 /** get Index
  */
-const getResultsIndex = item => {
+const getResultsIndex = (classification, country) => {
   for (i = 0; i < results.length; i++) {
     if (
-      results[i].country == item["Country"] &&
-      results[i].classification == item["Classification"]
+      results[i].country == country &&
+      results[i].classification == classification
     ) {
       return i;
     }
   }
-  return addEmptyResult();
+  return addEmptyResult(classification, country);
 };
 
-const addEmptyResult = () => {
+const addEmptyResult = (classification, country) => {
   results.push({
-    classification: item["Classification"],
-    county: item["Country"],
+    classification: classification,
+    country: country,
     total: 0,
-    totalUnder300: 0
+    totalUnder300: 0,
+    smallest: 0,
+    tallest: 0
   });
-  return results.length;
+  return results.length - 1;
 };
 
 const processItem = (item, index) => {
   const metres = Number(item["Metres"]);
-  result.total++;
+  results[index].total++;
   if (metres < 300) {
     results[index].totalUnder300++;
   }
-  if (metres < result.smallest) {
+  if (results[index].smallest == 0 || metres < results[index].smallest) {
     results[index].smallestName = item["Name"];
     results[index].smallest = metres;
   }
-  if (metres > result.tallest) {
+  if (results[index].tallest == 0 || metres > results[index].tallest) {
     results[index].tallestName = item["Name"];
     results[index].tallest = metres;
   }
