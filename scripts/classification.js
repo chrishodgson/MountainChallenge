@@ -12,7 +12,8 @@ const filenameInput = args["filename"] || null;
 const classificationInput = args["classification"] || false;
 
 let results = [];
-const allowedClassifications = "D,Sy,Fel,B,W,WO,M,F,C,G,5";
+// const allowedClassifications = "D,Sy,Fel,B,W,WO,M,F,C,G,5";
+const allowedClassifications = "WO";
 
 /** Run Import
  */
@@ -27,11 +28,16 @@ const doImport = async () => {
 
 convertToCSV = () => {
   let list = [];
+  list.push(
+    "classification,country,<300,total,smallest,smallest name,tallest,tallest name"
+  );
   for (const item of results) {
     list.push(
       [
-        item.total,
+        item.classification,
+        item.country,
         item.totalUnder300,
+        item.total,
         item.smallest,
         item.smallestName,
         item.tallest,
@@ -91,6 +97,7 @@ const processItem = (item, index) => {
   results[index].total++;
   if (metres < 300) {
     results[index].totalUnder300++;
+    console.log(item["Name"] + " " +item["Metres"]);
   }
   if (results[index].smallest == 0 || metres < results[index].smallest) {
     results[index].smallestName = item["Name"];

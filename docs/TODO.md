@@ -1,8 +1,5 @@
 ### MVP
 
-table of mountainClassifications data to compare:
-- country, total, <300, Name / height of smallest, Name / height of tallest
-
 database import
 - import numeric values as numbers
 - add mountain lists per country
