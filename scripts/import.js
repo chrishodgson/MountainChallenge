@@ -62,6 +62,7 @@ const mountainPattern = new RegExp(mountainInput, "i");
 const saveItemsInput = args["save"] || false;
 const reportItemsInput = args["report"] || false;
 
+//note: classificationKeys has a combined key of 'countryInput,classification'
 let areaKeys = {},
   countyKeys = {},
   classificationKeys = {},
@@ -80,6 +81,7 @@ const doImport = async () => {
     await saveCounties();
     await saveMountainLists();
   }
+  console.log(classificationKeys, "classificationKeys");
   await processMountains();
 };
 
@@ -113,9 +115,9 @@ const parseFile = async () => {
       if (item["County"] && !areaKeys.hasOwnProperty(item["County"])) {
         countyKeys[item["County"]] = null;
       }
-      for (const classification of getFilteredClassifications(item)) {
-        if (!classificationKeys.hasOwnProperty(classification)) {
-          classificationKeys[classification] = null;
+      for (const combinedKey of getFilteredClassifications(item)) {
+        if (!classificationKeys.hasOwnProperty(combinedKey)) {
+          classificationKeys[combinedKey] = null;
         }
       }
     }
@@ -144,8 +146,9 @@ const getFilteredClassifications = item => {
   let list = [];
   const mountainClassifications = item["Classification"].split(",");
   for (const classification of mountainClassifications) {
-    if (classificationList.includes(classification)) {
-      list.push(classification);
+    const combinedKey = countryInput + ',' + classification;
+    if (classificationList.includes(combinedKey)) {
+      list.push(combinedKey);
     }
   }
   return list;
@@ -157,21 +160,16 @@ const saveMountainLists = async () => {
   let created = 0;
   for (const property in classificationKeys) {
     let document = await MountainList.findOne({
-      classificationCode: property
-    }).select("_id, countryCodes");
+      classificationCode: property,
+      countryCode: countryInput
+    }).select("_id");
     if (!document) {
       document = new MountainList({
         classificationCode: property,
-        countryCodes: [countryInput]
+        countryCode: countryInput
       });
       await document.save();
       created++;
-    } else if (
-      !document["countryCodes"] ||
-      !document["countryCodes"].includes(countryInput)
-    ) {
-      document["countryCodes"].push(countryInput);
-      await document.save();
     }
     classificationKeys[property] = document._id;
   }
@@ -254,8 +252,9 @@ const processMountains = async () => {
  */
 const hydrateMountain = item => {
   const mountainLists = [];
-  for (const classification of getFilteredClassifications(item)) {
-    mountainLists.push(classificationKeys[classification]);
+  for (const combinedKey of getFilteredClassifications(item)) {
+    const combinedKeyList = combinedKey.split();
+    mountainLists.push(classificationKeys[combinedKeyList[1]]);
   }
 
   return new Mountain({
