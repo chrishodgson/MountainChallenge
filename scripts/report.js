@@ -13,19 +13,6 @@
  *
  * countries: [ 'S', 'ES', 'M', 'W', 'E', 'C', 'I' ]
  * classifications: ['D', 'Sy', 'Fel', 'B', 'W', 'WO', 'M', 'F', 'C', 'G', '5']
- * Donald D
- * Synge Sy
- * Fellranger Fel
- * Birkett B
- * Wainwright W
- * Wainwright Outlying Fell WO
- * Munro M
- * Furth F
- * Corbett C
- * Graham G
- * Dodd 5
- * http://www.hills-database.co.uk/database_notes.html#list_of_lists
- * http://www.hills-database.co.uk/database_notes.html#classification
  */
 
 const _ = require("lodash");
