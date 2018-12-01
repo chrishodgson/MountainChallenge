@@ -1,18 +1,12 @@
 /**
  * import mountains by country from CSV
- * node scripts/import.js --filename=absoluteFilePath.csv --country=E --report --save
+ * node scripts/import.js --filename=absoluteFilePath.csv --country=E
  *
  * mandatory switches:
  * --country country code to import see list below
  * --filename absolute path of filename to import
- * optional switches:
- * --save to save rows that don't already exist OPTIONAL
- * --report to report which rows exist and which do not
- * --area area to import OPTIONAL
- * --mountain mountain to import OPTIONAL
  *
  * countries: [ 'S', 'ES', 'M', 'W', 'E', 'C', 'I' ]
- *
  * classifications: ['D', 'Sy', 'Fel', 'B', 'W', 'WO', 'M', 'F', 'C', 'G', '5']
  * Donald D
  * Synge Sy
@@ -56,11 +50,6 @@ const classificationList = allowedClassifications.split(",");
 
 const filenameInput = args["filename"] || null;
 const countryInput = args["country"] || false;
-const areaInput = args["area"] || false;
-const mountainInput = args["mountain"] || false;
-const mountainPattern = new RegExp(mountainInput, "i");
-const saveItemsInput = args["save"] || false;
-const reportItemsInput = args["report"] || false;
 
 let areaKeys = {},
   countyKeys = {},
@@ -74,12 +63,9 @@ const doImport = async () => {
     return;
   }
   await parseFile();
-
-  if (saveItemsInput) {
-    await saveAreas();
-    await saveCounties();
-    await saveMountainLists();
-  }
+  await saveAreas();
+  await saveCounties();
+  await saveMountainLists();
   await processMountains();
 };
 
@@ -105,7 +91,7 @@ const parseFile = async () => {
   );
 
   for (const item of jsonArray) {
-    if (shouldImportRow(item)) {
+    if (countryInput == item["Country"]) {
       mountains.push(item);
       if (item["Area"] && !areaKeys.hasOwnProperty(item["Area"])) {
         areaKeys[item["Area"]] = null;
@@ -120,22 +106,6 @@ const parseFile = async () => {
       }
     }
   }
-};
-
-/** Should Import Row
- */
-const shouldImportRow = item => {
-  return countryInput !== item["Country"] ||
-    (areaInput && areaInput !== item["Area"]) ||
-    (mountainInput && !doesMountainMatch(item))
-    ? false
-    : true;
-};
-
-/** Check whether mountain is a match
- */
-const doesMountainMatch = item => {
-  return mountainPattern.test(item["Name"]);
 };
 
 /** get filtered classifications
@@ -204,9 +174,12 @@ const saveAreas = async () => {
 const saveCounties = async () => {
   let created = 0;
   for (const property in countyKeys) {
-    let document = await County.findOne({ name: property }).select("_id");
+    let document = await County.findOne({
+      name: property,
+      countryCode: countryInput
+    }).select("_id");
     if (!document) {
-      document = new County({ name: property });
+      document = new County({ name: property, countryCode: countryInput });
       await document.save();
       created++;
     }
@@ -226,22 +199,14 @@ const processMountains = async () => {
       dobihId: item.Number
     });
     if (countDocuments == 0) {
-      if (saveItemsInput) {
-        const mountain = hydrateMountain(item);
-        await mountain.save();
-      }
+      const mountain = hydrateMountain(item);
+      await mountain.save();
       notExisting++;
-      logMountain("Not exists", item);
     } else {
       existing++;
-      logMountain("Exists", item);
     }
   }
-  console.log(
-    saveItemsInput
-      ? notExisting + " mountains created."
-      : notExisting + " mountains not found in database."
-  );
+  console.log(notExisting + " mountains created.");
   console.log(existing + " mountains already exist in database.");
 };
 
@@ -266,17 +231,6 @@ const hydrateMountain = item => {
     _county: countyKeys[item["County"]],
     _mountainLists: mountainLists
   });
-};
-
-/** Log Mountain
- */
-const logMountain = (msg, item) => {
-  if (reportItemsInput) {
-    console.log(msg + " " + item.Number + " // " + item.Name);
-  }
-  if (mountainInput && doesMountainMatch(item)) {
-    console.log(item, "mountain");
-  }
 };
 
 doImport();

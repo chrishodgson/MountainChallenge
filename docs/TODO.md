@@ -1,25 +1,21 @@
 ### MVP
 
-database import - add mountain lists per country
+build custom mountain list
 
-mountain search component
+- componentDidMount - run API lookup for areas and counties
+- select a country, then return a list of matching areas/counties
 
-- componentDidMount lookup for areas
-- select country then show areas for country
-- filter results by country or area
+existing mountain list
 
-review component
-
-- show mountains selected individually or the list
-- add new collection challengeMountain for individual mountains / mountain list
-
-mountain lists component
-
-- componentDidMount lookup for mountainLists
+- componentDidMount - run API lookup for mountainLists
+- select a country and return a table of mountain lists: list name|desc|num mountains|highest|lowest
 - use field group validation
-- display table of mountain lists with num mountains, details, country, highest mountain:
-  6 wainwrights lists, fell ranger, birkets, 3000 footers, 2000 footers
+
+review mountain challenge
+
+- show individually mountains selected or the mountain list
+- API to save individual mountains select or those on the mountain list
 
 add activity to challenge
-
-challenge list / view challenge
+list challenges
+view challenge
