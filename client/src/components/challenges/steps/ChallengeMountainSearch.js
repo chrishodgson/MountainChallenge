@@ -23,6 +23,13 @@ class ChallengeMountainSearch extends Component {
     });
   }
 
+  handleNext(e) {
+    e.preventDefault();
+    if (this.props.mountainSelection) {
+      this.props.onSubmit();
+    }
+  }
+
   render() {
     return (
       <div>
@@ -31,13 +38,14 @@ class ChallengeMountainSearch extends Component {
 
           <button
             className="grey btn-flat white-text"
-            onClick={e => {
-              e.preventDefault();
-              this.props.searchMountains(
-                this.props.formValues.mountain,
-                this.props.formValues.area
-              );
-            }}
+            onClick={() =>
+              this.props.handleSubmit(
+                this.props.searchMountains(
+                  this.props.formValues.mountain,
+                  this.props.formValues.country
+                )
+              )
+            }
           >
             Search
           </button>
@@ -45,7 +53,10 @@ class ChallengeMountainSearch extends Component {
           <Link to="/challenges" className="grey btn-flat white-text">
             Back
           </Link>
-          <button type="submit" className="grey btn-flat white-text right">
+          <button
+            onClick={e => this.handleNext(e)}
+            className="grey btn-flat white-text right"
+          >
             Next
           </button>
         </form>
@@ -56,7 +67,8 @@ class ChallengeMountainSearch extends Component {
 
 function mapStateToProps(state) {
   return {
-    formValues: state.form.challengeMountainSearch.values || []
+    formValues: state.form.challengeMountainSearch.values || [],
+    mountainSelection: state.mountainSelection
   };
 }
 
@@ -64,7 +76,10 @@ function validate(values) {
   const errors = {};
 
   if (!values["mountain"]) {
-    errors["name"] = "You must provide a value for the search";
+    errors["mountain"] = "You must provide a value for the search";
+  }
+  if (!values["country"]) {
+    errors["country"] = "You must select a country";
   }
 
   return errors;

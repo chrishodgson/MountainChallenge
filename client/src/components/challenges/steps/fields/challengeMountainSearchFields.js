@@ -5,15 +5,13 @@ export default [
     type: "text"
   },
   {
-    name: "area",
-    label: "Mountain area",
+    name: "country",
+    label: "Country",
     type: "select",
     options: [
-      "Lake District - Northern Fells",
-      "Lake District - Southern Fells",
-      "Lake District - Western Fells",
-      "Lake District - Eastern Fells",
-      "Lake District - Far Eastern Fells"
+      { key: "E", label: "England" },
+      { key: "S", label: "Scotland" },
+      { key: "W", label: "Wales" }
     ]
   }
 ];

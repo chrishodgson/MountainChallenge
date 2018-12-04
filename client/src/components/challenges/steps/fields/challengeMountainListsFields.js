@@ -1,16 +1,12 @@
 export default [
-  {
-    name: "list",
-    label: "Northern Fells",
-    type: "radio",
-    key: "northern",
-    value: "northern"
-  },
-  {
-    name: "list",
-    label: "Southern Fells",
-    type: "radio",
-    key: "southern",
-    value: "southern"
-  }
+  // {
+  //   name: "country",
+  //   label: "Country",
+  //   type: "select",
+  //   options: [
+  //     { code: "E", label: "England" },
+  //     { code: "S", label: "Scotland" },
+  //     { code: "W", label: "Wales" }
+  //   ]
+  // }
 ];

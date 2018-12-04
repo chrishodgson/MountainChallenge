@@ -11,10 +11,10 @@ export default props => {
   } = props;
 
   const renderOptions = () => {
-    return _.map(options, option => {
+    return _.map(options, ({ key, label }) => {
       return (
-        <option key={option} value={option}>
-          {option}
+        <option key={key} value={key}>
+          {label}
         </option>
       );
     });

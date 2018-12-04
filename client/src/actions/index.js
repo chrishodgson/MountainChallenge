@@ -25,9 +25,9 @@ export const fetchChallenges = () => async dispatch => {
   dispatch({ type: FETCH_CHALLENGES, payload: res.data });
 };
 
-export const searchMountains = (term, area = null) => async dispatch => {
+export const searchMountains = (term, country) => async dispatch => {
   const res = await axios.get("/api/mountains", {
-    params: { term: term, area: area }
+    params: { term: term, country: country }
   });
 
   dispatch({ type: SEARCH_MOUNTAINS, payload: res.data });
