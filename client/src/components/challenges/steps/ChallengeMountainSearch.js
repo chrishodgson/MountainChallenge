@@ -8,6 +8,8 @@ import formFields from "./fields/challengeMountainSearchFields";
 import { searchMountains } from "../../../actions";
 
 class ChallengeMountainSearch extends Component {
+  state = { mountainsError: false };
+
   renderFields() {
     return _.map(formFields, ({ label, name, type, options }) => {
       return (
@@ -24,16 +26,18 @@ class ChallengeMountainSearch extends Component {
   }
 
   handleNext(e) {
-    e.preventDefault();
-    if (this.props.mountainSelection) {
-      this.props.onSubmit();
+    const mountainsError = this.props.mountainSelection.length === 0;
+    this.setState({ mountainsError });
+    if (mountainsError) {
+      return;
     }
+    this.props.onSubmit();
   }
 
   render() {
     return (
       <div>
-        <form onSubmit={this.props.handleSubmit(this.props.onSubmit)}>
+        <form onSubmit={this.props.handleSubmit}>
           {this.renderFields()}
 
           <button
@@ -49,6 +53,10 @@ class ChallengeMountainSearch extends Component {
           >
             Search
           </button>
+
+          {this.state.mountainsError
+            ? <div className="red-text">Please select at least one mountain.</div>
+            : ""}
 
           <Link to="/challenges" className="grey btn-flat white-text">
             Back
