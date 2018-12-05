@@ -26,6 +26,7 @@ class ChallengeMountainSearch extends Component {
   }
 
   handleNext(e) {
+    e.preventDefault();
     const mountainsError = this.props.mountainSelection.length === 0;
     this.setState({ mountainsError });
     if (mountainsError) {
@@ -34,29 +35,34 @@ class ChallengeMountainSearch extends Component {
     this.props.onSubmit();
   }
 
+  handleSearch(e) {
+    console.log("handleSearch");
+    e.preventDefault();
+    this.props.searchMountains(
+      this.props.formValues.mountain,
+      this.props.formValues.country
+    );
+  }
+
   render() {
     return (
       <div>
-        <form onSubmit={this.props.handleSubmit}>
+        <form
+          onSubmit={e => {
+            this.props.handleSubmit(this.handleSearch(e));
+          }}
+        >
           {this.renderFields()}
 
-          <button
-            className="grey btn-flat white-text"
-            onClick={() =>
-              this.props.handleSubmit(
-                this.props.searchMountains(
-                  this.props.formValues.mountain,
-                  this.props.formValues.country
-                )
-              )
-            }
-          >
+          {this.state.mountainsError ? (
+            <div className="red-text">Please select at least one mountain.</div>
+          ) : (
+            ""
+          )}
+
+          <button type="submit" className="grey btn-flat white-text">
             Search
           </button>
-
-          {this.state.mountainsError
-            ? <div className="red-text">Please select at least one mountain.</div>
-            : ""}
 
           <Link to="/challenges" className="grey btn-flat white-text">
             Back
