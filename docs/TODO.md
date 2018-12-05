@@ -1,7 +1,5 @@
 ### MVP - Challenges/Activities
 
-- Next button: check this.props.mountainListSearch is not empty and use field group validation
-
 review component
 
 - show individually mountains selected or the mountain list
@@ -9,7 +7,6 @@ review component
 
 import
 
-- drop collections and re-run import for all countries
 - add mountain count, highest, lowest to mountainList collection (store in classificationKeys)
 - mountain list component listing: list name|desc|num mountains|highest|lowest
 
@@ -31,6 +28,8 @@ add activity to challenge
 ---
 
 ### Post MVP
+
+mountain lists selector
 
 build custom mountain list - show a list of areas/counties for a country and filter results
 

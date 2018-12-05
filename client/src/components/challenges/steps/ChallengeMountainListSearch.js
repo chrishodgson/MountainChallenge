@@ -33,7 +33,6 @@ class ChallengeMountainListSearch extends Component {
   }
 
   render() {
-    console.log(this.props.mountainListSearch, " mountainListSearch render");
     return (
       <div>
         <form onSubmit={this.props.handleSubmit(() => this.handleSearch())}>

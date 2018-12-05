@@ -7,22 +7,19 @@ import Field from "../../Field";
 
 class ChallengeMountainLists extends Component {
   renderFields() {
-    return _.map(
-      this.props.mountainListSearch,
-      ({ _id, classificationCode }, index) => {
-        return (
-          <ReduxField
-            index={index}
-            key={_id}
-            value={_id}
-            name="list"
-            type="radio"
-            label={classificationCode}
-            component={Field}
-          />
-        );
-      }
-    );
+    return _.map(this.props.mountainListSearch, ({ _id, name }, index) => {
+      return (
+        <ReduxField
+          index={index}
+          key={_id}
+          value={_id}
+          name="list"
+          type="radio"
+          label={name}
+          component={Field}
+        />
+      );
+    });
   }
 
   render() {
