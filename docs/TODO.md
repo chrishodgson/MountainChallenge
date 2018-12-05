@@ -1,20 +1,19 @@
 ### MVP - Challenges/Activities
 
-existing mountain list component
-
-- mountain list table: list name|desc|num mountains|highest|lowest
 - Next button: check this.props.mountainListSearch is not empty and use field group validation
 
-import
-- drop collections and re-run import for all countries
-- add mountain count, highest, lowest to mountainList collection (store in classificationKeys)
-
-review mountain challenge component
+review component
 
 - show individually mountains selected or the mountain list
 - API to save individual mountains select or those on the mountain list
 
-----
+import
+
+- drop collections and re-run import for all countries
+- add mountain count, highest, lowest to mountainList collection (store in classificationKeys)
+- mountain list component listing: list name|desc|num mountains|highest|lowest
+
+---
 
 list activities for user - showing number of mountains, date, link to challenge
 
@@ -28,7 +27,6 @@ add activity to challenge
 
 - select mountains from list with filters
 - enter duration for activity and date/time
-
 
 ---
 

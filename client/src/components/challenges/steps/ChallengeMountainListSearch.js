@@ -7,7 +7,11 @@ import formFields from "./fields/challengeMountainListSearchFields";
 import { searchMountainLists } from "../../../actions";
 
 class ChallengeMountainListSearch extends Component {
-  state = { mountainListsError: false };
+  componentDidMount() {
+    if (this.props.mountainListSearch.length === 0) {
+      this.handleSearch();
+    }
+  }
 
   renderFields() {
     return _.map(formFields, ({ label, name, type, options }) => {
@@ -25,12 +29,11 @@ class ChallengeMountainListSearch extends Component {
   }
 
   handleSearch() {
-    this.props.searchMountainLists(
-      this.props.formValues.country
-    );
+    this.props.searchMountainLists(this.props.formValues.country);
   }
 
   render() {
+    console.log(this.props.mountainListSearch, " mountainListSearch render");
     return (
       <div>
         <form onSubmit={this.props.handleSubmit(() => this.handleSearch())}>
@@ -47,14 +50,13 @@ class ChallengeMountainListSearch extends Component {
 
 function mapStateToProps(state) {
   return {
+    mountainListSearch: state.mountainListSearch,
     formValues: state.form.challengeMountainListSearch.values || []
   };
 }
 
 function validate(values) {
   const errors = {};
-
-  console.log(values, 'validate challengeMountainListSearch');
 
   if (!values["country"]) {
     errors["country"] = "You must select a country";
@@ -66,7 +68,8 @@ function validate(values) {
 export default reduxForm({
   validate,
   form: "challengeMountainListSearch",
-  destroyOnUnmount: false
+  destroyOnUnmount: false,
+  initialValues: { country: "UK" }
 })(
   connect(
     mapStateToProps,

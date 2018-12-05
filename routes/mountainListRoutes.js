@@ -7,7 +7,7 @@ module.exports = app => {
   app.get("/api/mountainLists", requireLogin, async (req, res) => {
     console.log(req.query, "mountainLists query");
     const { country } = req.query;
-    const criteria = { countryCode: country };
+    const criteria = country !== "UK" ? { countryCode: country } : {};
     const MountainLists = await MountainList.find(criteria);
     res.send(MountainLists);
   });

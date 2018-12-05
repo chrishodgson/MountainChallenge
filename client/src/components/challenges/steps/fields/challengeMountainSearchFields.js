@@ -9,6 +9,7 @@ export default [
     label: "Country",
     type: "select",
     options: [
+      { key: "", label: "" },
       { key: "E", label: "England" },
       { key: "S", label: "Scotland" },
       { key: "W", label: "Wales" }

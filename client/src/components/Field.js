@@ -6,6 +6,7 @@ export default props => {
     input,
     type,
     label,
+    index,
     options,
     meta: { error, touched }
   } = props;
@@ -35,21 +36,20 @@ export default props => {
     );
   };
 
-  //dont show errors
   const radioLayout = children => {
     return (
       <div>
+        {index === 0 ? renderError() : ""}
         <label>
           {children}
           <span>{label}</span>
         </label>
-        {renderError()}
       </div>
     );
   };
 
   const renderError = () => {
-    //{touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
+    //{touched && (error && <span>{error}</span>)}
     return (
       <div className="red-text" style={{ marginBottom: "10px" }}>
         {touched && error}
@@ -70,7 +70,6 @@ export default props => {
       case "select":
         return defaultLayout(
           <select {...input} className="browser-default">
-            <option />
             {renderOptions()}
           </select>
         );
