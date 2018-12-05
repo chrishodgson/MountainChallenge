@@ -7,7 +7,7 @@ existing mountain list component
 
 import
 - drop collections and re-run import for all countries
-- add mountain count to mountainList (store on classificationKeys object)
+- add mountain count, highest, lowest to mountainList collection (store in classificationKeys)
 
 review mountain challenge component
 
