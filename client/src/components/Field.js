@@ -49,6 +49,7 @@ export default props => {
   };
 
   const renderError = () => {
+    //{touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
     return (
       <div className="red-text" style={{ marginBottom: "10px" }}>
         {touched && error}

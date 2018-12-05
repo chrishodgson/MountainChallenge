@@ -24,16 +24,6 @@ class ChallengeMountainListSearch extends Component {
     });
   }
 
-  // handleNext(e) {
-  //   e.preventDefault();
-  //   const mountainListsError = this.props.mountainListSelection.length === 0;
-  //   this.setState({ mountainListsError });
-  //   if (mountainListsError) {
-  //     return;
-  //   }
-  //   this.props.onSubmit();
-  // }
-
   handleSearch() {
     this.props.searchMountainLists(
       this.props.formValues.country

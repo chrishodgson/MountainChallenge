@@ -7,17 +7,24 @@ import Field from "../../Field";
 
 class ChallengeMountainLists extends Component {
   renderFields() {
-    return _.map(this.props.mountainListSearch, ({_id, classificationCode}) => {
-      return (
-        <ReduxField
-          key={_id}
-          name='list'
-          type='radio'
-          label={classificationCode}
-          component={Field}
-        />
-      );
-    });
+    // return _.map(this.props.mountainListSearch, ({_id, classificationCode}) => {
+    //   return (
+    //     <ReduxField
+    //       key={_id}
+    //       name='list'
+    //       type='radio'
+    //       label={classificationCode}
+    //       component={Field}
+    //     />
+    //   );
+    // });
+
+    return (
+    <div>
+      <ReduxField key='male' name='sex[]' type='radio' label='male' component={Field} />
+      <ReduxField key='female' name='sex[]' type='radio' label='female' component={Field} />
+    </div>
+    );
   }
 
   render() {
@@ -46,10 +53,10 @@ function mapStateToProps({ mountainListSearch }) {
 function validate(values) {
   const errors = {};
 
-console.log(values, 'validate ChallengeMountainLists');
+// console.log(values, 'validate ChallengeMountainLists');
 
   if (!values["list"]) {
-    errors["list"] = "You must select a mountain list";
+    errors["list"] = "You must select a Mountain List";
   }
 
   return errors;
