@@ -35,9 +35,7 @@ class ChallengeMountainSearch extends Component {
     this.props.onSubmit();
   }
 
-  handleSearch(e) {
-    console.log("handleSearch");
-    e.preventDefault();
+  handleSearch() {
     this.props.searchMountains(
       this.props.formValues.mountain,
       this.props.formValues.country
@@ -47,15 +45,11 @@ class ChallengeMountainSearch extends Component {
   render() {
     return (
       <div>
-        <form
-          onSubmit={e => {
-            this.props.handleSubmit(this.handleSearch(e));
-          }}
-        >
+        <form onSubmit={this.props.handleSubmit(() => this.handleSearch())}>
           {this.renderFields()}
 
           {this.state.mountainsError ? (
-            <div className="red-text">Please select at least one mountain.</div>
+            <p className="red-text">Please select at least one mountain.</p>
           ) : (
             ""
           )}

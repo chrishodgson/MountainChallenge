@@ -1,4 +1,4 @@
-### MVP
+### MVP - Challenges/Activities
 
 build custom mountain list component
 
@@ -33,12 +33,9 @@ list challenges for user - showing total mountains, challenge name / mountain li
 
 ### Post MVP
 
-build custom mountain list - advanced search component
+build custom mountain list - show a list of areas/counties for a country and filter results
 
-- componentDidMount - run API lookup for areas and counties
-- show a list of areas/counties for a country and filter results
-
-add activity - add mountains not on the challenge
+add activity - allow mountains not on the challenge
 
 add users to challenge and activity
 
