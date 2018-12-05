@@ -2,7 +2,6 @@ import _ from "lodash";
 import React, { Component } from "react";
 import { reduxForm, Field as ReduxField } from "redux-form";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import Field from "../../Field";
 import formFields from "./fields/challengeMountainListSearchFields";
 import { searchMountainLists } from "../../../actions";
@@ -25,15 +24,15 @@ class ChallengeMountainListSearch extends Component {
     });
   }
 
-  handleNext(e) {
-    e.preventDefault();
-    const mountainListsError = this.props.mountainListSelection.length === 0;
-    this.setState({ mountainListsError });
-    if (mountainListsError) {
-      return;
-    }
-    this.props.onSubmit();
-  }
+  // handleNext(e) {
+  //   e.preventDefault();
+  //   const mountainListsError = this.props.mountainListSelection.length === 0;
+  //   this.setState({ mountainListsError });
+  //   if (mountainListsError) {
+  //     return;
+  //   }
+  //   this.props.onSubmit();
+  // }
 
   handleSearch() {
     this.props.searchMountainLists(
@@ -64,6 +63,8 @@ function mapStateToProps(state) {
 
 function validate(values) {
   const errors = {};
+
+  console.log(values, 'validate challengeMountainListSearch');
 
   if (!values["country"]) {
     errors["country"] = "You must select a country";

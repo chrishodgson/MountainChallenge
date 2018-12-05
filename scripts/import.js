@@ -133,7 +133,8 @@ const saveMountainLists = async () => {
     if (!document) {
       document = new MountainList({
         classificationCode: property,
-        countryCode: countryInput
+        countryCode: countryInput,
+        name: countryInput + ' ' + property
       });
       await document.save();
       created++;

@@ -4,32 +4,28 @@ import { reduxForm, Field as ReduxField } from "redux-form";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import Field from "../../Field";
-import { searchMountainLists } from "../../../actions";
 
 class ChallengeMountainLists extends Component {
   renderFields() {
-    // return _.map(mountainListSearch, mountainList => {
-    //   return (
-    //     <ReduxField
-    //       key={rest.key || name}
-    //       name={name}
-    //       type={type}
-    //       label={label}
-    //       options={options}
-    //       component={Field}
-    //       value={rest.value || null}
-    //     />
-    //   );
-    // });
+    return _.map(this.props.mountainListSearch, ({_id, classificationCode}) => {
+      return (
+        <ReduxField
+          key={_id}
+          name='list'
+          type='radio'
+          label={classificationCode}
+          component={Field}
+        />
+      );
+    });
   }
 
   render() {
-    console.log(this.props.mountainListSearch, 'this.props.mountainListSearch');
-    // {this.renderFields()}
-
     return (
       <div>
         <form onSubmit={this.props.handleSubmit(this.props.onSubmit)}>
+
+          {this.renderFields()}
 
           <Link to="/challenges" className="grey btn-flat white-text">
             Back
@@ -49,6 +45,8 @@ function mapStateToProps({ mountainListSearch }) {
 
 function validate(values) {
   const errors = {};
+
+console.log(values, 'validate ChallengeMountainLists');
 
   if (!values["list"]) {
     errors["list"] = "You must select a mountain list";
