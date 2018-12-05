@@ -2,33 +2,34 @@ import _ from "lodash";
 import React, { Component } from "react";
 import { reduxForm, Field as ReduxField } from "redux-form";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 import Field from "../../Field";
-import formFields from "./fields/challengeMountainListsFields";
+import { searchMountainLists } from "../../../actions";
 
 class ChallengeMountainLists extends Component {
   renderFields() {
-    return _.map(formFields, ({ label, name, type, options, ...rest }) => {
-      return (
-        <ReduxField
-          key={rest.key || name}
-          name={name}
-          type={type}
-          label={label}
-          options={options}
-          component={Field}
-          value={rest.value || null}
-        />
-      );
-    });
+    // return _.map(mountainListSearch, mountainList => {
+    //   return (
+    //     <ReduxField
+    //       key={rest.key || name}
+    //       name={name}
+    //       type={type}
+    //       label={label}
+    //       options={options}
+    //       component={Field}
+    //       value={rest.value || null}
+    //     />
+    //   );
+    // });
   }
 
   render() {
-    console.log(formFields, "formFields");
+    console.log(this.props.mountainListSearch, 'this.props.mountainListSearch');
+    // {this.renderFields()}
 
     return (
       <div>
         <form onSubmit={this.props.handleSubmit(this.props.onSubmit)}>
-          {this.renderFields()}
 
           <Link to="/challenges" className="grey btn-flat white-text">
             Back
@@ -40,6 +41,10 @@ class ChallengeMountainLists extends Component {
       </div>
     );
   }
+}
+
+function mapStateToProps({ mountainListSearch }) {
+  return { mountainListSearch };
 }
 
 function validate(values) {
@@ -56,4 +61,4 @@ export default reduxForm({
   validate,
   form: "ChallengeMountainLists",
   destroyOnUnmount: false
-})(ChallengeMountainLists);
+})(connect(mapStateToProps)(ChallengeMountainLists));

@@ -4,6 +4,7 @@ import ChallengeMountainSearch from "./steps/ChallengeMountainSearch";
 import ChallengeMountainSearchResults from "./steps/ChallengeMountainSearchResults";
 import ChallengeSelectedMountains from "./steps/ChallengeSelectedMountains";
 import ChallengeMountainLists from "./steps/ChallengeMountainLists";
+import ChallengeMountainListSearch from "./steps/ChallengeMountainListSearch";
 import ChallengeReview from "./steps/ChallengeReview";
 
 class ChallengeNew extends Component {
@@ -33,17 +34,16 @@ class ChallengeNew extends Component {
           return (
             <div>
               <ChallengeSelectedMountains />
-              <ChallengeMountainSearch
-                onSubmit={() => this.setState({ step: "details" })}
-              />
+              <ChallengeMountainSearch onSubmit={() => this.setState({ step: "details" })} />
               <ChallengeMountainSearchResults />
             </div>
           );
         } else {
           return (
-            <ChallengeMountainLists
-              onSubmit={() => this.setState({ step: "details" })}
-            />
+            <div>
+              <ChallengeMountainListSearch />
+              <ChallengeMountainLists onSubmit={() => this.setState({ step: "details" })} />
+            </div>  
           );
         }
     }

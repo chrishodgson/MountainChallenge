@@ -3,7 +3,8 @@ import {
   FETCH_USER,
   FETCH_CHALLENGES,
   SEARCH_MOUNTAINS,
-  SELECT_MOUNTAINS
+  SELECT_MOUNTAINS,
+  SEARCH_MOUNTAIN_LISTS
 } from "./types";
 
 export const fetchUser = () => async dispatch => {
@@ -39,4 +40,12 @@ export const selectMountain = mountain => {
 
 export const deSelectMountain = mountainId => {
   return { type: SELECT_MOUNTAINS, payload: { mountainId } };
+};
+
+export const searchMountainLists = country => async dispatch => {
+  const res = await axios.get("/api/mountainLists", {
+    params: { country }
+  });
+
+  dispatch({ type: SEARCH_MOUNTAIN_LISTS, payload: res.data });
 };

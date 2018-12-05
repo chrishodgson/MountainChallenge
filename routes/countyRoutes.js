@@ -1,4 +1,3 @@
-const { URL } = require("url");
 const mongoose = require("mongoose");
 const requireLogin = require("../middlewares/requireLogin");
 const County = mongoose.model("counties");

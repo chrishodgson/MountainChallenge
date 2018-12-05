@@ -1,13 +1,9 @@
 ### MVP - Challenges/Activities
 
-build custom mountain list component
-
-- add a country dropdown as required
-- require the search string is 3+ characters long
+** import - why does mountainList have classficationCode ???
 
 existing mountain list component
 
-- componentDidMount - run API lookup for mountainLists
 - select a country and return mountain lists as: list name|desc|num mountains|highest|lowest
 - use field group validation
 

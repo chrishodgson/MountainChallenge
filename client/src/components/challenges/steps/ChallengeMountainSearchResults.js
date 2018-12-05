@@ -5,6 +5,9 @@ import { selectMountain } from "../../../actions";
 
 class ChallengeMountainSearchResults extends Component {
   renderMountains() {
+    if(this.props.mountainSearch.length === 0) {
+      return 'No results found';
+    }
     return this.props.mountainSearch.map(mountain => {
       return (
         <tr key={mountain._id}>
