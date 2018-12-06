@@ -5,7 +5,7 @@ import { withRouter } from "react-router-dom";
 import { submitChallenge } from "../../../../actions";
 import challengeDetailFields from "../../steps/challengeDetails/challengeDetailsFields";
 
-class ChallengeReview extends Component {
+class ChallengeNewExistingListReview extends Component {
   renderChallengeDetails = () =>
     _.map(challengeDetailFields, ({ label, name }) => {
       return (
@@ -16,8 +16,8 @@ class ChallengeReview extends Component {
       );
     });
 
-  renderMountains = () =>
-    _.map(this.props.mountains, ({ _id, name }) => {
+  renderMountainLists = () =>
+    _.map(this.props.mountainLists, ({ _id, name }) => {
       return <div key={_id}>{name}</div>;
     });
 
@@ -26,8 +26,8 @@ class ChallengeReview extends Component {
       <div>
         <h5>Please confirm your entries</h5>
         {this.renderChallengeDetails()}
-        Mountains:
-        {this.renderMountains()}
+        Mountain Lists:
+        {this.renderMountainLists()}
         <button
           className="grey btn-flat white-text"
           onClick={this.props.onCancel}
@@ -53,11 +53,11 @@ class ChallengeReview extends Component {
 function mapStateToProps(state) {
   return {
     challengeDetails: state.form.challengeDetails.values || [],
-    mountains: state.mountainSelection || []
+    mountainLists: state.mountainListSelection || []
   };
 }
 
 export default connect(
   mapStateToProps,
   { submitChallenge }
-)(withRouter(ChallengeReview));
+)(withRouter(ChallengeNewExistingListReview));

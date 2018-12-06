@@ -12,11 +12,7 @@ class ChallengeNewCustomList extends Component {
     switch (this.state.step) {
       //step 3
       case "review":
-        return (
-          <Review
-            onCancel={() => this.setState({ step: "details" })}
-          />
-        );
+        return <Review onCancel={() => this.setState({ step: "details" })} />;
       //step 2
       case "details":
         return (
@@ -31,7 +27,9 @@ class ChallengeNewCustomList extends Component {
         return (
           <div>
             <SelectedMountains />
-            <MountainSearch onSubmit={() => this.setState({ step: "details" })} />
+            <MountainSearch
+              onSubmit={() => this.setState({ step: "details" })}
+            />
             <MountainSearchResults />
           </div>
         );
@@ -39,7 +37,12 @@ class ChallengeNewCustomList extends Component {
   }
 
   render() {
-    return <div>{this.renderContent()}</div>;
+    return (
+      <div>
+        <p>New Challenge - create your own Mountain List</p>
+        {this.renderContent()}
+      </div>
+    );
   }
 }
 

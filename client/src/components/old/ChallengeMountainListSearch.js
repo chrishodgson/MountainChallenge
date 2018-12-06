@@ -2,13 +2,16 @@ import _ from "lodash";
 import React, { Component } from "react";
 import { reduxForm, Field as ReduxField } from "redux-form";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import Field from "../../../Field";
 import formFields from "./challengeMountainListSearchFields";
 import { searchMountainLists } from "../../../../actions";
 
 class ChallengeMountainListSearch extends Component {
-  state = { mountainListError: false };
+  componentDidMount() {
+    if (this.props.mountainListSearch.length === 0) {
+      this.handleSearch();
+    }
+  }
 
   renderFields() {
     return _.map(formFields, ({ label, name, type, options }) => {
@@ -25,16 +28,6 @@ class ChallengeMountainListSearch extends Component {
     });
   }
 
-  handleNext(e) {
-    e.preventDefault();
-    const mountainListError = this.props.mountainListSelection.length === 0;
-    this.setState({ mountainListError });
-    if (mountainListError) {
-      return;
-    }
-    this.props.onSubmit();
-  }
-
   handleSearch() {
     this.props.searchMountainLists(this.props.formValues.country);
   }
@@ -45,26 +38,8 @@ class ChallengeMountainListSearch extends Component {
         <form onSubmit={this.props.handleSubmit(() => this.handleSearch())}>
           {this.renderFields()}
 
-          {this.state.mountainListError ? (
-            <p className="red-text">
-              Please select a mountain list before proceeding.
-            </p>
-          ) : (
-            ""
-          )}
-
           <button type="submit" className="grey btn-flat white-text">
             Search
-          </button>
-
-          <Link to="/challenges" className="grey btn-flat white-text">
-            Back
-          </Link>
-          <button
-            onClick={e => this.handleNext(e)}
-            className="grey btn-flat white-text right"
-          >
-            Next
           </button>
         </form>
       </div>
@@ -74,8 +49,8 @@ class ChallengeMountainListSearch extends Component {
 
 function mapStateToProps(state) {
   return {
-    formValues: state.form.challengeMountainListSearch.values || [],
-    mountainListSelection: state.mountainListSelection
+    mountainListSearch: state.mountainListSearch,
+    formValues: state.form.challengeMountainListSearch.values || []
   };
 }
 

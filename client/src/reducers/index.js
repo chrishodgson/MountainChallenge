@@ -5,6 +5,7 @@ import challengesReducer from "./challengesReducer";
 import mountainSearchReducer from "./mountainSearchReducer";
 import mountainSelectionReducer from "./mountainSelectionReducer";
 import mountainListSearchReducer from "./mountainListSearchReducer";
+import mountainListSelectionReducer from "./mountainListSelectionReducer";
 
 export default combineReducers({
   auth: authReducer,
@@ -12,5 +13,6 @@ export default combineReducers({
   mountainSearch: mountainSearchReducer,
   mountainSelection: mountainSelectionReducer,
   mountainListSearch: mountainListSearchReducer,
+  mountainListSelection: mountainListSelectionReducer,
   form: reduxForm
 });

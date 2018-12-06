@@ -49,7 +49,9 @@ class ChallengeMountainSearch extends Component {
           {this.renderFields()}
 
           {this.state.mountainsError ? (
-            <p className="red-text">Please select at least one mountain.</p>
+            <p className="red-text">
+              Please select at least one mountain before proceeding.
+            </p>
           ) : (
             ""
           )}

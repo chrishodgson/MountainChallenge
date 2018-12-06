@@ -5,17 +5,17 @@ import ChallengeList from "./challenges/ChallengeList";
 const Dashboard = () => {
   return (
     <div style={{ textAlign: "center" }}>
-      <p>Dashboard</p>
+      <p>Dashboard - new challenge</p>
       <ChallengeList />
       <div className="fixed-action-btn1">
         <Link to="/challenges/custom" className="btn-flat grey white-text left">
-          custom challenge
+          Create your own list
         </Link>
         <Link
           to="/challenges/existing"
           className="btn-flat grey white-text right"
         >
-          existing challenge
+          Choose an existing list
         </Link>
       </div>
     </div>

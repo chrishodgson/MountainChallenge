@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import ChallengeDetails from "./steps/ChallengeDetails";
-import ChallengeMountainLists from "./steps/ChallengeMountainLists";
-import ChallengeMountainListSearch from "./steps/ChallengeMountainListSearch";
-import ChallengeReview from "./steps/ChallengeReview";
+import Details from "../../steps/challengeDetails/ChallengeDetails";
+import MountainListSearch from "../../steps/challengeMountainLists/ChallengeMountainListSearch";
+import MountainListSearchResults from "../../steps/challengeMountainLists/ChallengeMountainListSearchResults";
+import SelectedMountainLists from "../../steps/challengeMountainLists/ChallengeSelectedMountainLists";
+import Review from "./ChallengeNewExistingListReview";
 
 class ChallengeNewExistingList extends Component {
   state = { step: "" };
@@ -11,15 +12,11 @@ class ChallengeNewExistingList extends Component {
     switch (this.state.step) {
       //step 3
       case "review":
-        return (
-          <ChallengeReview
-            onCancel={() => this.setState({ step: "details" })}
-          />
-        );
+        return <Review onCancel={() => this.setState({ step: "details" })} />;
       //step 2
       case "details":
         return (
-          <ChallengeDetails
+          <Details
             onSubmit={() => this.setState({ step: "review" })}
             onCancel={() => this.setState({ step: "mountains" })}
           />
@@ -27,18 +24,25 @@ class ChallengeNewExistingList extends Component {
       //step 1
       case "mountains":
       default:
-          return (
-            <div>
-              <ChallengeMountainListSearch />
-              <ChallengeMountainLists onSubmit={() => this.setState({ step: "details" })} />
-            </div>
-          );
-        }
+        return (
+          <div>
+            <SelectedMountainLists />
+            <MountainListSearch
+              onSubmit={() => this.setState({ step: "details" })}
+            />
+            <MountainListSearchResults />
+          </div>
+        );
     }
   }
 
   render() {
-    return <div>{this.renderContent()}</div>;
+    return (
+      <div>
+        <p>New Challenge - choose an existing Mountain List</p>
+        {this.renderContent()}
+      </div>
+    );
   }
 }
 

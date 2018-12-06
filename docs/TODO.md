@@ -6,11 +6,8 @@ Challenges
 
 add challenge
 
-- in mountain search API restrict field selected 
-- on review show mountains selected or the mountain list
-- on review API to save mountains selected or those from the mountain list
+- mountain save API
 - on review force clear of form components on save
-- on mountain list show table with: name|num mountains|highest|lowest
 
 list challenges
 
@@ -43,9 +40,9 @@ list activities
 
 ---
 
-### Post MVP
+- use forceUnregisterOnUnmount in forms ??
 
-mountain lists selector
+### Post MVP
 
 build custom mountain list - show a list of areas/counties for a country and filter results
 

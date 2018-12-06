@@ -4,7 +4,8 @@ import {
   FETCH_CHALLENGES,
   SEARCH_MOUNTAINS,
   SELECT_MOUNTAINS,
-  SEARCH_MOUNTAIN_LISTS
+  SEARCH_MOUNTAIN_LISTS,
+  SELECT_MOUNTAIN_LISTS
 } from "./types";
 
 export const fetchUser = () => async dispatch => {
@@ -48,4 +49,12 @@ export const searchMountainLists = country => async dispatch => {
   });
 
   dispatch({ type: SEARCH_MOUNTAIN_LISTS, payload: res.data });
+};
+
+export const selectMountainList = mountainList => {
+  return { type: SELECT_MOUNTAIN_LISTS, payload: mountainList };
+};
+
+export const deSelectMountainList = mountainListId => {
+  return { type: SELECT_MOUNTAIN_LISTS, payload: { mountainListId } };
 };

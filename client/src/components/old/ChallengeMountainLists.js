@@ -55,6 +55,6 @@ function validate(values) {
 
 export default reduxForm({
   validate,
-  form: "ChallengeMountainLists",
+  form: "challengeMountainLists",
   destroyOnUnmount: false
 })(connect(mapStateToProps)(ChallengeMountainLists));
