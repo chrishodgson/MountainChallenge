@@ -7,7 +7,7 @@ import DefaultLayout from "./DefaultLayout";
 import Landing from "./Landing";
 import Dashboard from "./Dashboard";
 import PageNotFound from "./PageNotFound";
-import ChallengeNew from "./challenges/ChallengeNew";
+import ChallengeNewCustomList from "./challenges/new/customList/ChallengeNewCustomList";
 
 class App extends Component {
   componentDidMount() {
@@ -24,8 +24,8 @@ class App extends Component {
               <DefaultLayout exact path="/challenges" component={Dashboard} />
               <DefaultLayout
                 exact
-                path="/challenges/:type(custom|existing)"
-                component={ChallengeNew}
+                path="/challenges/custom"
+                component={ChallengeNewCustomList}
               />
               <DefaultLayout component={PageNotFound} />
             </Switch>

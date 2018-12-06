@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { deSelectMountain } from "../../../actions";
+import { deSelectMountain } from "../../../../actions";
 
 class ChallengeSelectedMountains extends Component {
   renderSelectedMountains() {

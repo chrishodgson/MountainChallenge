@@ -1,13 +1,10 @@
 import React, { Component } from "react";
 import ChallengeDetails from "./steps/ChallengeDetails";
-import ChallengeMountainSearch from "./steps/ChallengeMountainSearch";
-import ChallengeMountainSearchResults from "./steps/ChallengeMountainSearchResults";
-import ChallengeSelectedMountains from "./steps/ChallengeSelectedMountains";
 import ChallengeMountainLists from "./steps/ChallengeMountainLists";
 import ChallengeMountainListSearch from "./steps/ChallengeMountainListSearch";
 import ChallengeReview from "./steps/ChallengeReview";
 
-class ChallengeNew extends Component {
+class ChallengeNewExistingList extends Component {
   state = { step: "" };
 
   renderContent() {
@@ -30,20 +27,11 @@ class ChallengeNew extends Component {
       //step 1
       case "mountains":
       default:
-        if (this.props.match.params.type === "custom") {
-          return (
-            <div>
-              <ChallengeSelectedMountains />
-              <ChallengeMountainSearch onSubmit={() => this.setState({ step: "details" })} />
-              <ChallengeMountainSearchResults />
-            </div>
-          );
-        } else {
           return (
             <div>
               <ChallengeMountainListSearch />
               <ChallengeMountainLists onSubmit={() => this.setState({ step: "details" })} />
-            </div>  
+            </div>
           );
         }
     }
@@ -54,4 +42,4 @@ class ChallengeNew extends Component {
   }
 }
 
-export default ChallengeNew;
+export default ChallengeNewExistingList;

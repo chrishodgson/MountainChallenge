@@ -6,6 +6,7 @@ Challenges
 
 add challenge
 
+- in mountain search API restrict field selected 
 - on review show mountains selected or the mountain list
 - on review API to save mountains selected or those from the mountain list
 - on review force clear of form components on save

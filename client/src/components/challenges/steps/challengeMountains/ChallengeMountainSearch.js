@@ -3,9 +3,9 @@ import React, { Component } from "react";
 import { reduxForm, Field as ReduxField } from "redux-form";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import Field from "../../Field";
-import formFields from "./fields/challengeMountainSearchFields";
-import { searchMountains } from "../../../actions";
+import Field from "../../../Field";
+import formFields from "./challengeMountainSearchFields";
+import { searchMountains } from "../../../../actions";
 
 class ChallengeMountainSearch extends Component {
   state = { mountainsError: false };

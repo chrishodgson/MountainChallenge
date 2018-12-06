@@ -1,7 +1,7 @@
 import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { selectMountain } from "../../../actions";
+import { selectMountain } from "../../../../actions";
 
 class ChallengeMountainSearchResults extends Component {
   renderMountains() {
@@ -26,7 +26,6 @@ class ChallengeMountainSearchResults extends Component {
           </td>
           <td>{mountain.name}</td>
           <td>{mountain.metres}m</td>
-          <td>{mountain.area}</td>
         </tr>
       );
     });
@@ -68,7 +67,6 @@ class ChallengeMountainSearchResults extends Component {
             <th>&nbsp;</th>
             <th>Name</th>
             <th>Height</th>
-            <th>Area</th>
           </tr>
         </thead>
         <tbody>{this.renderMountains()}</tbody>

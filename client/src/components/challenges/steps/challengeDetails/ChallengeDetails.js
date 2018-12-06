@@ -1,8 +1,8 @@
 import _ from "lodash";
 import React, { Component } from "react";
 import { reduxForm, Field as ReduxField } from "redux-form";
-import Field from "../../Field";
-import formFields from "./fields/challengeDetailsFields";
+import Field from "../../../Field";
+import formFields from "./challengeDetailsFields";
 
 class ChallengeDetails extends Component {
   renderFields() {

@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { reduxForm, Field as ReduxField } from "redux-form";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import Field from "../../Field";
+import Field from "../../../Field";
 
 class ChallengeMountainLists extends Component {
   renderFields() {
