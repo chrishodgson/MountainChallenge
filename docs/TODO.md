@@ -1,29 +1,44 @@
-### MVP - Challenges/Activities
-
-review component
-
-- show individually mountains selected or the mountain list
-- API to save individual mountains select or those on the mountain list
-
-import
-
-- add mountain count, highest, lowest to mountainList collection (store in classificationKeys)
-- mountain list component listing: list name|desc|num mountains|highest|lowest
+### MVP
 
 ---
 
-list activities for user - showing number of mountains, date, link to challenge
+Challenges
 
-link to view challenge - showing mountains climbed, duration etc, list activities with links
+add challenge
 
-list challenges for user - showing total mountains, challenge name / mountain list, % complete, link to challenge
+- on review show mountains selected or the mountain list
+- on review API to save mountains selected or those from the mountain list
+- on review force clear of form components on save
+- on mountain list show table with: name|num mountains|highest|lowest
+
+list challenges
+
+- list challenges for just user
+- total mountains, challenge name / mountain list, % complete
+- link to view challenge
+
+view challenge
+
+- mountains climbed, duration etc, list activities with links
 
 ---
 
-add activity to challenge
+Import
+
+add mountain count, highest, lowest to mountainList collection (store in classificationKeys)
+
+---
+
+Activities:
+
+add activity
 
 - select mountains from list with filters
 - enter duration for activity and date/time
+
+list activities
+
+- number of mountains, date, link to challenge
 
 ---
 

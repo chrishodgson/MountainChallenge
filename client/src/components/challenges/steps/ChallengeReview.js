@@ -11,19 +11,51 @@ const ChallengeReview = ({
   submitChallenge,
   history
 }) => {
-  const reviewFields = _.map(formFields, ({ label, name }) => {
-    return (
-      <div key={name}>
-        <label>{label}</label>
-        <div>{formValues[name]}</div>
-      </div>
-    );
-  });
+  // const renderDetails = _.map(
+  //   this.props.challengeDetails,
+  //   ({ label, name }) => {
+  //     return (
+  //       <div key={name}>
+  //         <label>{label}</label>
+  //         <div>{formValues[name]}</div>
+  //       </div>
+  //     );
+  //   }
+  // );
+
+  // const renderMountains = _.map(mountains, ({ label, name }) => {
+  //   return (
+  //     <div key={name}>
+  //       <label>{label}</label>
+  //       <div>{formValues[name]}</div>
+  //     </div>
+  //   );
+  // });
+
+  // const renderMountainLists = _.map(mountainList, ({ label, name }) => {
+  //   return (
+  //     <div key={name}>
+  //       <label>{label}</label>
+  //       <div>{formValues[name]}</div>
+  //     </div>
+  //   );
+  // });
+
+  // {renderMountains}
+  // {renderMountainLists}
+  // {renderDetails}
+
+  console.log(
+    this.props.challengeDetails,
+    "review component - challengeDetails"
+  );
+  console.log(this.props.mountainList, "review component - MountainList");
+  console.log(this.props.mountains, "review component - mountains");
 
   return (
     <div>
       <h5>Please confirm your entries</h5>
-      {reviewFields}
+
       <button className="grey btn-flat white-text" onClick={onCancel}>
         Back
       </button>
@@ -38,7 +70,11 @@ const ChallengeReview = ({
 };
 
 function mapStateToProps(state) {
-  return { formValues: state.form.challengeDetails.values };
+  return {
+    challengeDetails: state.form.challengeDetails.values,
+    mountainList: state.form.ChallengeMountainLists,
+    mountains: state.mountainSelection
+  };
 }
 
 export default connect(
