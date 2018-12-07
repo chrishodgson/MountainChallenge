@@ -1,18 +1,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import { fetchActivities } from "../../actions";
 
-class ActivityList extends Component {
-  componentDidMount(props) {
-    this.props.fetchActivities();
-  }
+class ActivityView extends Component {
+  // componentDidMount(props) {
+  //   this.props.fetchActivities();
+  // }
 
   renderActivities() {
     return this.props.activities.reverse().map(item => {
       return (
         <tr key={item._id}>
-          <td><Link to={`/activities/view/${item._id}`}>View</Link></td>
           <td>{item.title}</td>
           <td>{item.description}</td>
           <td>{item.mountainCount}</td>
@@ -30,10 +28,9 @@ class ActivityList extends Component {
 
     return (
       <table style={{ marginTop: "20px" }}>
-        <caption>Activities</caption>
+        <caption>Activity Details</caption>
         <thead>
           <tr>
-            <th>&nbsp;</th>
             <th>Title</th>
             <th>Desc</th>
             <th>Count</th>
@@ -55,4 +52,4 @@ function mapStateToProps({ activities }) {
 export default connect(
   mapStateToProps,
   { fetchActivities }
-)(ActivityList);
+)(ActivityView);

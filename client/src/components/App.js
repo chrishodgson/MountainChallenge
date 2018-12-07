@@ -14,6 +14,7 @@ import ChallengeList from "./challenges/ChallengeList";
 
 import ActivityNew from "./activities/new/ActivityNew";
 import ActivityList from "./activities/ActivityList";
+import ActivityView from "./activities/ActivityView";
 
 class App extends Component {
   componentDidMount() {
@@ -27,23 +28,30 @@ class App extends Component {
           <div className="container">
             <Switch>
               <DefaultLayout exact path="/" component={Landing} />
-              <DefaultLayout exact path="/dashboard" component={Dashboard} />
+              <DefaultLayout path="/dashboard" component={Dashboard} />
 
-              <DefaultLayout exact path="/activities" component={ActivityList} />
-              <DefaultLayout exact path="/activities/new" component={ActivityNew} />
-
-              <DefaultLayout exact path="/challenges" component={ChallengeList} />
               <DefaultLayout
                 exact
+                path="/activities"
+                component={ActivityList}
+              />
+              <DefaultLayout path="/activities/new" component={ActivityNew} />
+              <DefaultLayout path="/activities/view/:activityId" component={ActivityView} />
+
+              <DefaultLayout
+                exact
+                path="/challenges"
+                component={ChallengeList}
+              />
+              <DefaultLayout
                 path="/challenges/custom"
                 component={ChallengeNewCustomList}
               />
               <DefaultLayout
-                exact
                 path="/challenges/existing"
                 component={ChallengeNewExistingList}
               />
-              
+
               <DefaultLayout component={PageNotFound} />
             </Switch>
           </div>

@@ -4,15 +4,16 @@
 
 Activities:
 
-- schema: use activityUser
+- view activity component: google map
 
-- save: use activityUser, transform date and duration
+- add activity component:
+  - select mountains,
+  - startDate : http://jquense.github.io/react-widgets/api/DateTimePicker/
+  - durationMinutes : http://jquense.github.io/react-widgets/api/NumberPicker/
 
-- query: check activityUser, transform date and duration
+- startDate and durationMinutes - transform on save and find
 
-- add activity: mountains, date, duration
-
-- view activity: google map
+- activityUser schema: add to model and use on save and find
 
 
 
