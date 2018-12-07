@@ -2,6 +2,22 @@
 
 ---
 
+Activities:
+
+add activity
+
+- enter duration, date/time, select mountains
+
+list activities
+
+- restrict to user logged in, number of mountains, date
+
+view activity
+
+- list mountains with map
+
+---
+
 Challenges
 
 add challenge
@@ -27,27 +43,10 @@ add mountain count, highest, lowest to mountainList collection (store in classif
 
 ---
 
-Activities:
-
-add activity
-
-- select mountains from list with filters
-- enter duration for activity and date/time
-
-list activities
-
-- number of mountains, date, link to challenge
-
----
-
 - use forceUnregisterOnUnmount in forms ??
 
 ### Post MVP
 
-build custom mountain list - show a list of areas/counties for a country and filter results
-
-add activity - allow mountains not on the challenge
-
-add users to challenge and activity
+add users to challenge or activity
 
 add instagram images to activity
