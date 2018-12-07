@@ -4,11 +4,26 @@
 
 Activities:
 
-list activities - restrict to user logged in, number of mountains, date
+- schema: use activityUser
 
-add activity - widgets for duration and start date/time, select mountains
+- save: use activityUser, transform date and duration
 
-view activity - list mountains with map
+- query: check activityUser, transform date and duration
+
+- add activity: mountains, date, duration
+
+- view activity: google map
+
+
+
+### Post MVP
+
+---
+
+Import
+
+add mountain count, highest, lowest to mountainList collection (store in classificationKeys)
+
 
 ---
 
@@ -31,19 +46,11 @@ view challenge
 
 ---
 
-Import
-
-add mountain count, highest, lowest to mountainList collection (store in classificationKeys)
-
----
-
 Misc
 
 - do we need forceUnregisterOnUnmount in forms ??
 
-
-
-### Post MVP
+---
 
 add users to challenge or activity
 

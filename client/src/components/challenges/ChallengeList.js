@@ -13,7 +13,7 @@ class ChallengeList extends Component {
     });
   }
   render() {
-    return <div>{this.renderChallenges()}</div>;
+    return <div>Challenges {this.renderChallenges()}</div>;
   }
 }
 

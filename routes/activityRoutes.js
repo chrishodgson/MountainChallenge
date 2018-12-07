@@ -6,7 +6,7 @@ module.exports = app => {
   //get activities
   app.get("/api/activities", requireLogin, async (req, res) => {
     //todo: restrict by user logged in
-    const activities = await Activity.find();
+    const activities = await Activity.find({'_users': req.user._id});
     res.send(activities);
   });
 

@@ -2,6 +2,7 @@ import axios from "axios";
 import {
   FETCH_USER,
   FETCH_CHALLENGES,
+  FETCH_ACTIVITIES,
   SEARCH_MOUNTAINS,
   SELECT_MOUNTAINS,
   SEARCH_MOUNTAIN_LISTS,
@@ -64,4 +65,10 @@ export const submitActivity = (values, history) => async dispatch => {
 
   history.push("/dashboard");
   dispatch({ type: FETCH_USER, payload: res.data });
+};
+
+export const fetchActivities = () => async dispatch => {
+  const res = await axios.get("/api/activities");
+
+  dispatch({ type: FETCH_ACTIVITIES, payload: res.data });
 };
