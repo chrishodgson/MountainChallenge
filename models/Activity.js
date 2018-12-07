@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
-const ChallengeMountain = require("./ChallengeMountain");
-const ChallengeUser = require("./ChallengeUser");
+// const ChallengeMountain = require("./ChallengeMountain");
 
 const activitySchema = new Schema({
   title: String,
@@ -9,8 +8,8 @@ const activitySchema = new Schema({
   mountainCount: Number,
   durationMinutes: Number,
   startDate: Date,
-  _users: [ChallengeUser],
-  _mountains: [ChallengeMountain]
+  _users: [{ type: Schema.Types.ObjectId, ref: "User" }]
+  // _mountains: [ChallengeMountain]
 });
 
 mongoose.model("activities", activitySchema);

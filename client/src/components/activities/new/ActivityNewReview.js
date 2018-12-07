@@ -2,8 +2,8 @@ import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-// import { submitActivity } from "../../../../actions";
-import activityDetailFields from "../../steps/activityDetails/activityDetailsFields";
+import { submitActivity } from "../../../actions";
+import activityDetailFields from "../steps/activityDetails/activityDetailsFields";
 
 class ActivityReview extends Component {
   renderActivityDetails = () =>
@@ -27,7 +27,6 @@ class ActivityReview extends Component {
       <div>
         <h5>Please confirm your entries</h5>
         {this.renderActivityDetails()}
-        Mountains:
         <button
           className="grey btn-flat white-text"
           onClick={this.props.onCancel}
@@ -52,8 +51,8 @@ class ActivityReview extends Component {
 
 function mapStateToProps(state) {
   return {
-    activityDetails: state.form.activityDetails.values || [],
-    mountains: state.mountainSelection || []
+    activityDetails: state.form.activityDetails.values || []
+    // mountains: state.mountainSelection || []
   };
 }
 

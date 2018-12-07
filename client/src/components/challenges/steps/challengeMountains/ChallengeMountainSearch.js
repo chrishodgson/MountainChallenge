@@ -60,7 +60,7 @@ class ChallengeMountainSearch extends Component {
             Search
           </button>
 
-          <Link to="/challenges" className="grey btn-flat white-text">
+          <Link to="/dashboard" className="grey btn-flat white-text">
             Back
           </Link>
           <button

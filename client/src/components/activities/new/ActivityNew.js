@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Details from "../../steps/activityDetails/ActivityDetails";
+import Details from "../steps/activityDetails/ActivityDetails";
 // import MountainSearch from "../../steps/activityMountains/ChallengeMountainSearch";
 // import MountainSearchResults from "../../steps/activityMountains/ChallengeMountainSearchResults";
 // import SelectedMountains from "../../steps/activityMountains/ChallengeSelectedMountains";
@@ -15,6 +15,7 @@ class ActivityNew extends Component {
         return <Review onCancel={() => this.setState({ step: "details" })} />;
       //step 2
       case "details":
+      default:
         return (
           <Details
             onSubmit={() => this.setState({ step: "review" })}

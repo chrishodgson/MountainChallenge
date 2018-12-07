@@ -17,7 +17,7 @@ export const fetchUser = () => async dispatch => {
 export const submitChallenge = (values, history) => async dispatch => {
   const res = await axios.post("/api/challenges", values);
 
-  history.push("/challenges");
+  history.push("/dashboard");
   dispatch({ type: FETCH_USER, payload: res.data });
 };
 
@@ -57,4 +57,11 @@ export const selectMountainList = mountainList => {
 
 export const deSelectMountainList = mountainListId => {
   return { type: SELECT_MOUNTAIN_LISTS, payload: { mountainListId } };
+};
+
+export const submitActivity = (values, history) => async dispatch => {
+  const res = await axios.post("/api/activities", values);
+
+  history.push("/dashboard");
+  dispatch({ type: FETCH_USER, payload: res.data });
 };

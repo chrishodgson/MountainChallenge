@@ -7,6 +7,7 @@ const keys = require("./config/keys");
 
 require("./models/User");
 require("./models/Challenge");
+require("./models/Activity");
 require("./models/Mountain");
 require("./models/MountainList");
 require("./services/passport");
@@ -31,6 +32,7 @@ app.use(passport.session());
 
 // routes
 require("./routes/authRoutes")(app);
+require("./routes/activityRoutes")(app);
 require("./routes/challengeRoutes")(app);
 require("./routes/mountainRoutes")(app);
 require("./routes/mountainListRoutes")(app);

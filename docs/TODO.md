@@ -4,17 +4,11 @@
 
 Activities:
 
-add activity
+list activities - restrict to user logged in, number of mountains, date
 
-- enter duration, date/time, select mountains
+add activity - widgets for duration and start date/time, select mountains
 
-list activities
-
-- restrict to user logged in, number of mountains, date
-
-view activity
-
-- list mountains with map
+view activity - list mountains with map
 
 ---
 
@@ -43,7 +37,11 @@ add mountain count, highest, lowest to mountainList collection (store in classif
 
 ---
 
-- use forceUnregisterOnUnmount in forms ??
+Misc
+
+- do we need forceUnregisterOnUnmount in forms ??
+
+
 
 ### Post MVP
 

@@ -5,7 +5,7 @@ const Challenge = mongoose.model("challenges");
 module.exports = app => {
   //get challenges
   app.get("/api/challenges", requireLogin, async (req, res) => {
-    //todo: how to get a list of challenges that the user is a member of
+    //todo: restrict by user logged in
     const challenges = await Challenge.find();
     res.send(challenges);
   });
@@ -14,6 +14,7 @@ module.exports = app => {
   app.post("/api/challenges", requireLogin, async (req, res) => {
     const { title, subject, body, recipients } = req.body;
     const challenge = new Challenge({
+      // _users: [{req.user._id}],
       title
     });
 

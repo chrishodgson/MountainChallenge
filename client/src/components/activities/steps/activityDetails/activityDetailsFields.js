@@ -16,7 +16,7 @@ export default [
   },
   {
     name: "date",
-    label: "Activity Date",
+    label: "Activity Start Date",
     type: "text"
   }
 ];

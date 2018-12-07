@@ -4,20 +4,12 @@ import ChallengeList from "./challenges/ChallengeList";
 
 const Dashboard = () => {
   return (
-    <div style={{ textAlign: "center" }}>
-      <p>Dashboard - new challenge</p>
+    <div >
+      <p>Dashboard</p>
       <ChallengeList />
-      <div className="fixed-action-btn1">
-        <Link to="/challenges/custom" className="btn-flat grey white-text left">
-          Create your own list
-        </Link>
-        <Link
-          to="/challenges/existing"
-          className="btn-flat grey white-text right"
-        >
-          Choose an existing list
-        </Link>
-      </div>
+      <p><Link to="/challenges/custom">New challenge - create your own list</Link></p>
+      <p><Link to="/challenges/existing">New Challenge - existing list</Link></p>
+      <p><Link to="/activities/new">New Activity</Link></p>
     </div>
   );
 };
