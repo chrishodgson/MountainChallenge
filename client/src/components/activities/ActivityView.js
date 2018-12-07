@@ -1,55 +1,54 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchActivities } from "../../actions";
+// import { fetchActivities } from "../../actions";
+import GoogleMap from "../GoogleMap";
 
 class ActivityView extends Component {
   // componentDidMount(props) {
   //   this.props.fetchActivities();
   // }
 
-  renderActivities() {
-    return this.props.activities.reverse().map(item => {
-      return (
-        <tr key={item._id}>
-          <td>{item.title}</td>
-          <td>{item.description}</td>
-          <td>{item.mountainCount}</td>
-          <td>{item.durationMinutes}</td>
-          <td>{item.startDate}</td>
-        </tr>
-      );
-    });
-  }
-
   render() {
-    if (this.props.activities.length === 0) {
-      return null;
-    }
-
+    const item = this.props.activities[0];
     return (
       <table style={{ marginTop: "20px" }}>
         <caption>Activity Details</caption>
-        <thead>
+        <tbody>
           <tr>
             <th>Title</th>
-            <th>Desc</th>
-            <th>Count</th>
-            <th>Duration</th>
-            <th>Date</th>
+            <td>{item.title}</td>
           </tr>
-        </thead>
-        <tbody>{this.renderActivities()}</tbody>
+          <tr>
+            <th>Desc</th>
+            <td>{item.description}</td>
+          </tr>
+          <tr>
+            <th>Count</th>
+            <td>{item.mountainCount}</td>
+          </tr>
+          <tr>
+            <th>Duration</th>
+            <td>{item.durationMinutes}</td>
+          </tr>
+          <tr>
+            <th>Date</th>
+            <td>{item.startDate}</td>
+          </tr>
+          <tr>
+            <th>Map</th>
+            <td>
+              <GoogleMap lon={-1.63081} lat={53.525688} />
+            </td>
+          </tr>
+        </tbody>
       </table>
     );
   }
-
 }
 
 function mapStateToProps({ activities }) {
   return { activities };
 }
 
-export default connect(
-  mapStateToProps,
-  { fetchActivities }
-)(ActivityView);
+//{ fetchActivities }
+export default connect(mapStateToProps)(ActivityView);
