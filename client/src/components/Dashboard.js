@@ -23,8 +23,9 @@ const Dashboard = () => {
       <p>
         <Link to="/activities/new">New Activity</Link>
       </p>
-
-      <OSMap />
+      <p>
+        MAP: <OSMap />
+      </p>
     </div>
   );
 };
