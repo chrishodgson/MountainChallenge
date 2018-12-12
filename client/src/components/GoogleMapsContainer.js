@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { GoogleApiWrapper, InfoWindow, Map, Marker } from "google-maps-react";
 import Paper from "@material-ui/core/Paper";
-import Typography from '@material-ui/core/Typography';
+import Typography from "@material-ui/core/Typography";
 import { typography } from "material-ui/styles";
 
 class GoogleMapsContainer extends Component {
