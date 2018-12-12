@@ -15,6 +15,84 @@
     <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAq06l5RUVfib62IYRQacLc-KAy0XIWAVs"></script> -->
     <script type="text/javascript" src="http://openspace.ordnancesurvey.co.uk/osmapapi/openspace.js?key=BA08531D8339984EE0405F0AC86026A9"></script>
     <!-- <script type="text/javascript" src="http://openspace.ordnancesurvey.co.uk/osmapapi/openspace.js?key=7CB15FE04F3F0822E0530B6CA40A8805"></script>     -->
+
+    <!-- unpkg, development -->
+    <!-- <script src="https://unpkg.com/react-leaflet/dist/react-leaflet.js"></script> -->
+    <!-- CDNJS, development -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/react-leaflet/2.0.0/react-leaflet.js"></script> -->
+
+    <!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" /> -->
+    <!-- <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script> -->
+    <!-- <script src="https://rawgit.com/kartena/Proj4Leaflet/master/lib/proj4-compressed.js"></script>
+    <script src="https://rawgit.com/kartena/Proj4Leaflet/master/src/proj4leaflet.js"></script>
+    <script src="https://rawgit.com/rob-murray/os-leaflet/master/OSOpenSpace.js"></script> -->
+    <!-- <script>
+  (function () {
+    'use strict';
+
+    var map,
+      OSHQ = {
+        WGS84: [50.936715, -1.4701989],
+        OSGB: [437324, 115386]
+      };
+
+    function init() {
+      var popup = L.popup(),
+        openspaceLayer;
+
+      /* L.Map with OS options */
+      map = new L.Map('map', {
+        zoom: 6,
+        crs: L.OSOpenSpace.CRS,
+        attributionControl: true
+      });
+
+      /* New L.TileLayer.OSOpenSpace with API Key */
+      openspaceLayer = L.OSOpenSpace.tilelayer('EC9EDE7DAD732ABAE0430C6CA40AB812');
+
+      map.addLayer(openspaceLayer);
+      map.setView(OSHQ.WGS84, 1);
+
+      /* add some ui to the map */
+      L.control.scale({ position: 'bottomright' }).addTo(map);
+
+      L.marker(OSHQ.WGS84).addTo(map)
+        .bindPopup('<b>Hello world!</b><br />I am at OSHQ.').openPopup();
+
+      L.circle([51.508, -0.11], 500, {
+        color: 'red',
+        fillColor: '#f03',
+        fillOpacity: 0.5
+      }).addTo(map).bindPopup('I am a circle.');
+
+      L.polygon([
+        [51.509, -0.08],
+        [51.503, -0.06],
+        [51.51, -0.047]
+      ]).addTo(map).bindPopup('I am a polygon.');
+
+      L.polygon([
+        [50.978633, -1.5740458],
+        [51.068553, -1.5732215],
+        [51.067945, -1.4305097],
+        [50.978027, -1.4316098]
+      ]).addTo(map).bindPopup('I am SU32');
+
+      /* add some event callbacks */
+      function onMapClick(e) {
+        popup
+          .setLatLng(e.latlng)
+          .setContent('You clicked the map at ' + e.latlng.toString())
+          .openOn(map);
+      }
+
+      map.on('click', onMapClick);
+    }
+
+    window.onload = init;
+  }());
+  </script> -->
+
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -31,6 +109,8 @@
       You need to enable JavaScript to run this app.
     </noscript>
     <div id="root"></div>
+    <!-- <div id="map" style="width: 600px; height: 180px; border: 1px solid #ccc;"></div> -->
+
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

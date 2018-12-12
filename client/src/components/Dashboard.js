@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import OSMap from "./OSMap";
+import OSMap from "./maps/OSMap";
 
 const Dashboard = () => {
   return (
@@ -23,9 +23,7 @@ const Dashboard = () => {
       <p>
         <Link to="/activities/new">New Activity</Link>
       </p>
-      <p>
-        MAP: <OSMap />
-      </p>
+      MAP: <OSMap />
     </div>
   );
 };
