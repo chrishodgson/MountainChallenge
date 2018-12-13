@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<gpx version="1.1"
+  creator="The Hug - http://maps.the-hug.net/"
+  xmlns="http://www.topografix.com/GPX/1/1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.topografix.com/GPX/1/1
+  http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <rte>
+   <name>langsett</name>
+    <rtept lat="53.50032" lon="-1.68112">
+      <name>1:</name>
+    </rtept>
+    <rtept lat="53.49953" lon="-1.68716">
+      <name>2:</name>
+    </rtept>
+    <rtept lat="53.49972" lon="-1.69092">
+      <name>3:</name>
+    </rtept>
+    <rtept lat="53.50062" lon="-1.69318">
+      <name>4:</name>
+    </rtept>
+    <rtept lat="53.50162" lon="-1.69694">
+      <name>5:</name>
+    </rtept>
+    <rtept lat="53.50199" lon="-1.69935">
+      <name>6:</name>
+    </rtept>
+    <rtept lat="53.50271" lon="-1.70251">
+      <name>7:</name>
+    </rtept>
+    <rtept lat="53.50119" lon="-1.70282">
+      <name>8:</name>
+    </rtept>
+    <rtept lat="53.49867" lon="-1.70284">
+      <name>9:</name>
+    </rtept>
+    <rtept lat="53.49723" lon="-1.70315">
+      <name>10:</name>
+    </rtept>
+    <rtept lat="53.49624" lon="-1.70195">
+      <name>11:</name>
+    </rtept>
+    <rtept lat="53.49543" lon="-1.69924">
+      <name>12:</name>
+    </rtept>
+    <rtept lat="53.49398" lon="-1.69579">
+      <name>13:</name>
+    </rtept>
+    <rtept lat="53.49162" lon="-1.68932">
+      <name>14:</name>
+    </rtept>
+    <rtept lat="53.49162" lon="-1.68616">
+      <name>15:</name>
+    </rtept>
+    <rtept lat="53.49287" lon="-1.68253">
+      <name>16:</name>
+    </rtept>
+    <rtept lat="53.49556" lon="-1.68010">
+      <name>17:</name>
+    </rtept>
+    <rtept lat="53.49721" lon="-1.67655">
+      <name>18:</name>
+    </rtept>
+    <rtept lat="53.49888" lon="-1.67902">
+      <name>19:</name>
+    </rtept>
+    <rtept lat="53.49960" lon="-1.67962">
+      <name>20:</name>
+    </rtept>
+  </rte>
+</gpx>

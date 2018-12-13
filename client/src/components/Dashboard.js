@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import OSMap from "./maps/OSMap";
+import OSMap from "./OSMap";
 
 const Dashboard = () => {
   return (

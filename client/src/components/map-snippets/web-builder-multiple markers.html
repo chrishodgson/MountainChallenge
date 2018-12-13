@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>Open Space Web-Map builder Code</title>
+<!-- Download OpenSpace API using your key -->
+<script type="text/javascript" src="https://openspace.ordnancesurvey.co.uk/osmapapi/openspace.js?key=insert_your_api_key_here"></script>
+<script type= "text/javascript" src="https://openspace.ordnancesurvey.co.uk/osmapapi/script/mapbuilder/basicmap.js"></script>
+<script type= "text/javascript" src="https://openspace.ordnancesurvey.co.uk/osmapapi/script/mapbuilder/searchbox.js"></script>
+<script type="text/javascript">
+//declare marker variables
+  var pos, size, offset, infoWindowAnchor, icon, content, popUpSize;
+
+  function initmapbuilder()
+  {
+    //initiate the map
+    var options = {resolutions: [2500, 1000, 500, 200, 100, 50, 25, 10, 5, 4, 2.5, 2, 1]};
+    osMap = new OpenSpace.Map('map', options);
+
+    //configure map options (basicmap.js)
+    setglobaloptions();
+    // add a box displaying co-ordinates (mouse over map to display)
+    makegrid()
+    //add a postcode/gazetteer search box (see searchbox.js)
+    addSearchBox(1);
+    //set the center of the map and the zoom level
+    osMap.setCenter(new OpenSpace.MapPoint(419840,400390.44861111),7);
+    // add a marker
+    pos = new OpenSpace.MapPoint(420100,401090);
+    size = new OpenLayers.Size(33,45);
+    offset = new OpenLayers.Pixel(-16,-36);
+    infoWindowAnchor = new OpenLayers.Pixel(16,16);
+    icon = new OpenSpace.Icon('https://openspace.ordnancesurvey.co.uk/osmapapi/img_versions/img_1.0.1/OS/images/markers/marker_red.png', size, offset, null, infoWindowAnchor);
+    osMap.createMarker(pos, icon, null, null);
+    // add a marker
+    pos = new OpenSpace.MapPoint(419740,400950);
+    size = new OpenLayers.Size(33,45);
+    offset = new OpenLayers.Pixel(-16,-36);
+    infoWindowAnchor = new OpenLayers.Pixel(16,16);
+    icon = new OpenSpace.Icon('https://openspace.ordnancesurvey.co.uk/osmapapi/img_versions/img_1.0.1/OS/images/markers/marker_red.png', size, offset, null, infoWindowAnchor);
+    osMap.createMarker(pos, icon, null, null);
+    // add a marker
+    pos = new OpenSpace.MapPoint(419790,400630);
+    size = new OpenLayers.Size(33,45);
+    offset = new OpenLayers.Pixel(-16,-36);
+    infoWindowAnchor = new OpenLayers.Pixel(16,16);
+    icon = new OpenSpace.Icon('https://openspace.ordnancesurvey.co.uk/osmapapi/img_versions/img_1.0.1/OS/images/markers/marker_red.png', size, offset, null, infoWindowAnchor);
+    osMap.createMarker(pos, icon, null, null);
+    // add a marker
+    pos = new OpenSpace.MapPoint(419750,400070);
+    size = new OpenLayers.Size(33,45);
+    offset = new OpenLayers.Pixel(-16,-36);
+    infoWindowAnchor = new OpenLayers.Pixel(16,16);
+    icon = new OpenSpace.Icon('https://openspace.ordnancesurvey.co.uk/osmapapi/img_versions/img_1.0.1/OS/images/markers/marker_red.png', size, offset, null, infoWindowAnchor);
+    osMap.createMarker(pos, icon, null, null);
+    // add a marker
+    pos = new OpenSpace.MapPoint(419130,398590);
+    size = new OpenLayers.Size(33,45);
+    offset = new OpenLayers.Pixel(-16,-36);
+    infoWindowAnchor = new OpenLayers.Pixel(16,16);
+    icon = new OpenSpace.Icon('https://openspace.ordnancesurvey.co.uk/osmapapi/img_versions/img_1.0.1/OS/images/markers/marker_red.png', size, offset, null, infoWindowAnchor);
+    osMap.createMarker(pos, icon, null, null);
+    // add a marker
+    pos = new OpenSpace.MapPoint(420280,399740);
+    size = new OpenLayers.Size(33,45);
+    offset = new OpenLayers.Pixel(-16,-36);
+    infoWindowAnchor = new OpenLayers.Pixel(16,16);
+    icon = new OpenSpace.Icon('https://openspace.ordnancesurvey.co.uk/osmapapi/img_versions/img_1.0.1/OS/images/markers/marker_red.png', size, offset, null, infoWindowAnchor);
+    osMap.createMarker(pos, icon, null, null);
+    // add a marker
+    pos = new OpenSpace.MapPoint(420740,399500);
+    size = new OpenLayers.Size(33,45);
+    offset = new OpenLayers.Pixel(-16,-36);
+    infoWindowAnchor = new OpenLayers.Pixel(16,16);
+    icon = new OpenSpace.Icon('https://openspace.ordnancesurvey.co.uk/osmapapi/img_versions/img_1.0.1/OS/images/markers/marker_red.png', size, offset, null, infoWindowAnchor);
+    osMap.createMarker(pos, icon, null, null);
+    // add a marker
+    pos = new OpenSpace.MapPoint(421110,399860);
+    size = new OpenLayers.Size(33,45);
+    offset = new OpenLayers.Pixel(-16,-36);
+    infoWindowAnchor = new OpenLayers.Pixel(16,16);
+    icon = new OpenSpace.Icon('https://openspace.ordnancesurvey.co.uk/osmapapi/img_versions/img_1.0.1/OS/images/markers/marker_red.png', size, offset, null, infoWindowAnchor);
+    osMap.createMarker(pos, icon, null, null);
+    // add a marker
+    pos = new OpenSpace.MapPoint(421510,400120);
+    size = new OpenLayers.Size(33,45);
+    offset = new OpenLayers.Pixel(-16,-36);
+    infoWindowAnchor = new OpenLayers.Pixel(16,16);
+    icon = new OpenSpace.Icon('https://openspace.ordnancesurvey.co.uk/osmapapi/img_versions/img_1.0.1/OS/images/markers/marker_red.png', size, offset, null, infoWindowAnchor);
+    osMap.createMarker(pos, icon, null, null);
+    // add a marker
+    pos = new OpenSpace.MapPoint(421210,400410);
+    size = new OpenLayers.Size(33,45);
+    offset = new OpenLayers.Pixel(-16,-36);
+    infoWindowAnchor = new OpenLayers.Pixel(16,16);
+    icon = new OpenSpace.Icon('https://openspace.ordnancesurvey.co.uk/osmapapi/img_versions/img_1.0.1/OS/images/markers/marker_red.png', size, offset, null, infoWindowAnchor);
+    osMap.createMarker(pos, icon, null, null);
+    // add a marker
+    pos = new OpenSpace.MapPoint(420990,400390);
+    size = new OpenLayers.Size(33,45);
+    offset = new OpenLayers.Pixel(-16,-36);
+    infoWindowAnchor = new OpenLayers.Pixel(16,16);
+    icon = new OpenSpace.Icon('https://openspace.ordnancesurvey.co.uk/osmapapi/img_versions/img_1.0.1/OS/images/markers/marker_red.png', size, offset, null, infoWindowAnchor);
+    osMap.createMarker(pos, icon, null, null);
+    // add a marker
+    pos = new OpenSpace.MapPoint(420350,400580);
+    size = new OpenLayers.Size(33,45);
+    offset = new OpenLayers.Pixel(-16,-36);
+    infoWindowAnchor = new OpenLayers.Pixel(16,16);
+    icon = new OpenSpace.Icon('https://openspace.ordnancesurvey.co.uk/osmapapi/img_versions/img_1.0.1/OS/images/markers/marker_red.png', size, offset, null, infoWindowAnchor);
+    osMap.createMarker(pos, icon, null, null);
+
+    clusterControl = new OpenSpace.Control.ClusterManager();
+    osMap.addControl(clusterControl);
+    clusterControl.activate();
+  }
+</script>
+</head>
+<body onload="initmapbuilder()">
+<div id="map" style="width:400px; height:350px;"></div>
+</body>
+</html>

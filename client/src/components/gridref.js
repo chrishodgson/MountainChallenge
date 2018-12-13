@@ -1,4 +1,5 @@
-function NGR2NE(ngr) {
+
+const gridRefToNorthingAndEasting = (ngr) => {
   var e;
   var n;
 
@@ -50,8 +51,11 @@ function NGR2NE(ngr) {
     n += parseInt(s, 10);
     if (isNaN(n)) return null;
 
-    return new OpenSpace.MapPoint(e, n);
+    //return new OpenSpace.MapPoint(e, n);
+    return [e, n];
   } catch (ex) {
     return null;
   }
 }
+
+export default gridRefToNorthingAndEasting;
