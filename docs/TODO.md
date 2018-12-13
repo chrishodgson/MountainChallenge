@@ -4,9 +4,10 @@
 
 Activities:
 
-- view activity component: google map
+- view activity component: os map with markers for first 10 hills ?
 
 - add activity component:
+
   - select mountains,
   - startDate : http://jquense.github.io/react-widgets/api/DateTimePicker/
   - durationMinutes : http://jquense.github.io/react-widgets/api/NumberPicker/
@@ -15,8 +16,6 @@ Activities:
 
 - activityUser schema: add to model and use on save and find
 
-
-
 ### Post MVP
 
 ---
@@ -24,7 +23,6 @@ Activities:
 Import
 
 add mountain count, highest, lowest to mountainList collection (store in classificationKeys)
-
 
 ---
 
@@ -53,6 +51,6 @@ Misc
 
 ---
 
-add users to challenge or activity
+add users to challenge / activity
 
 add instagram images to activity
