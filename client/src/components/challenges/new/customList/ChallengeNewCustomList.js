@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import Details from "../../steps/challengeDetails/ChallengeDetails";
-import MountainSearch from "../../steps/challengeMountains/ChallengeMountainSearch";
-import MountainSearchResults from "../../steps/challengeMountains/ChallengeMountainSearchResults";
-import SelectedMountains from "../../steps/challengeMountains/ChallengeSelectedMountains";
+import MountainSearch from "../../../mountains/search/MountainSearch";
+import MountainSearchResults from "../../../mountains/search/MountainSearchResults";
+import SelectedMountains from "../../../mountains/search/SelectedMountains";
 import Review from "./ChallengeNewCustomListReview";
 
 class ChallengeNewCustomList extends Component {

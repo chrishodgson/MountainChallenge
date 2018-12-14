@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import OSMap from "./OSMap";
+import OSMap from "../OSMap";
 
 class ActivityView extends Component {
   // componentDidMount(props) {
@@ -35,7 +35,9 @@ class ActivityView extends Component {
           </tr>
           <tr>
             <th>Map</th>
-            <td><OSMap /></td>
+            <td>
+              <OSMap />
+            </td>
           </tr>
         </tbody>
       </table>

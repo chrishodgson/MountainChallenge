@@ -26,7 +26,7 @@ class ChallengeNewExistingListReview extends Component {
       <div>
         <h5>Please confirm your entries</h5>
         {this.renderChallengeDetails()}
-        Mountain Lists:
+        <p>Mountain List</p>
         {this.renderMountainLists()}
         <button
           className="grey btn-flat white-text"

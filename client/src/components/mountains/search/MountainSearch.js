@@ -3,11 +3,11 @@ import React, { Component } from "react";
 import { reduxForm, Field as ReduxField } from "redux-form";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import Field from "../../../Field";
-import formFields from "./challengeMountainSearchFields";
-import { searchMountains } from "../../../../actions";
+import Field from "../../Field";
+import formFields from "./mountainSearchFields";
+import { searchMountains } from "../../../actions";
 
-class ChallengeMountainSearch extends Component {
+class MountainSearch extends Component {
   state = { mountainsError: false };
 
   renderFields() {
@@ -77,7 +77,7 @@ class ChallengeMountainSearch extends Component {
 
 function mapStateToProps(state) {
   return {
-    formValues: state.form.challengeMountainSearch.values || [],
+    formValues: state.form.mountainSearch.values || [],
     mountainSelection: state.mountainSelection
   };
 }
@@ -97,11 +97,11 @@ function validate(values) {
 
 export default reduxForm({
   validate,
-  form: "challengeMountainSearch",
+  form: "mountainSearch",
   destroyOnUnmount: false
 })(
   connect(
     mapStateToProps,
     { searchMountains }
-  )(ChallengeMountainSearch)
+  )(MountainSearch)
 );

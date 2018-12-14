@@ -60,8 +60,15 @@ export const deSelectMountainList = mountainListId => {
   return { type: SELECT_MOUNTAIN_LISTS, payload: { mountainListId } };
 };
 
-export const submitActivity = (values, history) => async dispatch => {
-  const res = await axios.post("/api/activities", values);
+export const submitActivity = (
+  activityDetails,
+  mountains,
+  history
+) => async dispatch => {
+  const res = await axios.post("/api/activities", {
+    activityDetails,
+    mountains
+  });
 
   history.push("/dashboard");
   dispatch({ type: FETCH_USER, payload: res.data });

@@ -1,5 +1,4 @@
-
-const gridRefToNorthingAndEasting = (ngr) => {
+const gridRefToNorthingAndEasting = ngr => {
   var e;
   var n;
 
@@ -11,25 +10,25 @@ const gridRefToNorthingAndEasting = (ngr) => {
   for (var i = 0; i < bits.length; i++) ngr += bits[i];
 
   var c = ngr.charAt(0);
-  if (c == "S") {
+  if (c === "S") {
     e = 0;
     n = 0;
-  } else if (c == "T") {
+  } else if (c === "T") {
     e = 500000;
     n = 0;
-  } else if (c == "N") {
+  } else if (c === "N") {
     n = 500000;
     e = 0;
-  } else if (c == "O") {
+  } else if (c === "O") {
     n = 500000;
     e = 500000;
-  } else if (c == "H") {
+  } else if (c === "H") {
     n = 1000000;
     e = 0;
   } else return null;
 
   c = ngr.charAt(1);
-  if (c == "I") return null;
+  if (c === "I") return null;
 
   c = ngr.charCodeAt(1) - 65;
   if (c > 8) c -= 1;
@@ -37,7 +36,7 @@ const gridRefToNorthingAndEasting = (ngr) => {
   n += (4 - Math.floor(c / 5)) * 100000;
 
   c = ngr.substr(2);
-  if (c.length % 2 == 1) return null;
+  if (c.length % 2 === 1) return null;
   if (c.length > 10) return null;
 
   try {
@@ -56,6 +55,6 @@ const gridRefToNorthingAndEasting = (ngr) => {
   } catch (ex) {
     return null;
   }
-}
+};
 
 export default gridRefToNorthingAndEasting;

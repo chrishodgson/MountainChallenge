@@ -1,14 +1,14 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-const challengeMountainSchema = new Schema({
+const mountainItemSchema = new Schema({
   name: String,
-  lat: Number,
-  lng: Number,
+  easting: Number,
+  northing: Number,
+  gridRef: String,
   height: Number,
-  ascentCount: Number,
-  ascentOrder: Number,
+  order: Number,
   _mountain: { type: Schema.Types.ObjectId, ref: "Mountain" }
 });
 
-module.exports = challengeMountainSchema;
+module.exports = mountainItemSchema;

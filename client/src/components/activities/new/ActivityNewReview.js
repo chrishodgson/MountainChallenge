@@ -16,17 +16,18 @@ class ActivityReview extends Component {
       );
     });
 
-  // renderMountains = () =>
-  //   _.map(this.props.mountains, ({ _id, name }) => {
-  //     return <div key={_id}>{name}</div>;
-  //   });
-  // {this.renderMountains()}
+  renderMountains = () =>
+    _.map(this.props.mountains, ({ _id, name }) => {
+      return <div key={_id}>{name}</div>;
+    });
 
   render() {
     return (
       <div>
         <h5>Please confirm your entries</h5>
         {this.renderActivityDetails()}
+        <p>Mountains</p>
+        {this.renderMountains()}
         <button
           className="grey btn-flat white-text"
           onClick={this.props.onCancel}
@@ -38,6 +39,7 @@ class ActivityReview extends Component {
           onClick={() =>
             this.props.submitActivity(
               this.props.activityDetails,
+              this.props.mountains,
               this.props.history
             )
           }
@@ -51,8 +53,8 @@ class ActivityReview extends Component {
 
 function mapStateToProps(state) {
   return {
-    activityDetails: state.form.activityDetails.values || []
-    // mountains: state.mountainSelection || []
+    activityDetails: state.form.activityDetails.values || [],
+    mountains: state.mountainSelection || []
   };
 }
 

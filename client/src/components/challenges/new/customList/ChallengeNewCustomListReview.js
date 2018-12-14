@@ -26,7 +26,7 @@ class ChallengeReview extends Component {
       <div>
         <h5>Please confirm your entries</h5>
         {this.renderChallengeDetails()}
-        Mountains:
+        <p>Mountains</p>
         {this.renderMountains()}
         <button
           className="grey btn-flat white-text"

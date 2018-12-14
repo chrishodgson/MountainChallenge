@@ -1,7 +1,6 @@
 import _ from "lodash";
 import React, { Component } from "react";
 import { reduxForm, Field as ReduxField } from "redux-form";
-import { Link } from "react-router-dom";
 import Field from "../../../Field";
 import formFields from "./activityDetailsFields";
 
@@ -20,21 +19,17 @@ class ActivityDetails extends Component {
     });
   }
 
-
   render() {
-    // <button
-    //   onClick={this.props.onCancel}
-    //   className="grey btn-flat white-text"
-    // >
-    // Back
-    // </button>
     return (
       <div>
         <form onSubmit={this.props.handleSubmit(this.props.onSubmit)}>
           {this.renderFields()}
-          <Link to="/dashboard" className="grey btn-flat white-text">
+          <button
+            onClick={this.props.onCancel}
+            className="grey btn-flat white-text"
+          >
             Back
-          </Link>
+          </button>
           <button type="submit" className="grey btn-flat white-text right">
             Next
           </button>

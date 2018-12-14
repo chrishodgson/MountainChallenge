@@ -1,12 +1,12 @@
 import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { selectMountain } from "../../../../actions";
+import { selectMountain } from "../../../actions";
 
-class ChallengeMountainSearchResults extends Component {
+class MountainSearchResults extends Component {
   renderMountains() {
-    if(this.props.mountainSearch.length === 0) {
-      return 'No results found';
+    if (this.props.mountainSearch.length === 0) {
+      return "No results found";
     }
     return this.props.mountainSearch.map(mountain => {
       return (
@@ -82,4 +82,4 @@ function mapStateToProps({ mountainSearch, mountainSelection }) {
 export default connect(
   mapStateToProps,
   { selectMountain }
-)(ChallengeMountainSearchResults);
+)(MountainSearchResults);
