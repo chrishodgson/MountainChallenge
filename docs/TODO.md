@@ -1,8 +1,16 @@
 ### MVP
 
-openspace.js - fit map to markers function ?
+openspace.js - fit map to markers
+http://openspace.ordnancesurvey.co.uk/docs/4.0.0/files/OpenLayers/Map-js.html#OpenLayers.Map.zoomToScale
+
 redux form - how to clear forms after save on review step
-forceUnregisterOnUnmount - do we need this
+https://redux-form.com/8.0.4/docs/faq/howtoclear.md/
+https://github.com/erikras/redux-form/issues/3560
+- forceUnregisterOnUnmount: true - do we need this
+- destroyOnUnmount: false  - do we need this
+
+import {reset} from 'redux-form';
+dispatch(reset('myForm'));  // requires form name
 
 ---
 

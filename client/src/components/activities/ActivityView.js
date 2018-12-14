@@ -1,13 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-// import GoogleMapsContainer from "../GoogleMapsContainer";
-// import { fetchActivities } from "../../actions";
-// import GoogleMap from "../GoogleMap";
-//<GoogleMap lon={-1.63081} lat={53.525688} />
+import OSMap from "./OSMap";
 
 class ActivityView extends Component {
   // componentDidMount(props) {
-  //   this.props.fetchActivities();
+  //   this.props.fetchActivity();
   // }
 
   render() {
@@ -38,7 +35,7 @@ class ActivityView extends Component {
           </tr>
           <tr>
             <th>Map</th>
-            <td />
+            <td><OSMap /></td>
           </tr>
         </tbody>
       </table>
