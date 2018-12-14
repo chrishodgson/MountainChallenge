@@ -10,7 +10,7 @@ class OSMap extends Component {
     const osMap = new OpenSpace.Map(this.refs.map, options);
     // Set map centre in National Grid Eastings and Northings and select zoom level 0
     // osMap.setCenter(new OpenSpace.MapPoint(330000, 498000), 8);
-    osMap.setCenter(new OpenSpace.MapPoint(326200, 497700), 7);
+    osMap.setCenter(new OpenSpace.MapPoint(326200, 497700), 5);
     const points = [
       "NY288011",
       "NY273006",
