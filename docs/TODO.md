@@ -15,7 +15,7 @@ dispatch(reset('myForm')); // requires form name
 - http://jquense.github.io/react-widgets/api/NumberPicker/
 
 3. zoom to fit os map to markers
-
+https://www.ordnancesurvey.co.uk/forums/discussion/1001031/zoom-level-to-accommodate-loaded-markers
 
 ---
 
