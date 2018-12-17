@@ -6,13 +6,17 @@ module.exports = app => {
   //get activities
   app.get("/api/activities", requireLogin, async (req, res) => {
     //todo: restrict by user logged in - {'_users._user': req.user._id}
-    const activities = await Activity.find({ _users: req.user._id });
+    // const activities = await Activity.find({ _users: req.user._id });
+    const activities = await Activity.find();
     res.send(activities);
   });
 
   //add activity
   app.post("/api/activities", requireLogin, async (req, res) => {
-    const { title, description, duration, startDate, mountains } = req.body;
+    const {
+      activityDetails: { title, description, duration, startDate },
+      mountains
+    } = req.body;
     const userItem = { _user: req.user._id, name: req.user.name, admin: true };
     const mountainItems = mountains.map(mountain => {
       return {
@@ -28,6 +32,7 @@ module.exports = app => {
       _users: [userItem],
       title,
       description,
+      mountainCount: mountainItems.length,
       _mountains: mountainItems
       //, duration
       //, startDate

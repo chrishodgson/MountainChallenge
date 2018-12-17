@@ -28,6 +28,7 @@ const keys = require("../config/keys");
 const mongoose = require("mongoose");
 const args = require("minimist")(process.argv.slice(2));
 const csv = require("csvtojson");
+const convertGridRefToEastingNorthing = require("./gridref");
 
 require("../models/Mountain");
 require("../models/MountainList");
@@ -220,9 +221,12 @@ const hydrateMountain = item => {
     mountainLists.push(classificationKeys[classification]);
   }
 
+  const position = convertGridRefToEastingNorthing(item["Grid ref 10"]);
   return new Mountain({
     dobihId: Number(item["Number"]),
     name: item["Name"],
+    easting: position[0],
+    northing: position[1],
     lat: item["Latitude"],
     lng: item["Longitude"],
     metres: Number(item["Metres"]),

@@ -1,4 +1,5 @@
-const gridRefToNorthingAndEasting = ngr => {
+//convertGridRefToNorthingEasting
+module.exports = ngr => {
   var e;
   var n;
 
@@ -56,5 +57,3 @@ const gridRefToNorthingAndEasting = ngr => {
     return null;
   }
 };
-
-export default gridRefToNorthingAndEasting;

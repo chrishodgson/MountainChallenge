@@ -8,16 +8,30 @@ class ActivityList extends Component {
     this.props.fetchActivities();
   }
 
+  renderMountains(mountains) {
+    //todo order mountains by order field
+    return mountains.map(mountain => {
+      return (
+        <li key={mountain._id}>
+          {mountain.name} {mountain.metres}m - {mountain.gridRef}
+        </li>
+      );
+    });
+  }
+
   renderActivities() {
     return this.props.activities.reverse().map(item => {
       return (
         <tr key={item._id}>
-          <td><Link to={`/activities/view/${item._id}`}>View</Link></td>
-          <td>{item.title}</td>
+          <td>
+            <Link to={`/activities/view/${item._id}`}>{item.title}</Link>
+          </td>
           <td>{item.description}</td>
-          <td>{item.mountainCount}</td>
           <td>{item.durationMinutes}</td>
           <td>{item.startDate}</td>
+          <td>
+            Total: {item.mountainCount} {this.renderMountains(item._mountains)}
+          </td>
         </tr>
       );
     });
@@ -33,19 +47,17 @@ class ActivityList extends Component {
         <caption>Activities</caption>
         <thead>
           <tr>
-            <th>&nbsp;</th>
             <th>Title</th>
-            <th>Desc</th>
-            <th>Count</th>
+            <th>Description</th>
             <th>Duration</th>
             <th>Date</th>
+            <th>Mountains</th>
           </tr>
         </thead>
         <tbody>{this.renderActivities()}</tbody>
       </table>
     );
   }
-
 }
 
 function mapStateToProps({ activities }) {

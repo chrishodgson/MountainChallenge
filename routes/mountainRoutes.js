@@ -11,7 +11,9 @@ module.exports = app => {
     const criteria = country
       ? { name: regex, countryCode: country }
       : { name: regex };
-    const mountains = await Mountain.find(criteria).select('name metres');
+    const mountains = await Mountain.find(criteria).select(
+      "name metres gridRef easting northing"
+    );
     res.send(mountains);
   });
 };
