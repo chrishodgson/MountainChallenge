@@ -8,6 +8,8 @@ class OSMap extends Component {
       resolutions: [2500, 1000, 500, 200, 100, 50, 25, 10, 5, 4, 2.5, 2, 1]
     };
     const osMap = new OpenSpace.Map(this.refs.map, options);
+    //const markers = new OpenLayers.Layer.Markers("Markers");
+    const bounds = new OpenSpace.MapBounds();
 
     //get map centre
     let eastingCentre = 0;
@@ -20,12 +22,15 @@ class OSMap extends Component {
     northingCentre = northingCentre / this.props.mountains.length;
     osMap.setCenter(new OpenSpace.MapPoint(eastingCentre, northingCentre), 5);
 
-    //add map markers
+    //add map markers and map bounds
     for (const item of this.props.mountains) {
       const point = new OpenSpace.MapPoint(item.easting, item.northing);
+      bounds.extend(point);
       const popupText = item.name + " " + item.metres + "m - " + item.gridRef;
       osMap.createMarker(point, null, popupText);
     }
+    //zoom map to extent of map bounds
+    osMap.getZoomForExtent(bounds,true)
   }
   render() {
     return (
