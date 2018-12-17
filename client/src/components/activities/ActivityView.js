@@ -1,14 +1,25 @@
+import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import OSMap from "../OSMap";
 
 class ActivityView extends Component {
-  // componentDidMount(props) {
-  //   this.props.fetchActivity();
-  // }
+  state = {activity: ''};
+
+  componentDidMount(props) {
+    const activity = _.find(this.props.activities, {'_id': this.props.match.params.activityId});
+    if (!activity) {
+      this.props.history.push("/activities");
+    }
+    this.setState({activity});
+  }
 
   render() {
-    const item = this.props.activities[0];
+    const item = this.state.activity;
+
+    console.log(this.state.activity, 'ActivityView this.state.activity');
+
     return (
       <div>
         <table style={{ marginTop: "20px" }}>
@@ -43,9 +54,7 @@ class ActivityView extends Component {
 }
 
 function mapStateToProps({ activities }) {
-  console.log(activities, "activities");
   return { activities };
 }
 
-//{ fetchActivities }
-export default connect(mapStateToProps)(ActivityView);
+export default connect(mapStateToProps)(withRouter(ActivityView));
