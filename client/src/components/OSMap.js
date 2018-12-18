@@ -3,8 +3,6 @@ import React, { Component } from "react";
 class OSMap extends Component {
   componentDidMount() {
     const OpenSpace = window.OpenSpace;
-    const OpenLayers = window.OpenLayers;
-
     const options = {
       resolutions: [2500, 1000, 500, 200, 100, 50, 25, 10, 5, 4, 2.5, 2, 1]
     };
@@ -14,9 +12,6 @@ class OSMap extends Component {
     // get map centre
     let eastingCentre = 0;
     let northingCentre = 0;
-
-console.log(this.props, 'OSMap this.props');
-
     for (const item of this.props.mountains) {
       eastingCentre += item.easting;
       northingCentre += item.northing;
@@ -35,7 +30,7 @@ console.log(this.props, 'OSMap this.props');
       osMap.createMarker(point, null, popupText);
     }
 
-    osMap.getZoomForExtent(bounds,true)
+    osMap.getZoomForExtent(bounds, true);
   }
   render() {
     return (

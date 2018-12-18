@@ -1,9 +1,14 @@
 import _ from "lodash";
 import React, { Component } from "react";
+import { reset } from "redux-form";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { submitActivity } from "../../../actions";
 import activityDetailFields from "../steps/activityDetails/activityDetailsFields";
+import {
+  submitActivity,
+  clearMountainSearch,
+  clearMountainSelection
+} from "../../../actions";
 
 class ActivityReview extends Component {
   renderActivityDetails = () =>
@@ -36,13 +41,18 @@ class ActivityReview extends Component {
         </button>
         <button
           className="grey btn-flat white-text right"
-          onClick={() =>
-            this.props.submitActivity(
-              this.props.activityDetails,
-              this.props.mountains,
-              this.props.history
-            )
-          }
+          onClick={() => {
+            // this.props.submitActivity(
+            //   this.props.activityDetails,
+            //   this.props.mountains,
+            //   this.props.history
+            // );
+            //console.log(this.props, "this.props");
+            this.props.clearMountainSearch();
+            this.props.clearMountainSelection();
+            this.props.dispatch(reset("activityDetails"));
+            this.props.dispatch(reset("mountainSearch"));
+          }}
         >
           Save
         </button>
@@ -58,7 +68,16 @@ function mapStateToProps(state) {
   };
 }
 
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatch,
+    submitActivity,
+    clearMountainSearch,
+    clearMountainSelection
+  };
+}
+
 export default connect(
   mapStateToProps,
-  { submitActivity }
+  mapDispatchToProps
 )(withRouter(ActivityReview));

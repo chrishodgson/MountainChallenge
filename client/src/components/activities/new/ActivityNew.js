@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { reduxForm } from "redux-form";
 import Details from "../steps/activityDetails/ActivityDetails";
 import MountainSearch from "../../mountains/search/MountainSearch";
 import MountainSearchResults from "../../mountains/search/MountainSearchResults";
@@ -46,4 +47,5 @@ class ActivityNew extends Component {
   }
 }
 
-export default ActivityNew;
+// export default ActivityNew;
+export default reduxForm({ form: "activityDetails" })(ActivityNew);

@@ -5,20 +5,24 @@ import { withRouter } from "react-router-dom";
 import OSMap from "../OSMap";
 
 class ActivityView extends Component {
-  state = {activity: ''};
+  state = { activity: "" };
 
   componentDidMount(props) {
-    const activity = _.find(this.props.activities, {'_id': this.props.match.params.activityId});
+    const activity = _.find(this.props.activities, {
+      _id: this.props.match.params.activityId
+    });
     if (!activity) {
       this.props.history.push("/activities");
     }
-    this.setState({activity});
+    this.setState({ activity });
   }
 
   render() {
-    const item = this.state.activity;
+    const activity = this.state.activity;
 
-    console.log(this.state.activity, 'ActivityView this.state.activity');
+    if (!activity) {
+      return null;
+    }
 
     return (
       <div>
@@ -27,27 +31,27 @@ class ActivityView extends Component {
           <tbody>
             <tr>
               <th>Title</th>
-              <td>{item.title}</td>
+              <td>{activity.title}</td>
             </tr>
             <tr>
               <th>Desc</th>
-              <td>{item.description}</td>
-            </tr>
-            <tr>
-              <th>Count</th>
-              <td>{item.mountainCount}</td>
+              <td>{activity.description}</td>
             </tr>
             <tr>
               <th>Duration</th>
-              <td>{item.durationMinutes}</td>
+              <td>{activity.durationMinutes}</td>
             </tr>
             <tr>
               <th>Date</th>
-              <td>{item.startDate}</td>
+              <td>{activity.startDate}</td>
+            </tr>
+            <tr>
+              <th>Mountain Count</th>
+              <td>{activity.mountainCount}</td>
             </tr>
           </tbody>
         </table>
-        <OSMap mountains={item._mountains} />
+        <OSMap mountains={activity._mountains} />
       </div>
     );
   }

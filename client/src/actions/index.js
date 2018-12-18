@@ -4,7 +4,9 @@ import {
   FETCH_CHALLENGES,
   FETCH_ACTIVITIES,
   SEARCH_MOUNTAINS,
+  CLEAR_SEARCH_MOUNTAINS,
   SELECT_MOUNTAINS,
+  CLEAR_SELECT_MOUNTAINS,
   SEARCH_MOUNTAIN_LISTS,
   SELECT_MOUNTAIN_LISTS
 } from "./types";
@@ -15,6 +17,7 @@ export const fetchUser = () => async dispatch => {
   dispatch({ type: FETCH_USER, payload: res.data });
 };
 
+// Challenges
 export const submitChallenge = (values, history) => async dispatch => {
   const res = await axios.post("/api/challenges", values);
 
@@ -28,12 +31,18 @@ export const fetchChallenges = () => async dispatch => {
   dispatch({ type: FETCH_CHALLENGES, payload: res.data });
 };
 
+// Mountains
 export const searchMountains = (term, country) => async dispatch => {
   const res = await axios.get("/api/mountains", {
     params: { term: term, country: country }
   });
 
   dispatch({ type: SEARCH_MOUNTAINS, payload: res.data });
+};
+
+export const clearMountainSearch = () => {
+  console.log("clearMountainSearch");
+  return { type: CLEAR_SEARCH_MOUNTAINS, payload: { clear: true } };
 };
 
 export const selectMountain = mountain => {
@@ -44,6 +53,12 @@ export const deSelectMountain = mountainId => {
   return { type: SELECT_MOUNTAINS, payload: { mountainId } };
 };
 
+export const clearMountainSelection = () => {
+  console.log("clearMountainSelection");
+  return { type: CLEAR_SELECT_MOUNTAINS, payload: { clear: true } };
+};
+
+// Mountain Lists
 export const searchMountainLists = country => async dispatch => {
   const res = await axios.get("/api/mountainLists", {
     params: { country }
@@ -60,6 +75,7 @@ export const deSelectMountainList = mountainListId => {
   return { type: SELECT_MOUNTAIN_LISTS, payload: { mountainListId } };
 };
 
+// Activities
 export const submitActivity = (
   activityDetails,
   mountains,
