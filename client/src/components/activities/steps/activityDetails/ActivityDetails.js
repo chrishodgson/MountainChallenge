@@ -3,10 +3,14 @@ import React, { Component } from "react";
 import { reduxForm, Field as ReduxField } from "redux-form";
 import Field from "../../../Field";
 import formFields from "./activityDetailsFields";
+// import { NumberPicker } from 'react-widgets'
 
 class ActivityDetails extends Component {
   renderFields() {
     return _.map(formFields, ({ label, name, type }) => {
+      if(type === 'Number') {
+        // return <NumberPicker key={name} min={0}/>
+      }
       return (
         <ReduxField
           key={name}
@@ -42,8 +46,8 @@ class ActivityDetails extends Component {
 function validate(values) {
   const errors = {};
 
-  _.each(formFields, ({ name }) => {
-    if (!values[name]) {
+  _.each(formFields, ({ name, required }) => {
+    if (required && !values[name]) {
       errors[name] = "You must provide a value";
     }
   });

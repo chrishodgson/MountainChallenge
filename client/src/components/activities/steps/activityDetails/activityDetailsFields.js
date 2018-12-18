@@ -1,22 +1,32 @@
 export default [
   {
     name: "title",
-    label: "Activity Title",
-    type: "text"
+    label: "Title",
+    type: "text",
+    required: true
   },
   {
     name: "description",
-    label: "Activity Description",
-    type: "textarea"
+    label: "Description",
+    type: "textarea",
+    required: true
   },
   {
-    name: "duration",
-    label: "Activity Duration",
-    type: "text"
+    name: "hours",
+    label: "Hours",
+    type: "text",
+    required: false
+  },
+  {
+    name: "minutes",
+    label: "Minutes",
+    type: "text",
+    required: false
   },
   {
     name: "date",
-    label: "Activity Start Date",
-    type: "text"
+    label: "Date",
+    type: "text",
+    required: false
   }
 ];

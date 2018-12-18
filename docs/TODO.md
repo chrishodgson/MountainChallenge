@@ -13,6 +13,7 @@ dispatch(reset('myForm')); // requires form name
 
 - http://jquense.github.io/react-widgets/api/DateTimePicker/
 - http://jquense.github.io/react-widgets/api/NumberPicker/
+- https://redux-form.com/8.0.4/examples/react-widgets/
 
 4.  deploy to mountainchallenge.herokuapp.com
 

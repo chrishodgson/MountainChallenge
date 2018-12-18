@@ -48,10 +48,10 @@ class ActivityReview extends Component {
             //   this.props.history
             // );
             //console.log(this.props, "this.props");
-            this.props.clearMountainSearch();
-            this.props.clearMountainSelection();
-            this.props.dispatch(reset("activityDetails"));
-            this.props.dispatch(reset("mountainSearch"));
+            this.props.clearMountainSearch([]);
+            this.props.clearMountainSelection([]);
+            // this.props.dispatch(reset("activityDetails"));
+            // this.props.dispatch(reset("mountainSearch"));
           }}
         >
           Save
