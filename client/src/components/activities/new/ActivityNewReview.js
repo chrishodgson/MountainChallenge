@@ -42,16 +42,14 @@ class ActivityReview extends Component {
         <button
           className="grey btn-flat white-text right"
           onClick={() => {
-            // this.props.submitActivity(
-            //   this.props.activityDetails,
-            //   this.props.mountains,
-            //   this.props.history
-            // );
-            //console.log(this.props, "this.props");
-            this.props.clearMountainSearch([]);
-            this.props.clearMountainSelection([]);
-            // this.props.dispatch(reset("activityDetails"));
-            // this.props.dispatch(reset("mountainSearch"));
+            this.props.resetState();
+            this.props.dispatch(
+              submitActivity(
+                this.props.activityDetails,
+                this.props.mountains,
+                this.props.history
+              )
+            );
           }}
         >
           Save
@@ -71,9 +69,12 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    submitActivity,
-    clearMountainSearch,
-    clearMountainSelection
+    resetState: () => {
+      dispatch(reset("activityDetails"));
+      dispatch(reset("mountainSearch"));
+      dispatch(clearMountainSearch());
+      dispatch(clearMountainSelection());
+    }
   };
 }
 

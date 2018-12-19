@@ -1,34 +1,18 @@
 ### MVP
 
-1.  clear forms after save on review step
-    https://redux-form.com/8.0.4/docs/faq/howtoclear.md/
-    https://github.com/erikras/redux-form/issues/3560
+Release 1:
 
-import {reset} from 'redux-form';
-dispatch(reset('myForm')); // requires form name
-
-2.  disable next until one mountain selected
-
-3.  use react widgets for startDate and durationMinutes
+1.  use react widgets for startDate and durationMinutes
 
 - http://jquense.github.io/react-widgets/api/DateTimePicker/
 - http://jquense.github.io/react-widgets/api/NumberPicker/
 - https://redux-form.com/8.0.4/examples/react-widgets/
 
-4.  deploy to mountainchallenge.herokuapp.com
+2.  deploy to mountainchallenge.herokuapp.com
 
 ---
 
-- forceUnregisterOnUnmount: true - do we need this
-- destroyOnUnmount: false - do we need this
-
----
-
-### Post MVP
-
-Import
-
-- add mountain count, highest, lowest to mountainList collection (store in classificationKeys)
+Release 2:
 
 Challenges
 
@@ -36,9 +20,20 @@ Challenges
 
 - list challenges - restrict to user, % complete
 
+Misc
+
+- Import: add mountain count, highest, lowest to mountainList collection (store in classificationKeys)
+- forceUnregisterOnUnmount: true - do we need this in forms ?
+
+---
+
+### Post MVP
+
 Mapping
 
-- show mountain selections on map
+- show mountain selections on map ?
+
+- investigate OpenStreetMap
 
 - add route to map
 
@@ -54,3 +49,8 @@ Users
 Photos
 
 - add instagram images to activity
+
+Database
+
+- indexes
+- add challenges / activities sub documents to users

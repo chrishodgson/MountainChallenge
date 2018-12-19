@@ -42,7 +42,8 @@ export const searchMountains = (term, country) => async dispatch => {
 
 export const clearMountainSearch = () => {
   console.log("clearMountainSearch");
-  return { type: CLEAR_SEARCH_MOUNTAINS, payload: null };
+  const value = 1;
+  return { type: CLEAR_SEARCH_MOUNTAINS, payload: { value } };
 };
 
 export const selectMountain = mountain => {
@@ -55,7 +56,8 @@ export const deSelectMountain = mountainId => {
 
 export const clearMountainSelection = () => {
   console.log("clearMountainSelection");
-  return { type: CLEAR_SELECT_MOUNTAINS, payload: null };
+  const value = 1;
+  return { type: CLEAR_SELECT_MOUNTAINS, payload: { value } };
 };
 
 // Mountain Lists

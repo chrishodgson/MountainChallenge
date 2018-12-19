@@ -15,8 +15,7 @@ export default function(state = [], action) {
 
       return [...state, action.payload];
     case CLEAR_SELECT_MOUNTAINS:
-      console.log(action.payload, "CLEAR_SELECT_MOUNTAINS");
-      return action.payload;
+      return [];
     default:
       return state;
   }

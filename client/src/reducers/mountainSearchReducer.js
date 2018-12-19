@@ -5,8 +5,7 @@ export default function(state = [], action) {
     case SEARCH_MOUNTAINS:
       return action.payload;
     case CLEAR_SEARCH_MOUNTAINS:
-    console.log(action.payload, action.type);
-      return action.payload;
+      return [];
     default:
       return state;
   }
