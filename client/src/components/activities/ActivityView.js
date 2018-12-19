@@ -2,6 +2,7 @@ import _ from "lodash";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import Moment from "moment";
 import OSMap from "../OSMap";
 
 class ActivityView extends Component {
@@ -39,11 +40,22 @@ class ActivityView extends Component {
             </tr>
             <tr>
               <th>Duration</th>
-              <td>{activity.durationMinutes}</td>
+              <td>
+                {activity.hours || activity.minutes
+                  ? (activity.hours || 0) +
+                    " hours " +
+                    (activity.minutes || 0) +
+                    " mins"
+                  : ""}
+              </td>
             </tr>
             <tr>
               <th>Date</th>
-              <td>{activity.startDate}</td>
+              <td>
+                {activity.date
+                  ? Moment(activity.date).format("MMMM Do YYYY")
+                  : ""}
+              </td>
             </tr>
             <tr>
               <th>Mountain Count</th>

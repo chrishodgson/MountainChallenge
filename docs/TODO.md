@@ -1,47 +1,47 @@
 ### MVP
 
-Release 1:
+Activities
 
-1.  use react widgets for startDate and durationMinutes
-
-- http://jquense.github.io/react-widgets/api/DateTimePicker/
-- http://jquense.github.io/react-widgets/api/NumberPicker/
-- https://redux-form.com/8.0.4/examples/react-widgets/
-
-2.  deploy to mountainchallenge.herokuapp.com
-
----
-
-Release 2:
+- default values (00) for hours and minutes
+- library for formatting dates and hours/minutes from database
+- form validation of date, mins and hours
 
 Challenges
 
 - add challenge - save mountains / mountain list
+- list challenges - restrict by user, show % complete etc
+- Import: mountain count, highest, lowest mountains onto mountainList collection ?
 
-- list challenges - restrict to user, % complete
+Maps
 
-Misc
+- investigate OpenStreetMap
 
-- Import: add mountain count, highest, lowest to mountainList collection (store in classificationKeys)
-- forceUnregisterOnUnmount: true - do we need this in forms ?
-- buttons disabled={pristine || submitting}
+- show mountain selections on map ??
+
+- find mountains close by ??
+
+- zoom to fit map to markers
+  https://www.ordnancesurvey.co.uk/forums/discussion/1001031/zoom-level-to-accommodate-loaded-markers
+
+Database optimisation
+
+- add indexes
+- add challenges / activities sub documents to users
+- restrict activities and challenges by user
+
+Styling
 
 ---
 
 ### Post MVP
 
+Login
+
+- via Facebook / Create an Account on site
+
 Mapping
 
-- show mountain selections on map ?
-
-- investigate OpenStreetMap
-
 - add route to map
-
-- zoom to fit os map to markers (see thread)
-  https://www.ordnancesurvey.co.uk/forums/discussion/1001031/zoom-level-to-accommodate-loaded-markers
-
-- show number of os tiles remaining for download somewhere
 
 Users
 
@@ -50,8 +50,3 @@ Users
 Photos
 
 - add instagram images to activity
-
-Database
-
-- indexes
-- add challenges / activities sub documents to users

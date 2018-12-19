@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchActivities } from "../../actions";
+import Moment from "moment";
 
 class ActivityList extends Component {
   componentDidMount(props) {
@@ -27,8 +28,12 @@ class ActivityList extends Component {
             <Link to={`/activities/view/${item._id}`}>{item.title}</Link>
           </td>
           <td>{item.description}</td>
-          <td>{item.durationMinutes}</td>
-          <td>{item.startDate}</td>
+          <td>
+            {item.hours || item.minutes
+              ? (item.hours || 0) + " hours " + (item.minutes || 0) + " mins"
+              : ""}
+          </td>
+          <td>{item.date ? Moment(item.date).format("MMMM Do YYYY") : ""}</td>
           <td>
             Total: {item.mountainCount} {this.renderMountains(item._mountains)}
           </td>

@@ -14,7 +14,7 @@ module.exports = app => {
   //add activity
   app.post("/api/activities", requireLogin, async (req, res) => {
     const {
-      activityDetails: { title, description, duration, startDate },
+      activityDetails: { title, description, minutes, hours, date },
       mountains
     } = req.body;
     const userItem = { _user: req.user._id, name: req.user.name, admin: true };
@@ -32,10 +32,11 @@ module.exports = app => {
       _users: [userItem],
       title,
       description,
+      minutes,
+      hours,
+      date,
       mountainCount: mountainItems.length,
       _mountains: mountainItems
-      //, duration
-      //, startDate
     });
 
     try {

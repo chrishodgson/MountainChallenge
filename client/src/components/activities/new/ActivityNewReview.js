@@ -3,14 +3,13 @@ import React, { Component } from "react";
 import { reset } from "redux-form";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import Moment from "moment";
 import activityDetailFields from "../steps/activityDetails/activityDetailsFields";
 import {
   submitActivity,
   clearMountainSearch,
   clearMountainSelection
 } from "../../../actions";
-
-import moment from "moment";
 
 class ActivityReview extends Component {
   renderActivityDetails = () =>
@@ -21,7 +20,7 @@ class ActivityReview extends Component {
           <label>{label}</label>
           <div>
             {value instanceof Date
-              ? moment(value).format("MMMM Do YYYY")
+              ? Moment(value).format("MMMM Do YYYY")
               : value}
           </div>
         </div>

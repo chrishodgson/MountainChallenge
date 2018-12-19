@@ -7,8 +7,9 @@ const activitySchema = new Schema({
   title: String,
   description: String,
   mountainCount: Number,
-  durationMinutes: Number,
-  startDate: Date,
+  minutes: Number,
+  hours: Number,
+  date: Date,
   _users: [UserItem],
   _mountains: [MountainItem]
 });

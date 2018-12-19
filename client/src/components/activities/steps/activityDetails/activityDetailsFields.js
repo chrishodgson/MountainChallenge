@@ -14,13 +14,13 @@ export default [
   {
     name: "hours",
     label: "Hours",
-    type: "text", //number
+    type: "number",
     required: false
   },
   {
     name: "minutes",
     label: "Minutes",
-    type: "text", //number
+    type: "number",
     required: false
   },
   {

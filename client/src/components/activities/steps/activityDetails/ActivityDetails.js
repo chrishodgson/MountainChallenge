@@ -3,10 +3,6 @@ import React, { Component } from "react";
 import { reduxForm, Field as ReduxField } from "redux-form";
 import Field from "../../../Field";
 import formFields from "./activityDetailsFields";
-import momentLocaliser from 'react-widgets-moment'
-import moment from 'moment'
-
-momentLocaliser(moment)
 
 class ActivityDetails extends Component {
   renderFields() {

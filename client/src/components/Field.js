@@ -1,8 +1,16 @@
+import "react-widgets/dist/css/react-widgets.css";
 import _ from "lodash";
 import React from "react";
 import DateTimePicker from "react-widgets/lib/DateTimePicker";
 import NumberPicker from "react-widgets/lib/NumberPicker";
-import "react-widgets/dist/css/react-widgets.css";
+import simpleNumberLocalizer from "react-widgets-simple-number";
+import momentLocaliser from "react-widgets-moment";
+import Moment from "moment";
+
+//momentLocaliser(Moment.locale("en"));
+Moment.locale("en");
+momentLocaliser();
+simpleNumberLocalizer();
 
 export default props => {
   const {
@@ -13,22 +21,33 @@ export default props => {
     options,
     meta: { error, touched },
     showTime,
-    minimumNumber
+    minimumNumber,
+    maximumNumber
   } = props;
 
-  const renderNumberPicker = ({ onChange, value }, min) => {
-    console.log(onChange, "onChange renderNumberPicker");
-    console.log(value, "value renderNumberPicker");
-    return <NumberPicker onChange={onChange} min={min || 0} value={!value ? 0 : 1}/>
+  const renderNumberPicker = ({ onChange, value }, min, max) => {
+    return (
+      <NumberPicker
+        onChange={onChange}
+        min={min || 0}
+        max={max || 99999}
+        format="00"
+        value={!value ? null : value}
+      />
+    );
   };
 
+  //todo default to today
   const renderDateTimePicker = ({ onChange, value }, showTime) => {
-    return <DateTimePicker
-      onChange={onChange}
-      format="DD MMM YYYY"
-      time={showTime || false}
-      value={!value ? null : new Date(value)}
-    />
+    return (
+      <DateTimePicker
+        onChange={onChange}
+        format="DD MMM YYYY"
+        time={showTime || false}
+        //defaultValue={new Date(value)}
+        value={!value ? null : new Date(value)}
+      />
+    );
   };
 
   const renderOptions = () => {
@@ -80,7 +99,7 @@ export default props => {
   const renderField = () => {
     switch (type) {
       case "number":
-        return renderNumberPicker(input, minimumNumber);
+        return renderNumberPicker(input, minimumNumber, maximumNumber);
       case "date":
       case "datetime":
         return renderDateTimePicker(input, showTime);
