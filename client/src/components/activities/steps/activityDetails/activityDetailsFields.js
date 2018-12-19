@@ -14,19 +14,20 @@ export default [
   {
     name: "hours",
     label: "Hours",
-    type: "text",
+    type: "text", //number
     required: false
   },
   {
     name: "minutes",
     label: "Minutes",
-    type: "text",
+    type: "text", //number
     required: false
   },
   {
     name: "date",
     label: "Date",
-    type: "text", //datetime
-    required: false
+    type: "date",
+    required: false,
+    showTime: false
   }
 ];

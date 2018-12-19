@@ -1,5 +1,8 @@
 import _ from "lodash";
 import React from "react";
+import DateTimePicker from "react-widgets/lib/DateTimePicker";
+import NumberPicker from "react-widgets/lib/NumberPicker";
+import "react-widgets/dist/css/react-widgets.css";
 
 export default props => {
   const {
@@ -8,8 +11,25 @@ export default props => {
     label,
     index,
     options,
-    meta: { error, touched }
+    meta: { error, touched },
+    showTime,
+    minimumNumber
   } = props;
+
+  const renderNumberPicker = ({ onChange, value }, min) => {
+    console.log(onChange, "onChange renderNumberPicker");
+    console.log(value, "value renderNumberPicker");
+    return <NumberPicker onChange={onChange} min={min || 0} value={!value ? 0 : 1}/>
+  };
+
+  const renderDateTimePicker = ({ onChange, value }, showTime) => {
+    return <DateTimePicker
+      onChange={onChange}
+      format="DD MMM YYYY"
+      time={showTime || false}
+      value={!value ? null : new Date(value)}
+    />
+  };
 
   const renderOptions = () => {
     return _.map(options, ({ key, label }) => {
@@ -59,6 +79,11 @@ export default props => {
 
   const renderField = () => {
     switch (type) {
+      case "number":
+        return renderNumberPicker(input, minimumNumber);
+      case "date":
+      case "datetime":
+        return renderDateTimePicker(input, showTime);
       case "textarea":
         return defaultLayout(
           <textarea

@@ -10,13 +10,20 @@ import {
   clearMountainSelection
 } from "../../../actions";
 
+import moment from "moment";
+
 class ActivityReview extends Component {
   renderActivityDetails = () =>
     _.map(activityDetailFields, ({ label, name }) => {
+      const value = this.props.activityDetails[name];
       return (
         <div key={name}>
           <label>{label}</label>
-          <div>{this.props.activityDetails[name]}</div>
+          <div>
+            {value instanceof Date
+              ? moment(value).format("MMMM Do YYYY")
+              : value}
+          </div>
         </div>
       );
     });
@@ -27,6 +34,7 @@ class ActivityReview extends Component {
     });
 
   render() {
+    console.log(this.props.activityDetails);
     return (
       <div>
         <h5>Please confirm your entries</h5>

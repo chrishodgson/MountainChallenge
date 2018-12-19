@@ -24,6 +24,7 @@ Misc
 
 - Import: add mountain count, highest, lowest to mountainList collection (store in classificationKeys)
 - forceUnregisterOnUnmount: true - do we need this in forms ?
+- buttons disabled={pristine || submitting}
 
 ---
 
