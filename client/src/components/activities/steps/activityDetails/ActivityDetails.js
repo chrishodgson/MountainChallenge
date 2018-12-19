@@ -3,12 +3,19 @@ import React, { Component } from "react";
 import { reduxForm, Field as ReduxField } from "redux-form";
 import Field from "../../../Field";
 import formFields from "./activityDetailsFields";
-// import { NumberPicker } from 'react-widgets'
+
+// import DateTimePicker from 'react-widgets/lib/DateTimePicker'
+// import moment from 'moment'
+// import momentLocaliser from 'react-widgets/lib/localizers/moment'
+//
+// import 'react-widgets/dist/css/react-widgets.css'
+//
+// momentLocaliser(moment)
 
 class ActivityDetails extends Component {
   renderFields() {
     return _.map(formFields, ({ label, name, type }) => {
-      if(type === 'Number') {
+      if (type === "Number") {
         // return <NumberPicker key={name} min={0}/>
       }
       return (

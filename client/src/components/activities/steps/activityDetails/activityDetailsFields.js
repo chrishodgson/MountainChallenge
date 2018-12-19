@@ -26,7 +26,7 @@ export default [
   {
     name: "date",
     label: "Date",
-    type: "text",
+    type: "text", //datetime
     required: false
   }
 ];
