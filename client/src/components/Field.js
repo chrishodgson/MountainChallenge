@@ -32,7 +32,7 @@ export default props => {
         min={min || 0}
         max={max || 99999}
         format="00"
-        value={!value ? null : value}
+        value={!value ? 0 : value}
       />
     );
   };
