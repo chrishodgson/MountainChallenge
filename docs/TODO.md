@@ -1,11 +1,5 @@
 ### MVP
 
-Maps
-
-- investigate OpenStreetMap
-- zoom to fit map to markers on OS map
-  https://www.ordnancesurvey.co.uk/forums/discussion/1001031/zoom-level-to-accommodate-loaded-markers
-
 Styling
 
 - switch to bootstrap
@@ -48,6 +42,9 @@ Mapping
 - show mountain selections on map
 
 - find mountains close by
+
+- zoom to fit map to markers on OS map
+  https://www.ordnancesurvey.co.uk/forums/discussion/1001031/zoom-level-to-accommodate-loaded-markers
 
 Users
 
