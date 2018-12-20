@@ -19,6 +19,7 @@ Database optimisation
 Activities
 
 - default values (00) for hours and minutes and suffixes hrs and mins
+- hours and minutes specific renderers in Field component
 - library for formatting dates and hours/minutes from database
 - form validation of date, mins and hours
 

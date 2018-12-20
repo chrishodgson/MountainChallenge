@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import OpenStreetMap from "./OpenStreetMap";
 
 const Dashboard = () => {
   return (
@@ -23,7 +22,6 @@ const Dashboard = () => {
       <p>
         <Link to="/activities/new">New Activity</Link>
       </p>
-      <OpenStreetMap />
     </div>
   );
 };
