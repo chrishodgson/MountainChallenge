@@ -23,6 +23,8 @@ Challenges
 - list challenges - show % complete etc
 - Import: mountain count, highest, lowest mountains onto mountainList collection ?
 
+Login - fix Google Login
+
 ---
 
 ### Post MVP
@@ -35,6 +37,14 @@ Login
 
 - via Facebook / Create an Account on site
 
+Users
+
+- add users to challenge / activity
+
+Photos
+
+- add instagram images to activity
+
 Mapping
 
 - add route to map
@@ -45,11 +55,3 @@ Mapping
 
 - zoom to fit map to markers on OS map
   https://www.ordnancesurvey.co.uk/forums/discussion/1001031/zoom-level-to-accommodate-loaded-markers
-
-Users
-
-- add users to challenge / activity
-
-Photos
-
-- add instagram images to activity
