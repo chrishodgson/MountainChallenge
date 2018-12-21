@@ -28,7 +28,6 @@ class Header extends Component {
 
   render() {
     return (
-      <nav style={{ backgroundColor: "#ffffff" }}>
         <div className="nav-wrapper">
           <Link
             to={this.props.auth ? "/dashboard" : "/"}
@@ -36,7 +35,7 @@ class Header extends Component {
           >
             MC
           </Link>
-          <ul className="right">{this.renderContent()}</ul>
+          <ul className="nav justify-content-end">{this.renderContent()}</ul>
         </div>
       </nav>
     );

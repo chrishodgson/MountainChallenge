@@ -7,7 +7,6 @@ import simpleNumberLocalizer from "react-widgets-simple-number";
 import momentLocaliser from "react-widgets-moment";
 import Moment from "moment";
 
-//momentLocaliser(Moment.locale("en"));
 Moment.locale("en");
 momentLocaliser();
 simpleNumberLocalizer();
