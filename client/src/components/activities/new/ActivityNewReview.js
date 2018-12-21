@@ -40,14 +40,11 @@ class ActivityReview extends Component {
         {this.renderActivityDetails()}
         <p>Mountains</p>
         {this.renderMountains()}
-        <button
-          className="grey btn-flat white-text"
-          onClick={this.props.onCancel}
-        >
+        <button className="btn" onClick={this.props.onCancel}>
           Back
         </button>
         <button
-          className="grey btn-flat white-text right"
+          className="btn"
           onClick={() => {
             this.props.resetState();
             this.props.dispatch(

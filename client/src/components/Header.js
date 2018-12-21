@@ -9,16 +9,16 @@ class Header extends Component {
         return;
       case false:
         return (
-          <li>
-            <a className="grey-text" href="/auth/google">
+          <li className="nav-item">
+            <a className="nav-link" href="/auth/google">
               Login with Google
             </a>
           </li>
         );
       default:
         return [
-          <li key="1">
-            <a className="grey-text" href="/api/logout">
+          <li key="1" className="nav-item">
+            <a className="nav-link" href="/api/logout">
               Logout - {this.props.auth.name}
             </a>
           </li>
@@ -28,14 +28,26 @@ class Header extends Component {
 
   render() {
     return (
-        <div className="nav-wrapper">
-          <Link
-            to={this.props.auth ? "/dashboard" : "/"}
-            className="left brand-logo grey-text"
-          >
-            MC
-          </Link>
-          <ul className="nav justify-content-end">{this.renderContent()}</ul>
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <Link
+          to={this.props.auth ? "/dashboard" : "/"}
+          className="navbar-brand"
+        >
+          MC
+        </Link>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon" />
+        </button>
+        <div className="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul className="navbar-nav">{this.renderContent()}</ul>
         </div>
       </nav>
     );

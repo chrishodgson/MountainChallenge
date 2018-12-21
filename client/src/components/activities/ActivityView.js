@@ -27,8 +27,8 @@ class ActivityView extends Component {
 
     return (
       <div>
-        <table style={{ marginTop: "20px" }}>
-          <caption>Activity Details</caption>
+        <p>Activity Details</p>
+        <table className="table condensed">
           <tbody>
             <tr>
               <th>Title</th>

@@ -61,14 +61,9 @@ export default props => {
 
   const defaultLayout = children => {
     return (
-      <div>
+      <div className="form-group">
         <label>{label}</label>
-        <div
-          style={{ marginBottom: "0px", marginTop: "0px" }}
-          className="input-field"
-        >
-          {children}
-        </div>
+        {children}
         {renderError()}
       </div>
     );
@@ -76,12 +71,11 @@ export default props => {
 
   const radioLayout = children => {
     return (
-      <div>
+      <div className="form-group">
         {index === 0 ? renderError() : ""}
-        <label>
-          {children}
-          <span>{label}</span>
-        </label>
+        {children}
+        <label className="form-check-label">{label}</label>
+        {renderError()}
       </div>
     );
   };
@@ -103,25 +97,21 @@ export default props => {
       case "datetime":
         return renderDateTimePicker(input, showTime);
       case "textarea":
-        return defaultLayout(
-          <textarea
-            {...input}
-            className="materialize-textarea"
-            style={{ margin: "0px" }}
-          />
-        );
+        return defaultLayout(<textarea {...input} className="form-control" />);
       case "select":
         return defaultLayout(
-          <select {...input} className="browser-default">
+          <select {...input} className="form-control">
             {renderOptions()}
           </select>
         );
       case "radio":
-        return radioLayout(<input {...input} type="radio" />);
+        return radioLayout(
+          <input {...input} type="radio" className="form-check-input" />
+        );
       case "text":
       default:
         return defaultLayout(
-          <input {...input} type="text" style={{ margin: "0px" }} />
+          <input {...input} type="text" className="form-control" />
         );
     }
   };

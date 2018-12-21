@@ -56,17 +56,13 @@ class MountainSearch extends Component {
             ""
           )}
 
-          <button type="submit" className="grey btn-flat white-text">
+          <button type="submit" className="btn">
             Search
           </button>
-
-          <Link to="/dashboard" className="grey btn-flat white-text">
+          <Link to="/dashboard" className="btn">
             Back
           </Link>
-          <button
-            onClick={e => this.handleNext(e)}
-            className="grey btn-flat white-text right"
-          >
+          <button onClick={e => this.handleNext(e)} className="btn">
             Next
           </button>
         </form>

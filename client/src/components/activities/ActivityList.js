@@ -48,19 +48,21 @@ class ActivityList extends Component {
     }
 
     return (
-      <table style={{ marginTop: "20px" }}>
-        <caption>Activities</caption>
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Duration</th>
-            <th>Date</th>
-            <th>Mountains</th>
-          </tr>
-        </thead>
-        <tbody>{this.renderActivities()}</tbody>
-      </table>
+      <div>
+        <p>Activity Listing</p>
+        <table className="table condensed">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Description</th>
+              <th>Duration</th>
+              <th>Date</th>
+              <th>Mountains</th>
+            </tr>
+          </thead>
+          <tbody>{this.renderActivities()}</tbody>
+        </table>
+      </div>
     );
   }
 }

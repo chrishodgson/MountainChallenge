@@ -16,7 +16,7 @@ class MountainSearchResults extends Component {
               ""
             ) : (
               <button
-                className="btn-flat grey white-text"
+                className="btn btn-link"
                 name={mountain._id}
                 onClick={this.handleClick}
               >
@@ -60,17 +60,21 @@ class MountainSearchResults extends Component {
     }
 
     return (
-      <table style={{ paddingTop: "20px" }}>
-        <caption>Search Results:</caption>
-        <thead>
-          <tr>
-            <th>&nbsp;</th>
-            <th>Name</th>
-            <th>Height</th>
-          </tr>
-        </thead>
-        <tbody>{this.renderMountains()}</tbody>
-      </table>
+      <div>
+        <br />
+        <hr />
+        <p>Search Results:</p>
+        <table className="table">
+          <thead>
+            <tr>
+              <th>&nbsp;</th>
+              <th>Name</th>
+              <th>Height</th>
+            </tr>
+          </thead>
+          <tbody>{this.renderMountains()}</tbody>
+        </table>
+      </div>
     );
   }
 }

@@ -24,13 +24,10 @@ class ActivityDetails extends Component {
       <div>
         <form onSubmit={this.props.handleSubmit(this.props.onSubmit)}>
           {this.renderFields()}
-          <button
-            onClick={this.props.onCancel}
-            className="grey btn-flat white-text"
-          >
+          <button onClick={this.props.onCancel} className="btn">
             Back
           </button>
-          <button type="submit" className="grey btn-flat white-text right">
+          <button type="submit" className="btn">
             Next
           </button>
         </form>

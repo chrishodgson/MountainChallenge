@@ -9,9 +9,9 @@ class SelectedMountains extends Component {
         <span style={{ paddingRight: "10px" }} key={mountain._id}>
           {mountain.name}
           <button
-            style={{ marginLeft: "5px", marginRight: "5px" }}
             name={mountain._id}
             onClick={this.handleClick}
+            className="btn btn-light btn-secondary"
           >
             x
           </button>
