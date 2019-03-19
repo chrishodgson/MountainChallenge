@@ -1,6 +1,6 @@
 Under 300m
 ----
-Fel - 3 Under 300m
+Fel - 3 Under 300m :
 Castle Crag 290
 Muncaster Fell - Hooker Crag 231.4
 Wallowbarrow Crag 292
@@ -67,7 +67,7 @@ codes
 * Nuttall N
 * Dewey D
 
-csv output
+csv output for classifications
 -----
 'classification,country,<300,total,smallest,smallest name,tallest,tallest name',
   'D,S,0,88,610,Innerdownie,843,Merrick',

@@ -1,57 +1,62 @@
-### MVP
+### High Level Requirements 
 
-Styling
+purpose: log mountains climbed as part of a challenge or a simple activity log
 
-- switch to bootstrap
+screens: 
+- challenge - select from existing challenges
+- view challenge - show % completed, list mountains climbed by date, list mountains remaining   
+- activities - select mountains climbed with filters on name, classification, region, 
+- list activities - list mountains climbed grouped by activity 
 
-Database optimisation
 
-- add indexes
+### MVP - remaining
+
+Styling - use bootstrap as stop gap
+
+User Data
+
 - add challenges / activities sub documents to users
 - restrict activities and challenges by user
 
-Activities
+Challenges
+
+- add challenge API - save mountains / mountain list
+- list challenges screen - show % complete, mountains climbed, mountains not climbed
+- Import: add meta mountain count, highest, lowest mountains onto mountainList collection ?
+
+
+Activity Date/Times - how critical is this? 
 
 - default values (00) for hours and minutes and suffixes hrs and mins
 - hours and minutes specific renderers in Field component
 - library for formatting dates and hours/minutes from database
 - form validation of date, mins and hours
 
-Challenges
-
-- add challenge - save mountains / mountain list
-- list challenges - show % complete etc
-- Import: mountain count, highest, lowest mountains onto mountainList collection ?
-
-Login - fix Google Login
 
 ---
 
 ### Post MVP
 
-Styling
+Database optimisation - switch to MySQL / add indexes
 
-- custom theme
+Styling - custom theme
 
-Login
+Login - via Facebook / Create an Account on site
 
-- via Facebook / Create an Account on site
+Users - add users to challenge / activity
 
-Users
+Photos - add instagram images to activity
 
-- add users to challenge / activity
+Mapping - show mountains as selected on a map
 
-Photos
+Mapping - add route to map 
 
-- add instagram images to activity
 
-Mapping
+---
 
-- add route to map
+### Spikes
 
-- show mountain selections on map
+- find mountains by proximity to a grid ref (maths required)
 
-- find mountains close by
-
-- zoom to fit map to markers on OS map
+- auto zoom to fit map to markers on OS map
   https://www.ordnancesurvey.co.uk/forums/discussion/1001031/zoom-level-to-accommodate-loaded-markers
