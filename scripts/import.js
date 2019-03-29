@@ -13,7 +13,17 @@
  * --filename absolute path of filename to import
  *
  * countries: [ 'S', 'ES', 'M', 'W', 'E', 'C', 'I' ]
- * classifications: ['D', 'Sy', 'Fel', 'B', 'W', 'WO', 'M', 'F', 'C', 'G', '5']
+ * classifications: ['M', 'C', 'G', 'F', 'Sim', 'Sy', 'Fel', 'B', 'W', 'WO']
+ * Munro M - Scottish 3000ft+ (282)
+ * Corbett C - Scottish 2500-2900ft (222)
+ * Graham G - Scottish 2000-2499ft (219)
+ * Furth F - English & Welsh 3000ft+ (21)
+ * Simm Sim - All 600m+ (1968.5ft+) (2307)	
+ * Synge Sy - Lakes list 300m+ (647)
+ * Fellranger Fel - Lakes list (227)
+ * Birkett B - Lakes list 304m+ / 1000ft+ (541)
+ * Wainwright W - Lakes list 1000ft+ (214)
+ * Wainwright Outlying Fell WO - Lakes list (116)
  * (see http://www.hills-database.co.uk/database_notes.html#classification)
  */
 
@@ -40,7 +50,7 @@ const Area = mongoose.model("areas");
 const County = mongoose.model("counties");
 
 const columns = /(Number|Name|Metres|Feet|Area|Grid ref 10|Classification|Parent (Ma)|Map 1:25k|Country|County)/;
-const allowedClassifications = "D,Sy,Fel,B,W,WO,M,F,C,G,5";
+const allowedClassifications = "M,C,G,F,Sim,Sy,Fel,B,W,WO";
 const classificationList = allowedClassifications.split(",");
 
 const filenameInput = args["filename"] || null;

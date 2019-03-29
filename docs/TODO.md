@@ -5,26 +5,43 @@
 Styling - use bootstrap as stop gap
 
 Import
+- add mountain count, highest and lowest to mountainList
+- delete database and re-run import 
+- remove the savecounties
 
-- adjust mountain import
+Add Challenge API
+- add challenge to users
 
-User Data
+Add Challenge Screen
+- page listing challenges with add challenge buttons
+- add challenge page
 
-- add challenges / activities sub documents to users
-- restrict activities and challenges by user
+View Challenge API
+- restrict by user
 
-Challenges
+Get MountainList API
+- return list of mountains
 
-- add challenge API - save mountains / mountain list
-- list challenges screen - show % complete, mountains climbed, mountains not climbed
-- Import: add meta mountain count, highest, lowest mountains onto mountainList collection ?
+View Challenge Screen
+- show % complete, mountains climbed, mountains not climbed
+- use Get MountainList API
 
+Dashboard
+- list challenges with % complete 
+- list mountains climbed grouped by activity
 
-Activity Date/Times - how critical is this? 
+Add Activity API
+- add activity to users
+- add mountains to activity
 
-- default values (00) for hours and minutes and suffixes hrs and mins
-- hours and minutes specific renderers in Field component
-- library for formatting dates and hours/minutes from database
+Add Activity Screen
+- Selecting mountains either by:
+    - Listing mountains (couhtry & area required)
+    - Searching by mountain name (couhtry required)
+- default values (00) for hours and minutes 
+- add suffixes hrs and mins
+- add hours and minutes specific renderers in Field component
+- use library for formatting dates and hours/minutes from database
 - form validation of date, mins and hours
 
 
