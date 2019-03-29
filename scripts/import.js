@@ -1,5 +1,11 @@
 /**
- * import mountains by country from CSV
+ * import mountains and associated data (areas and mountain lists) by country from CSV
+ * 
+ * This will populate the following collections: 
+ * - mountains - a mountain can have multiple areas but only ONE country 
+ * - mountain Lists - one per classification code (see allowed classifications below). a mountain list can have ONE country 
+ * - areas - (ie Wainwright volumes, Donald Sections, Nuttall chapters, SIB Regions). an area can have multiple countries
+ * 
  * node scripts/import.js --filename=absoluteFilePath.csv --country=E
  *
  * mandatory switches:
@@ -8,19 +14,7 @@
  *
  * countries: [ 'S', 'ES', 'M', 'W', 'E', 'C', 'I' ]
  * classifications: ['D', 'Sy', 'Fel', 'B', 'W', 'WO', 'M', 'F', 'C', 'G', '5']
- * Donald D
- * Synge Sy
- * Fellranger Fel
- * Birkett B
- * Wainwright W
- * Wainwright Outlying Fell WO
- * Munro M
- * Furth F
- * Corbett C
- * Graham G
- * Dodd 5
- * http://www.hills-database.co.uk/database_notes.html#list_of_lists
- * http://www.hills-database.co.uk/database_notes.html#classification
+ * (see http://www.hills-database.co.uk/database_notes.html#classification)
  */
 
 const _ = require("lodash");

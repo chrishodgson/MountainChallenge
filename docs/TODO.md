@@ -1,35 +1,12 @@
-### High Level Requirements 
-
-purpose: log mountains climbed as part of a challenge or a simple activity log
-
-screens: 
-- challenge - select from existing challenges
-- view challenge - show % completed, list mountains climbed by date, list mountains remaining   
-- activities - select mountains climbed with filters on name, classification, region, 
-- list activities - list mountains climbed grouped by activity 
-
-mysql schema:
-- user: name, admin, googleId
-- mountain: dobihId, name, gridref, easting, northing, metres, countryCode
-- mountain_list: name, desc, country code, classification code
-- mountain_list_item: mountainID, mountainListID
-- challenge: name, desc, mountain count, 
-- challenge_mountain: mountainID, challengeID
-- challenge_users: userID, challengeID
-- activity: name, desc, mountain count, hours, minutes, start date
-- activity_mountain: mountainID, activityID, order
-- activity_users: userID, activityID
-- area: name
-- country: name
-- classification: name
-- county ?
-
-mongo schema:
 
 
 ### MVP - remaining
 
 Styling - use bootstrap as stop gap
+
+Import
+
+- adjust mountain import
 
 User Data
 
@@ -55,7 +32,7 @@ Activity Date/Times - how critical is this?
 
 ### Post MVP
 
-Database optimisation - switch to MySQL / add indexes
+Database optimisation - add indexes
 
 Styling - custom theme
 
