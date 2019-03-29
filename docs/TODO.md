@@ -8,6 +8,24 @@ screens:
 - activities - select mountains climbed with filters on name, classification, region, 
 - list activities - list mountains climbed grouped by activity 
 
+mysql schema:
+- user: name, admin, googleId
+- mountain: dobihId, name, gridref, easting, northing, metres, countryCode
+- mountain_list: name, desc, country code, classification code
+- mountain_list_item: mountainID, mountainListID
+- challenge: name, desc, mountain count, 
+- challenge_mountain: mountainID, challengeID
+- challenge_users: userID, challengeID
+- activity: name, desc, mountain count, hours, minutes, start date
+- activity_mountain: mountainID, activityID, order
+- activity_users: userID, activityID
+- area: name
+- country: name
+- classification: name
+- county ?
+
+mongo schema:
+
 
 ### MVP - remaining
 
